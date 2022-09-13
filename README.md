@@ -1,6 +1,11 @@
-# vue-project
+# Rennes 3D
 
-This template should help get you started developing with Vue 3 in Vite.
+## Quick start
+
+```shell
+npm i
+npm start
+```
 
 ## Recommended IDE Setup
 
@@ -30,7 +35,7 @@ npm install
 ### Compile and Hot-Reload for Development
 
 ```sh
-npm run dev
+npm start
 ```
 
 ### Type-Check, Compile and Minify for Production
@@ -55,5 +60,11 @@ npm run test:e2e # or `npm run test:e2e:ci` for headless testing
 ### Lint with [ESLint](https://eslint.org/)
 
 ```sh
-npm run lint
+npm run lint:js
+```
+
+### Format the code with autofix (eslint + prettier)
+
+```sh
+npm run format
 ```
