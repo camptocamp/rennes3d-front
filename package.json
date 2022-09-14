@@ -15,7 +15,10 @@
     "lint:prettier": "prettier --check .",
     "lint": "npm run lint:js && npm run lint:prettier",
     "format": "prettier --write --list-different . && npm run lint:js -- --fix",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "story": "histoire dev",
+    "story:build": "histoire build",
+    "story:preview": "histoire preview"
   },
   "dependencies": {
     "pinia": "^2.0.21",
@@ -23,6 +26,7 @@
     "vue-router": "^4.1.5"
   },
   "devDependencies": {
+    "@histoire/plugin-vue": "^0.10.7",
     "@rushstack/eslint-patch": "^1.1.4",
     "@types/jsdom": "^20.0.0",
     "@types/node": "^16.11.56",
@@ -36,6 +40,7 @@
     "eslint": "^8.22.0",
     "eslint-plugin-cypress": "^2.12.1",
     "eslint-plugin-vue": "^9.3.0",
+    "histoire": "^0.10.7",
     "husky": "^8.0.1",
     "jsdom": "^20.0.0",
     "lint-staged": "^13.0.3",
