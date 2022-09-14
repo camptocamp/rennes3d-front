@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import { useLayersVisibilityStore } from '../../stores/layers'
+import { useLayersStore } from '../../stores/layers'
 import type { TransportLayers } from '../../stores/layers'
 import MapButton from '../ui/MapButton.vue'
 
-const store = useLayersVisibilityStore()
+const layerStore = useLayersStore()
 
 function toggleLayer(name: TransportLayers) {
-  store.toggleLayer(name)
+  layerStore.toggleLayer(name)
 }
 </script>
 
@@ -14,21 +14,21 @@ function toggleLayer(name: TransportLayers) {
   <MapButton
     @click="toggleLayer('metro')"
     class=""
-    :active="store.layerVisibility.metro"
+    :active="layerStore.visibilities.metro"
   >
     metro
   </MapButton>
   <MapButton
     @click="toggleLayer('bus')"
     class=""
-    :active="store.layerVisibility.bus"
+    :active="layerStore.visibilities.bus"
   >
     bus
   </MapButton>
   <MapButton
     @click="toggleLayer('tram')"
     class=""
-    :active="store.layerVisibility.tram"
+    :active="layerStore.visibilities.tram"
   >
     tram
   </MapButton>
