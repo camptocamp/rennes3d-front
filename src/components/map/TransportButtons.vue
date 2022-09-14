@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useLayersStore } from '../../stores/layers'
 import type { TransportLayers } from '../../stores/layers'
-import MapButton from '../ui/MapButton.vue'
+import MapButton from '../ui/UiButton.vue'
 
 const layerStore = useLayersStore()
 
