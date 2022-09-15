@@ -1,14 +1,23 @@
 <script setup lang="ts">
-import { networkFiguresFixtures } from '@/model/network-figures.fixtures'
-import UiNetworkFigure from '../ui/UiNetworkFigure.vue'
+import { reactive, onMounted } from 'vue'
 
-const networkFigures = networkFiguresFixtures()
+import { apiClientService } from '@/services/api.client'
+import UiNetworkFigure from '../ui/UiNetworkFigure.vue'
+import type { NetworkFigureModel } from '../../model/network-figures.model'
+
+const state = reactive({
+  networkFigures: null as null | NetworkFigureModel[],
+})
+
+onMounted(async () => {
+  state.networkFigures = await apiClientService.fetchNetworkFigure()
+})
 </script>
 
 <template>
   <div class="flex flex-row">
     <UiNetworkFigure
-      v-for="networkFigure in networkFigures"
+      v-for="networkFigure in state.networkFigures"
       :key="networkFigure.id"
       :figure="networkFigure.figure"
       :description="networkFigure.description"
