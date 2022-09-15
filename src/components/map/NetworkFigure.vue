@@ -1,31 +1,18 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { networkFiguresFixtures } from '@/model/network-figures.fixtures'
 import UiNetworkFigure from '../ui/UiNetworkFigure.vue'
 
-const newLines = ref(7)
-const newStations = ref(129)
-const bikePathCreated = ref(128)
+const networkFigures = networkFiguresFixtures()
 </script>
 
 <template>
   <div class="flex flex-row">
     <UiNetworkFigure
-      :number="newLines"
-      :description="'Nouvelles lignes'"
-      class="basis-1/3"
-    >
-    </UiNetworkFigure>
-    <UiNetworkFigure
-      :number="newStations"
-      :description="'Nouvelles stations'"
-      class="basis-1/3"
-    >
-    </UiNetworkFigure>
-    <UiNetworkFigure
-      :number="bikePathCreated"
-      :unit="'km'"
-      :description="'Pistes cyclables crées'"
-      class="basis-1/3"
+      v-for="networkFigure in networkFigures"
+      :key="networkFigure.id"
+      :figure="networkFigure.figure"
+      :description="networkFigure.description"
+      :unit="networkFigure.unit"
     >
     </UiNetworkFigure>
   </div>
