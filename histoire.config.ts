@@ -4,6 +4,10 @@ import { HstVue } from '@histoire/plugin-vue'
 export default defineConfig({
   setupFile: '/src/histoire-setup.ts',
   plugins: [HstVue()],
+  routerMode: 'hash',
+  vite: {
+    base: process.env.HISTOIRE_BASE || '/dist/',
+  },
   tree: {
     groups: [
       {
