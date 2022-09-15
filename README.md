@@ -2,9 +2,17 @@
 
 ## Quick start
 
+### Run the app in dev mode
+
 ```shell
 npm i
 npm start
+```
+
+### Run histoire
+
+```shell
+npm run story
 ```
 
 ## Recommended IDE Setup
@@ -67,4 +75,10 @@ npm run lint:js
 
 ```sh
 npm run format
+```
+
+### Run histoire with Hot-Reload for Development
+
+```sh
+npm run story
 ```
