@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import TransportButtons from '../components/map/TransportButtons.vue'
 import HelloWorld from '../components/HelloWorld.vue'
-import NetworkFigure from '../components/map/NetworkFigure.vue'
+import NetworkFigures from '../components/home/NetworkFigures.vue'
 </script>
 
 <template>
@@ -9,7 +9,7 @@ import NetworkFigure from '../components/map/NetworkFigure.vue'
   <main class="h-screen flex">
     <div class="w-72 p-4 bg-blue-300">
       <div class="">
-        <NetworkFigure></NetworkFigure>
+        <NetworkFigures></NetworkFigures>
       </div>
     </div>
     <div class="grow p-4 relative">
