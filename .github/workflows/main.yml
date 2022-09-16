@@ -26,6 +26,8 @@ jobs:
           cache: 'npm'
       - run: npm ci
       - run: npm run story:build
+      - name: .nojekyll
+        run: touch .histoire/dist/.nojekyll
       - name: Set branch name in ENV
         run: echo "::set-env name=BRANCH_NAME::${GITHUB_HEAD_REF}"
       - name: deploy to gh pages
@@ -33,4 +35,4 @@ jobs:
           echo "Deploying to directory: ${{env.BRANCH_NAME}}"
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          npx gh-pages --dist .histoire/dist/ --no-history --repo "https://${GITHUB_ACTOR}:${{secrets.GITHUB_TOKEN}}@github.com/${GITHUB_REPOSITORY}.git"
+          npx gh-pages --dist .histoire/dist/ --no-history --dotfiles true --repo "https://${GITHUB_ACTOR}:${{secrets.GITHUB_TOKEN}}@github.com/${GITHUB_REPOSITORY}.git"
