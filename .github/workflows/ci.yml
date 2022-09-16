@@ -1,7 +1,6 @@
 name: CI
 env:
   ACTIONS_ALLOW_UNSECURE_COMMANDS: true
-  HISTOIRE_BASE: /rennes3d-front/
 
 on:
   push:
@@ -41,9 +40,6 @@ jobs:
           node-version: 16
           cache: 'npm'
       - run: npm ci
-      - run: npm run story:build
-      - name: .nojekyll
-        run: touch .histoire/dist/.nojekyll
 
       - name: Get branch name (merge)
         if: github.event_name != 'pull_request'
@@ -55,8 +51,11 @@ jobs:
         shell: bash
         run: echo "BRANCH_NAME=$(echo ${GITHUB_HEAD_REF} | tr / -)" >> $GITHUB_ENV
 
-      - name: Debug
-        run: echo ${{ env.BRANCH_NAME }}
+      - name: Set HISTOIRE_BASE ENV
+        shell: bash
+        run: echo "HISTOIRE_BASE=$(echo /rennes3d-front/${BRANCH_NAME}/)" >> $GITHUB_ENV
+
+      - run: npm run story:build
 
       - name: deploy to gh pages
         run: |
@@ -64,3 +63,13 @@ jobs:
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           npx gh-pages --dist .histoire/dist/ --dest ${{env.BRANCH_NAME}} --remove "${{env.BRANCH_NAME}}/**" --no-history --dotfiles true --repo "https://${GITHUB_ACTOR}:${{secrets.GITHUB_TOKEN}}@github.com/${GITHUB_REPOSITORY}.git"
+
+      - name: add PR comment
+        uses: thollander/actions-comment-pull-request@v1
+        if: github.event_name == 'pull_request'
+        with:
+          message: 'GitHub Pages links:
+
+            * Histoires: https://camptocamp.github.io/rennes3d-front/${{env.BRANCH_NAME}}/'
+          comment_includes: 'GitHub Pages links:'
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
