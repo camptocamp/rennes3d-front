@@ -5,7 +5,7 @@ function initState() {
   return {
     newDuration: 15,
     oldDuration: 40,
-    lineNumber: 'T1',
+    lineNumber: 1,
     startStation: 'JF Kennedy',
     endStation: 'Brécé',
   }

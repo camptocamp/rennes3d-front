@@ -2,7 +2,7 @@
 const props = defineProps({
   newDuration: Number,
   oldDuration: Number,
-  lineNumber: String,
+  lineNumber: Number,
   startStation: String,
   endStation: String,
 })
@@ -31,7 +31,7 @@ const props = defineProps({
     <div
       class="flex flex-row items-center px-2 py-4 w-9 h-7 bg-[#CECECE] rounded-2xl"
     >
-      {{ props.lineNumber }}
+      T{{ props.lineNumber }}
     </div>
     <div
       class="flex flex-row items-start p-0 gap-5 w-9 h-2 bg-[#61D03F] rounded origin-center rotate-90"
