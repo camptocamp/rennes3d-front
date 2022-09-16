@@ -4,6 +4,8 @@ import HelloWorld from '../components/HelloWorld.vue'
 import NetworkFigures from '../components/home/NetworkFigures.vue'
 // import LineDescriptions from '../components/home/LineDescriptions.vue'
 // import TravelTimes from '../components/home/TravelTimes.vue'
+import MapContext from '../components/map/MapContext.vue';
+
 </script>
 
 <template>
@@ -15,7 +17,7 @@ import NetworkFigures from '../components/home/NetworkFigures.vue'
       </div>
     </div>
     <div class="grow p-4 relative">
-      <HelloWorld msg="The home" />
+      <MapContext />
       <div class="absolute right-2 top-2">
         <TransportButtons></TransportButtons>
       </div>
