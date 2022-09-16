@@ -1,12 +1,18 @@
 {
   "name": "rennes3D-front",
   "version": "0.0.1",
+  "engines": {
+    "node": ">=14"
+  },
   "scripts": {
     "start": "npm run dev",
     "dev": "vite",
     "build": "run-p type-check build-only",
     "preview": "vite preview --port 4173",
+    "test": "npm run test:unit",
     "test:unit": "vitest --environment jsdom",
+    "test:coverage": "vitest --environment jsdom --coverage",
+    "test:unit:ci": "vitest run --environment jsdom --coverage",
     "test:e2e": "start-server-and-test preview http://localhost:4173/ 'cypress open --e2e'",
     "test:e2e:ci": "start-server-and-test preview http://localhost:4173/ 'cypress run --e2e'",
     "build-only": "vite build",
@@ -31,6 +37,7 @@
     "@types/jsdom": "^20.0.0",
     "@types/node": "^16.11.56",
     "@vitejs/plugin-vue": "^3.0.3",
+    "@vitest/coverage-c8": "^0.23.2",
     "@vue/eslint-config-prettier": "^7.0.0",
     "@vue/eslint-config-typescript": "^11.0.0",
     "@vue/test-utils": "^2.0.2",
