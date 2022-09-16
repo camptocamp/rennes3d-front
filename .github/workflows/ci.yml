@@ -44,8 +44,17 @@ jobs:
       - run: npm run story:build
       - name: .nojekyll
         run: touch .histoire/dist/.nojekyll
-      - name: Set branch name in ENV
-        run: echo "::set-env name=BRANCH_NAME::${GITHUB_HEAD_REF}"
+
+      - name: Get branch name (merge)
+        if: github.event_name != 'pull_request'
+        shell: bash
+        run: echo "BRANCH_NAME=$(echo ${GITHUB_REF#refs/heads/} | tr / -)" >> $GITHUB_ENV
+
+      - name: Get branch name (pull request)
+        if: github.event_name == 'pull_request'
+        shell: bash
+        run: echo "BRANCH_NAME=$(echo ${GITHUB_HEAD_REF} | tr / -)" >> $GITHUB_ENV
+
       - name: deploy to gh pages
         run: |
           echo "Deploying to directory: ${{env.BRANCH_NAME}}"
