@@ -17,7 +17,7 @@ function initState() {
     title="UiTravelTime"
     :layout="{
       type: 'grid',
-      width: 200,
+      width: 400,
     }"
     group="homepage"
     :init-state="initState"
