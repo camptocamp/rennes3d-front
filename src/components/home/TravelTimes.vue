@@ -15,13 +15,13 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div class="flex flex-row">
+  <div class="flex flex-row items-start p-0 gap-3 overflow-x-auto">
     <UiTravelTime
       v-for="travelTime in state.travelTimes"
       :key="travelTime.line"
       :newDuration="travelTime.new"
       :oldDuration="travelTime.old"
-      :line="travelTime.line"
+      :lineNumber="travelTime.line"
       :startStation="travelTime.start"
       :endStation="travelTime.end"
     >
