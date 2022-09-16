@@ -34,7 +34,8 @@ const props = defineProps({
       T{{ props.lineNumber }}
     </div>
     <div
-      class="flex flex-row items-start p-0 gap-5 w-9 h-2 bg-t3-line rounded origin-center rotate-90"
+      class="flex flex-row items-start p-0 gap-5 w-9 h-2 rounded origin-center rotate-90"
+      :class="'bg-t' + props.lineNumber + '-line'"
     >
       <div
         class="box-border w-2 h-2 bg-white border-2 border-solid border-black origin-center rotate-90 rounded-full"
