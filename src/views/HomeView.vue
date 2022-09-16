@@ -2,7 +2,7 @@
 import TransportButtons from '../components/map/TransportButtons.vue'
 import HelloWorld from '../components/HelloWorld.vue'
 import NetworkFigures from '../components/home/NetworkFigures.vue'
-import TravelTimes from '../components/home/TravelTimes.vue'
+// import TravelTimes from '../components/home/TravelTimes.vue'
 </script>
 
 <template>
@@ -18,9 +18,9 @@ import TravelTimes from '../components/home/TravelTimes.vue'
       <div class="absolute right-2 top-2">
         <TransportButtons></TransportButtons>
       </div>
-      <div>
+      <!-- <div>
         <TravelTimes></TravelTimes>
-      </div>
+      </div> -->
     </div>
   </main>
 </template>
