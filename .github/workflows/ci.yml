@@ -1,7 +1,6 @@
 name: CI
 env:
   ACTIONS_ALLOW_UNSECURE_COMMANDS: true
-  HISTOIRE_BASE: /rennes3d-front/
 
 on:
   push:
@@ -41,9 +40,6 @@ jobs:
           node-version: 16
           cache: 'npm'
       - run: npm ci
-      - run: npm run story:build
-      - name: .nojekyll
-        run: touch .histoire/dist/.nojekyll
 
       - name: Get branch name (merge)
         if: github.event_name != 'pull_request'
@@ -54,6 +50,12 @@ jobs:
         if: github.event_name == 'pull_request'
         shell: bash
         run: echo "BRANCH_NAME=$(echo ${GITHUB_HEAD_REF} | tr / -)" >> $GITHUB_ENV
+
+      - name: Set HISTOIRE_BASE ENV
+        shell: bash
+        run: echo "HISTOIRE_BASE=$(echo /rennes3d-front/${BRANCH_NAME}/)" >> $GITHUB_ENV
+
+      - run: npm run story:build
 
       - name: deploy to gh pages
         run: |
