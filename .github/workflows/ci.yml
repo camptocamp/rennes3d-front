@@ -55,12 +55,19 @@ jobs:
         shell: bash
         run: echo "BRANCH_NAME=$(echo ${GITHUB_HEAD_REF} | tr / -)" >> $GITHUB_ENV
 
-      - name: Debug
-        run: echo ${{ env.BRANCH_NAME }}
-
       - name: deploy to gh pages
         run: |
           echo "Deploying to directory: ${{env.BRANCH_NAME}}"
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           npx gh-pages --dist .histoire/dist/ --dest ${{env.BRANCH_NAME}} --remove "${{env.BRANCH_NAME}}/**" --no-history --dotfiles true --repo "https://${GITHUB_ACTOR}:${{secrets.GITHUB_TOKEN}}@github.com/${GITHUB_REPOSITORY}.git"
+
+      - name: add PR comment
+        uses: thollander/actions-comment-pull-request@v1
+        if: github.event_name == 'pull_request'
+        with:
+          message: 'GitHub Pages links:
+
+            * Histoires: https://camptocamp.github.io/rennes3d-front/${{env.BRANCH_NAME}}/'
+          comment_includes: 'GitHub Pages links:'
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
