@@ -1,6 +1,7 @@
 /* eslint-env node */
 module.exports = {
   content: ['index.html', './src/**/*.{html,js,ts,vue}'],
+  safelist: ['bg-t1-line', 'bg-t2-line', 'bg-t3-line', 'bg-t4-line'],
   theme: {
     extend: {
       fontFamily: {
