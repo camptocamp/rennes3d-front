@@ -19,10 +19,8 @@ import NetworkFigures from '../components/home/NetworkFigures.vue'
       <div class="absolute right-2 top-2">
         <TransportButtons></TransportButtons>
       </div>
-      <!-- <div>
-        <TravelTimes></TravelTimes>
-      </div> -->
-      <!-- <div><LineDescriptions></LineDescriptions></div> -->
+      <!-- <div><TravelTimes></TravelTimes></div>
+      <div><LineDescriptions></LineDescriptions></div> -->
     </div>
   </main>
 </template>
