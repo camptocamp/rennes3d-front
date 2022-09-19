@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import arrowForward from './../../assets/icons/arrow-forward.svg'
 const props = defineProps({
   id: Number,
   name: String,
@@ -29,7 +30,7 @@ const props = defineProps({
           {{ props.start }}
         </div>
         <div class="w-4 h-4">
-          <img src="./../../assets/icons/arrow-forwad.svg" />
+          <img :src="arrowForward" />
         </div>
         <div
           class="w-9 h-4 font-dm-sans font-medium text-sm leading-4 text-black"
