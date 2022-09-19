@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import arrowForward from './../../assets/icons/arrow-forward.svg'
+import arrowForward from '@/assets/icons/arrow-forward.svg'
 const props = defineProps({
   id: Number,
   name: String,
