@@ -5,8 +5,8 @@
     "node": ">=14"
   },
   "scripts": {
-    "start": "npm run dev",
-    "dev": "vite",
+    "start": "npm run dev --host",
+    "dev": "vite --host",
     "build": "run-p type-check build-only",
     "preview": "vite preview --port 4173",
     "test": "npm run test:unit",
