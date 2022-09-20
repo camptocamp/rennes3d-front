@@ -1,3 +1,5 @@
+import { linesFixtures } from '@/model/lines.fixtures'
+import type { LineModel } from '@/model/lines.model'
 import { networkFiguresFixtures } from '@/model/network-figures.fixtures'
 import { travelTimeFixtures } from '@/model/travel-time.fixtures'
 import type { TravelTimeModel } from '@/model/travel-time.model'
@@ -12,6 +14,11 @@ class ApiClientService {
   async fetchTravelTime() {
     return new Promise<TravelTimeModel[]>((resolve) => {
       resolve(travelTimeFixtures())
+    })
+  }
+  async fetchLineDescription() {
+    return new Promise<LineModel[]>((resolve) => {
+      resolve(linesFixtures())
     })
   }
 }
