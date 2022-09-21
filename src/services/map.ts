@@ -7,18 +7,39 @@ import {
   TerrainLayer,
   CesiumTilesetLayer,
   VectorTileLayer,
+  VcsMap,
 } from '@vcmap/core'
 
-let context = null
+const LAYERS = [
+  new OpenStreetMapLayer({ name: 'osmBase' }),
+  new TerrainLayer({
+    name: 'terrain',
+    url: 'data/terrain',
+  }),
+  new CesiumTilesetLayer({
+    name: 'building',
+    url: 'data/buildings',
+  }),
+  new VectorTileLayer({
+    mapNames: ['ol'],
+    tileProvider: {
+      type: 'MVTTileProvider',
+      url: 'data/vectorTiles/{z}/{x}/{y}.pbf',
+      baseLevels: [12, 13, 14, 15],
+      idProperty: 'gmlid',
+    },
+    extent: {
+      coordinates: [8.6521196, 50.7494957, 8.8483077, 50.8534806],
+      epsg: 4326,
+    },
+  }),
+]
 
-function destroy() {
-  if (context) {
-    context.mapCollection2D.destroy()
-    context.mapCollection3D.destroy()
-
-    context = null
-  }
-}
+const startingViewPoint = new Viewpoint({
+  cameraPosition: [8.768696469559748, 50.80547556213949, 344.18806877180543],
+  groundPosition: [8.768240344556459, 50.81012228093323, 263.91238143570325],
+  pitch: -28,
+})
 
 function setupMaps() {
   const mapCollection3D = new MapCollection()
@@ -40,61 +61,25 @@ function setupMaps() {
   }
 }
 
-async function setupLayers(layerCollection) {
-  const osm = new OpenStreetMapLayer({ name: 'osmBase' })
-  layerCollection.add(osm)
-
-  const terrain = new TerrainLayer({
-    name: 'terrain',
-    url: 'data/terrain',
+async function setupLayers(layerCollection: MapCollection, layers: VcsMap[]) {
+  layers.forEach((layer) => {
+    layerCollection.add(layer)
   })
-  layerCollection.add(terrain)
-
-  const buildings = new CesiumTilesetLayer({
-    name: 'building',
-    url: 'data/buildings',
-  })
-  layerCollection.add(buildings)
-
-  const vectorTiles = new VectorTileLayer({
-    mapNames: ['ol'],
-    tileProvider: {
-      type: 'MVTTileProvider',
-      url: 'data/vectorTiles/{z}/{x}/{y}.pbf',
-      baseLevels: [12, 13, 14, 15],
-      idProperty: 'gmlid',
-    },
-    extent: {
-      coordinates: [8.6521196, 50.7494957, 8.8483077, 50.8534806],
-      epsg: 4326,
-    },
-  })
-  layerCollection.add(vectorTiles)
 
   await Promise.all([...layerCollection].map(async (l) => l.activate()))
 }
 
 export default async function setup() {
-  if (context) {
-    destroy()
-  }
-  context = setupMaps()
+  // const context = setupMaps()
 
-  context.startingVP = new Viewpoint({
-    cameraPosition: [8.768696469559748, 50.80547556213949, 344.18806877180543],
-    groundPosition: [8.768240344556459, 50.81012228093323, 263.91238143570325],
-    pitch: -28,
-  })
-  await setupLayers(context.mapCollection2D.layerCollection)
+  const { mapCollection3D, mapCollection2D } = setupMaps()
+
+  await setupLayers(mapCollection2D.layerCollection, LAYERS)
 
   await Promise.all(
-    [context.mapCollection2D, context.mapCollection3D].map(
-      async (collection) => {
-        await collection.setActiveMap([...collection][0].name)
-        await collection.activeMap.gotoViewpoint(context.startingVP)
-      }
-    )
+    [mapCollection2D, mapCollection3D].map(async (collection) => {
+      await collection.setActiveMap([...collection][0].name)
+      await collection.activeMap.gotoViewpoint(startingViewPoint)
+    })
   )
-
-  return context
 }

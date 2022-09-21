@@ -12,7 +12,7 @@ import MapComponent from './MapComponent.vue'
     group="map"
   >
     <template #default>
-      <MapComponent>test</MapComponent>
+      <MapComponent></MapComponent>
     </template>
   </Story>
 </template>
