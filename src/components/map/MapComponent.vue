@@ -2,23 +2,35 @@
 import { onMounted } from 'vue'
 import setup from '../../services/map'
 
+defineProps({
+  is3D: {
+    type: Boolean,
+    default: false,
+  },
+})
+
 onMounted(() => {
   setup()
 })
 </script>
 <template>
-  <div id="target-2D" class="overflow-hidden flex-1 bg-black h-full"></div>
   <div
-    id="target-3D"
-    class="overflow-hidden flex-1 bg-black h-full hidden"
+    id="map2D"
+    class="overflow-hidden flex-1 bg-black h-full"
+    :class="{ hidden: is3D }"
+  ></div>
+  <div
+    id="map3D"
+    class="overflow-hidden flex-1 bg-black h-full"
+    :class="{ hidden: !is3D }"
   ></div>
 </template>
 
 <style scoped>
-#target-2D :deep(.mapElement) {
+#map2D :deep(.mapElement) {
   height: 100%;
 }
-#target-3D :deep(.mapElement) {
+#map3D :deep(.mapElement) {
   height: 100%;
 }
 </style>

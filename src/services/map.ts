@@ -15,7 +15,6 @@ function destroy() {
   if (context) {
     context.mapCollection2D.destroy()
     context.mapCollection3D.destroy()
-    // context.synchronizer.destroy()
 
     context = null
   }
@@ -23,14 +22,14 @@ function destroy() {
 
 function setupMaps() {
   const mapCollection3D = new MapCollection()
-  mapCollection3D.setTarget('target-3D')
+  mapCollection3D.setTarget('map3D')
   mapCollection3D.add(new CesiumMap({ name: 'cesium' }))
 
   const { layerCollection } = mapCollection3D
   const mapCollection2D = new MapCollection()
   mapCollection2D.layerCollection = layerCollection
   mapCollection2D.eventHandler = mapCollection3D.eventHandler
-  mapCollection2D.setTarget('target-2D')
+  mapCollection2D.setTarget('map2D')
   mapCollection2D.add(
     new OpenlayersMap({ name: 'ol', fixedNorthOrientation: false })
   )

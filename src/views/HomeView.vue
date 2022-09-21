@@ -17,7 +17,7 @@ import MapComponent from '../components/map/MapComponent.vue'
     </div>
     <div class="flex grow p-4 relative">
       <!-- <HelloWorld msg="The home" /> -->
-      <MapComponent></MapComponent>
+      <MapComponent :is3D="false"></MapComponent>
       <div class="absolute right-2 top-2">
         <TransportButtons></TransportButtons>
       </div>
