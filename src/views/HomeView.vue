@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import TransportButtons from '../components/map/TransportButtons.vue'
-import HelloWorld from '../components/HelloWorld.vue'
+// import HelloWorld from '../components/HelloWorld.vue'
 import NetworkFigures from '../components/home/NetworkFigures.vue'
+import MapComponent from '../components/map/MapComponent.vue'
 // import LineDescriptions from '../components/home/LineDescriptions.vue'
 // import TravelTimes from '../components/home/TravelTimes.vue'
 </script>
@@ -15,7 +16,8 @@ import NetworkFigures from '../components/home/NetworkFigures.vue'
       </div>
     </div>
     <div class="grow p-4 relative">
-      <HelloWorld msg="The home" />
+      <!-- <HelloWorld msg="The home" /> -->
+      <MapComponent></MapComponent>
       <div class="absolute right-2 top-2">
         <TransportButtons></TransportButtons>
       </div>
