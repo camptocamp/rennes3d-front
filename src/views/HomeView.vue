@@ -15,7 +15,7 @@ import MapComponent from '../components/map/MapComponent.vue'
         <NetworkFigures></NetworkFigures>
       </div>
     </div>
-    <div class="grow p-4 relative">
+    <div class="flex grow p-4 relative">
       <!-- <HelloWorld msg="The home" /> -->
       <MapComponent></MapComponent>
       <div class="absolute right-2 top-2">

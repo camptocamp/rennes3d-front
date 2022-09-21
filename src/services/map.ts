@@ -8,9 +8,6 @@ import {
   CesiumTilesetLayer,
   VectorTileLayer,
 } from '@vcmap/core'
-// import Synchronizer from './synchronizer.js'
-// import InfoTool from './infoTool.js'
-// import Planning from './planning.js'
 
 let context = null
 
@@ -100,22 +97,5 @@ export default async function setup() {
     )
   )
 
-  // context.synchronizer = new Synchronizer(
-  //   context.mapCollection2D.activeMap,
-  //   context.mapCollection3D.activeMap
-  // )
-  // context.infoTool = new InfoTool(context.mapCollection2D)
-  // context.planning = new Planning(context.mapCollection2D)
-  context.gotoViewPoint = async (vp) => {
-    // context.synchronizer.suspend = true
-    await Promise.all([
-      context.mapCollection2D.activeMap.gotoViewpoint(vp),
-      context.mapCollection3D.activeMap.gotoViewpoint(vp),
-    ])
-    // setTimeout(() => {
-    //   context.synchronizer.suspend = false
-    // }, 200)
-  }
-  window.vcs = { context }
   return context
 }
