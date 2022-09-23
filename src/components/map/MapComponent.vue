@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { useLayersStore } from '@/stores/layers'
+import type { MapCollection } from '@vcmap/core'
 import { onMounted } from 'vue'
 import setup from '../../services/map'
 
@@ -8,9 +10,33 @@ defineProps({
     default: false,
   },
 })
+let mapCollection2D: MapCollection
+// let mapCollection3D: MapCollection
+
+const layerStore = useLayersStore()
 
 onMounted(() => {
-  setup()
+  setup().then((r) => {
+    mapCollection2D = r.mapCollection2D
+    // mapCollection3D = r.mapCollection3D
+  })
+})
+
+function setLayerVisible(
+  mapCollection: MapCollection,
+  layerName: string,
+  visible: boolean
+) {
+  if (visible) {
+    mapCollection.layerCollection.getByKey(layerName).activate()
+  } else {
+    mapCollection.layerCollection.getByKey(layerName).deactivate()
+  }
+}
+layerStore.$subscribe(() => {
+  setLayerVisible(mapCollection2D, 'metro', layerStore.visibilities.metro)
+  setLayerVisible(mapCollection2D, 'bus', layerStore.visibilities.bus)
+  setLayerVisible(mapCollection2D, 'tram', layerStore.visibilities.tram)
 })
 </script>
 <template>
