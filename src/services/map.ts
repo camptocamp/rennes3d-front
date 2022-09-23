@@ -36,9 +36,10 @@ const LAYERS = [
     opacity: 0.5,
   }),
   new WMSLayer({
-    name: 'tram',
-    url: 'https://wms.geo.admin.ch/',
-    layers: 'ch.bakom.notruf-112_festnetz_sondergebiet',
+    name: 'bike',
+    url: 'https://public.sig.rennesmetropole.fr/geoserver/ows',
+    layers: 'trp_org:sd_velo_iti_2018',
+    version: '1.3.0',
     opacity: 0.7,
   }),
   new TerrainLayer({
@@ -94,8 +95,6 @@ async function setupLayers(layerCollection: MapCollection, layers: VcsMap[]) {
   layers.forEach((layer) => {
     layerCollection.add(layer)
   })
-
-  // await Promise.all([...layerCollection].map(async (l) => l.activate()))
 }
 
 export default async function setup() {
@@ -104,12 +103,8 @@ export default async function setup() {
   await setupLayers(mapCollection2D.layerCollection, LAYERS)
 
   mapCollection2D.layerCollection.getByKey('osmBase').activate()
+  await mapCollection2D.setActiveMap([...mapCollection2D][0].name)
+  await mapCollection2D.activeMap.gotoViewpoint(startingViewPoint)
 
-  await Promise.all(
-    [mapCollection2D].map(async (collection) => {
-      await collection.setActiveMap([...collection][0].name)
-      await collection.activeMap.gotoViewpoint(startingViewPoint)
-    })
-  )
   return { mapCollection2D, mapCollection3D }
 }

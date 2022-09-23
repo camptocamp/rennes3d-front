@@ -36,7 +36,7 @@ function setLayerVisible(
 layerStore.$subscribe(() => {
   setLayerVisible(mapCollection2D, 'metro', layerStore.visibilities.metro)
   setLayerVisible(mapCollection2D, 'bus', layerStore.visibilities.bus)
-  setLayerVisible(mapCollection2D, 'tram', layerStore.visibilities.tram)
+  setLayerVisible(mapCollection2D, 'bike', layerStore.visibilities.bike)
 })
 </script>
 <template>
