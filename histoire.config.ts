@@ -14,6 +14,10 @@ export default defineConfig({
         id: 'homepage',
         title: 'Homepage', // No toggle
       },
+      {
+        id: 'map',
+        title: 'Map', // No toggle
+      },
     ],
   },
 })

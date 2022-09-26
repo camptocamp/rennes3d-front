@@ -9,6 +9,7 @@ import UiTrambusLogo from './UiTrambusLogo.vue'
       type: 'grid',
       width: 500,
     }"
+    group="homepage"
   >
     <UiTrambusLogo></UiTrambusLogo>
   </Story>

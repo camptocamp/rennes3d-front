@@ -4,7 +4,7 @@ import trambusLogo from '@/assets/icons/trambusLogo.png'
 
 <template>
   <div class="flex flex-col items-start p-0 gap-2 w-4/5 h-28">
-    <div class="flex flex-row items-start p-0 gap-2 w-full h-14">
+    <div class="flex flex-row items-start p-0 gap-2 h-14">
       <div class="h-14 w-14 flex flex-col justify-center">
         <img :src="trambusLogo" />
       </div>
