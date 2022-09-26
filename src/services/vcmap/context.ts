@@ -6,19 +6,40 @@ import {
   OpenStreetMapLayer,
   TerrainLayer,
   Viewpoint,
+  WMSLayer,
 } from '@vcmap/core'
 
-export async function prepareContext(): Promise<MapCollection> {
-  const osm = new OpenStreetMapLayer({ name: 'osmBase' })
-  const terrain = new TerrainLayer({
+const layers = [
+  new OpenStreetMapLayer({ name: 'osmBase' }),
+  new TerrainLayer({
     name: 'terrain',
     url: 'https://demo.virtualcitymap.de/rennes/datasource-data/b3ef17bf-fdde-4979-8f05-8b4db5811c43',
-  })
-  const buildings = new CesiumTilesetLayer({
+  }),
+  new CesiumTilesetLayer({
     name: 'building',
     url: 'https://demo.virtualcitymap.de/rennes/datasource-data/f661c55d-d40b-44fb-889f-88176163cba2',
-  })
+  }),
+  new WMSLayer({
+    name: 'metro',
+    url: 'https://wms.geo.admin.ch/',
+    layers: 'ch.bakom.notruf-112_festnetz_sondergebiet',
+    opacity: 0.3,
+  }),
+  new WMSLayer({
+    name: 'bus',
+    url: 'https://wms.geo.admin.ch/',
+    layers: 'ch.bakom.notruf-112_festnetz_sondergebiet',
+    opacity: 0.5,
+  }),
+  new WMSLayer({
+    name: 'tram',
+    url: 'https://wms.geo.admin.ch/',
+    layers: 'ch.bakom.notruf-112_festnetz_sondergebiet',
+    opacity: 0.7,
+  }),
+]
 
+export async function prepareContext(): Promise<MapCollection> {
   const startingViewPoint = new Viewpoint({
     cameraPosition: [-1.67, 48.1147, 2000],
     groundPosition: [-1.67, 48.1147, 2000],
@@ -30,12 +51,10 @@ export async function prepareContext(): Promise<MapCollection> {
     new OpenlayersMap({ name: 'ol', fixedNorthOrientation: false })
   )
   mapCollection.add(new CesiumMap({ name: 'cesium' }))
-  mapCollection.layerCollection.add(osm)
-  mapCollection.layerCollection.add(terrain)
-  mapCollection.layerCollection.add(buildings)
-  await osm.activate()
-  await terrain.activate()
-  await buildings.activate()
+  layers.forEach((layer) => {
+    mapCollection.layerCollection.add(layer)
+  })
+  await layers[0].activate()
   await mapCollection.setActiveMap('ol')
   await mapCollection.activeMap.gotoViewpoint(startingViewPoint)
 
