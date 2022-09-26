@@ -6,7 +6,11 @@ import router from './router'
 
 import './assets/main.css'
 
-// TODO: Fix it as in https://medium.com/@ohansemmanuel/how-do-you-explicitly-set-a-new-property-on-window-in-typescript-e144cfecf8e7
+declare global {
+  interface Window {
+    CESIUM_BASE_URL: string
+  }
+}
 window.CESIUM_BASE_URL = '/node_modules/@vcmap/cesium/Source/'
 
 const app = createApp(App)
