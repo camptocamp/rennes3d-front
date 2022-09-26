@@ -4,6 +4,7 @@ import type { MapCollection } from '@vcmap/core'
 import { onMounted, Ref, ref } from 'vue'
 import { prepareContext } from '../../services/vcmap/context'
 import UiMap from '../ui/UiMap.vue'
+import TransportButtons from './TransportButtons.vue'
 
 let mapCollection: Ref<MapCollection | null> = ref(null)
 const layerStore = useLayersStore()
@@ -26,13 +27,8 @@ layerStore.$subscribe(() => {
 })
 </script>
 <template>
-  <div class="overflow-hidden flex-1 bg-black h-full">
-    <UiMap :map="mapCollection"></UiMap>
+  <UiMap :map="mapCollection"> </UiMap>
+  <div class="absolute right-2 top-2 z-10">
+    <TransportButtons></TransportButtons>
   </div>
 </template>
-
-<style scoped>
-#map3D :deep(.mapElement) {
-  height: 100%;
-}
-</style>
