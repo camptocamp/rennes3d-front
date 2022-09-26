@@ -16,10 +16,11 @@ onMounted(async () => {
 })
 
 function setLayerVisible(layerName: string, visible: boolean) {
+  const layer = mapCollection.value?.layerCollection.getByKey(layerName)
   if (visible) {
-    mapCollection.value?.layerCollection.getByKey(layerName).activate()
-  } else {
-    mapCollection.value?.layerCollection.getByKey(layerName).deactivate()
+    layer?.activate()
+  } else if (layer?.active) {
+    layer.deactivate()
   }
 }
 
