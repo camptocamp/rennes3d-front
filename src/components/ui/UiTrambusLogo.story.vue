@@ -7,7 +7,7 @@ import UiTrambusLogo from './UiTrambusLogo.vue'
     title="UiTrambusLogo"
     :layout="{
       type: 'grid',
-      width: 400,
+      width: 500,
     }"
   >
     <UiTrambusLogo></UiTrambusLogo>
