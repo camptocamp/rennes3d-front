@@ -10,39 +10,50 @@ import {
 } from '@vcmap/core'
 
 const layers = [
-  new OpenStreetMapLayer({ name: 'osmBase' }),
+  new OpenStreetMapLayer({ name: 'osmBase', activeOnStartup: true }),
   new TerrainLayer({
     name: 'terrain',
     url: 'https://demo.virtualcitymap.de/rennes/datasource-data/b3ef17bf-fdde-4979-8f05-8b4db5811c43',
+    activeOnStartup: true,
   }),
   new CesiumTilesetLayer({
     name: 'building',
     url: 'https://demo.virtualcitymap.de/rennes/datasource-data/f661c55d-d40b-44fb-889f-88176163cba2',
+    activeOnStartup: true,
   }),
   new WMSLayer({
     name: 'metro',
-    url: 'https://wms.geo.admin.ch/',
-    layers: 'ch.bakom.notruf-112_festnetz_sondergebiet',
-    opacity: 0.3,
+    url: 'https://public.sig.rennesmetropole.fr/geoserver/ows',
+    layers: 'trp_org:sd_velo_iti_2018',
+    activeOnStartup: false,
+    parameters: {
+      transparent: true,
+    },
   }),
   new WMSLayer({
     name: 'bus',
-    url: 'https://wms.geo.admin.ch/',
-    layers: 'ch.bakom.notruf-112_festnetz_sondergebiet',
-    opacity: 0.5,
+    url: 'https://public.sig.rennesmetropole.fr/geoserver/ows',
+    layers: 'trp_org:sd_velo_iti_2018',
+    activeOnStartup: false,
+    parameters: {
+      transparent: true,
+    },
   }),
   new WMSLayer({
-    name: 'tram',
-    url: 'https://wms.geo.admin.ch/',
-    layers: 'ch.bakom.notruf-112_festnetz_sondergebiet',
-    opacity: 0.7,
+    name: 'bike',
+    url: 'https://public.sig.rennesmetropole.fr/geoserver/ows',
+    layers: 'trp_org:sd_velo_iti_2018',
+    version: '1.3.0',
+    parameters: {
+      transparent: true,
+    },
   }),
 ]
 
 export async function prepareContext(): Promise<MapCollection> {
   const startingViewPoint = new Viewpoint({
-    cameraPosition: [-1.67, 48.1147, 2000],
-    groundPosition: [-1.67, 48.1147, 2000],
+    cameraPosition: [-1.67, 48.1147, 20],
+    groundPosition: [-1.67, 48.1147, 20],
     pitch: -10,
   })
 
