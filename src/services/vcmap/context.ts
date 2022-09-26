@@ -20,9 +20,9 @@ export async function prepareContext(): Promise<MapCollection> {
   })
 
   const startingViewPoint = new Viewpoint({
-    cameraPosition: [8.768696469559748, 50.80547556213949, 344.18806877180543],
-    groundPosition: [8.768240344556459, 50.81012228093323, 263.91238143570325],
-    pitch: -28,
+    cameraPosition: [-1.67, 48.1147, 2000],
+    groundPosition: [-1.67, 48.1147, 2000],
+    pitch: -10,
   })
 
   const mapCollection = new MapCollection()
@@ -36,7 +36,7 @@ export async function prepareContext(): Promise<MapCollection> {
   await osm.activate()
   await terrain.activate()
   await buildings.activate()
-  await mapCollection.setActiveMap('cesium')
+  await mapCollection.setActiveMap('ol')
   await mapCollection.activeMap.gotoViewpoint(startingViewPoint)
 
   return mapCollection
