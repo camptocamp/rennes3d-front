@@ -7,10 +7,12 @@ import UiPhotoGalery from './UiPhotoGalery.vue'
     title="UiPhotoGalery"
     :layout="{
       type: 'grid',
-      width: 500,
+      width: 900,
     }"
     group="homepage"
   >
-    <UiPhotoGalery></UiPhotoGalery>
+    <div class="bg-gray-100">
+      <UiPhotoGalery></UiPhotoGalery>
+    </div>
   </Story>
 </template>
