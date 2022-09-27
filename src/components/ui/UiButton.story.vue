@@ -16,6 +16,7 @@ function initState() {
       type: 'grid',
       width: 200,
     }"
+    group="map"
   >
     <Variant title="Text Button" :init-state="initState">
       <template #default="{ state }">
