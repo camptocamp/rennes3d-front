@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { ChevronDownIcon } from '@heroicons/vue/20/solid'
-import photo1 from '@/assets/photos/photo1.png'
-import photo2 from '@/assets/photos/photo2.png'
-import photo3 from '@/assets/photos/photo3.png'
+import photo1 from '@/assets/photos/samples/photo1.png'
+import photo2 from '@/assets/photos/samples/photo2.png'
+import photo3 from '@/assets/photos/samples/photo3.png'
 </script>
 <template>
   <div class="flex flex-col items-center justify-center p-0 h-64">
