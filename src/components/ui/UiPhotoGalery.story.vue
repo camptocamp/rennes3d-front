@@ -1,5 +1,11 @@
 <script lang="ts" setup>
 import UiPhotoGalery from './UiPhotoGalery.vue'
+
+function initState() {
+  return {
+    galleryShown: true,
+  }
+}
 </script>
 
 <template>
@@ -10,9 +16,12 @@ import UiPhotoGalery from './UiPhotoGalery.vue'
       width: 900,
     }"
     group="homepage"
+    :init-state="initState"
   >
-    <div class="bg-gray-100">
-      <UiPhotoGalery></UiPhotoGalery>
-    </div>
+    <template #default="{ state }">
+      <div class="bg-gray-100">
+        <UiPhotoGalery :galleryShown="state.galleryShown"></UiPhotoGalery>
+      </div>
+    </template>
   </Story>
 </template>
