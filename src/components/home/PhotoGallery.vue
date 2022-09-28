@@ -28,7 +28,7 @@ function toggleGallery() {
 </script>
 
 <template>
-  <div class="bg-white">
+  <div class="bg-transparent">
     <UiPhotoGalery
       :photos="photoUrls"
       :galleryShown="photosStore.isGalleryShown"
