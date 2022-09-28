@@ -26,10 +26,10 @@ function toggleLayer(name: TransportLayers) {
     bus
   </MapButton>
   <MapButton
-    @click="toggleLayer('tram')"
+    @click="toggleLayer('bike')"
     class=""
-    :active="layerStore.visibilities.tram"
+    :active="layerStore.visibilities.bike"
   >
-    tram
+    bike
   </MapButton>
 </template>
