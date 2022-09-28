@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import { hstEvent } from 'histoire/client'
 import UiPhotoGalery from './UiPhotoGalery.vue'
 import photo1 from '@/assets/photos/samples/photo1.png'
 import photo2 from '@/assets/photos/samples/photo2.png'
@@ -27,6 +28,7 @@ function initState() {
         <UiPhotoGalery
           :galleryShown="state.galleryShown"
           :photos="state.photos"
+          @toggleEvent="hstEvent('Toggle event fired', $event)"
         ></UiPhotoGalery>
       </div>
     </template>
