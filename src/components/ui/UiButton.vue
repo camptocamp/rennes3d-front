@@ -15,7 +15,7 @@ defineProps({
 <template>
   <button
     :disabled="disabled"
-    class="shadow-lg px-4 py-4 rounded-full"
+    class="shadow-lg px-4 py-4 rounded-full bg-white"
     :class="{ 'bg-blue-500': active, 'text-white': active }"
   >
     <slot></slot>
