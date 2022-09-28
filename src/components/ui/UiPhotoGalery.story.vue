@@ -4,6 +4,7 @@ import UiPhotoGalery from './UiPhotoGalery.vue'
 function initState() {
   return {
     galleryShown: true,
+    photo1_url: String,
   }
 }
 </script>
