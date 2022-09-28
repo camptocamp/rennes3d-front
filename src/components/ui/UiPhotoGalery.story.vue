@@ -1,10 +1,13 @@
 <script lang="ts" setup>
 import UiPhotoGalery from './UiPhotoGalery.vue'
+import photo1 from '@/assets/photos/samples/photo1.png'
+import photo2 from '@/assets/photos/samples/photo2.png'
+import photo3 from '@/assets/photos/samples/photo3.png'
 
 function initState() {
   return {
     galleryShown: true,
-    photo1_url: String,
+    photos: [photo1, photo2, photo3],
   }
 }
 </script>
@@ -21,7 +24,10 @@ function initState() {
   >
     <template #default="{ state }">
       <div class="bg-gray-100">
-        <UiPhotoGalery :galleryShown="state.galleryShown"></UiPhotoGalery>
+        <UiPhotoGalery
+          :galleryShown="state.galleryShown"
+          :photos="state.photos"
+        ></UiPhotoGalery>
       </div>
     </template>
   </Story>

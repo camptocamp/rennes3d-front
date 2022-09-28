@@ -1,14 +1,16 @@
 <script setup lang="ts">
+import type { PropType } from 'vue'
 import { ChevronDownIcon } from '@heroicons/vue/20/solid'
 import { ChevronUpIcon } from '@heroicons/vue/20/solid'
-import photo1 from '@/assets/photos/samples/photo1.png'
-import photo2 from '@/assets/photos/samples/photo2.png'
-import photo3 from '@/assets/photos/samples/photo3.png'
 
 defineProps({
   galleryShown: {
     type: Boolean,
     default: true,
+  },
+  photos: {
+    type: Array as PropType<string[]>,
+    default: () => [],
   },
 })
 </script>
@@ -24,9 +26,12 @@ defineProps({
       class="flex flex-row items-start p-3 gap-3 w-auto h-56 bg-white rounded-l-xl rounded-r-xl rounded-t-none rounded-b-none"
       :class="{ hidden: !galleryShown }"
     >
-      <img :src="photo1" class="w-64 h-52" />
-      <img :src="photo2" class="w-64 h-52" />
-      <img :src="photo3" class="w-64 h-52" />
+      <img
+        v-for="photo in photos.slice(0, 3)"
+        :key="photo"
+        :src="photo"
+        class="w-64 h-52"
+      />
     </div>
   </div>
 </template>
