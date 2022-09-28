@@ -1,16 +1,16 @@
 <script lang="ts" setup>
-import UiTrambusLogo from './UiTrambusLogo.vue'
+import UiTrambusTitle from './UiTrambusTitle.vue'
 </script>
 
 <template>
   <Story
-    title="UiTrambusLogo"
+    title="UiTrambusTitle"
     :layout="{
       type: 'grid',
       width: 500,
     }"
     group="homepage"
   >
-    <UiTrambusLogo></UiTrambusLogo>
+    <UiTrambusTitle></UiTrambusTitle>
   </Story>
 </template>
