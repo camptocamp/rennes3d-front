@@ -1,5 +1,4 @@
 <script setup lang="ts">
-// import HelloWorld from '../components/HelloWorld.vue'
 import NetworkFigures from '../components/home/NetworkFigures.vue'
 import PhotoGallery from '../components/home/PhotoGallery.vue'
 import MapComponent from '../components/map/MapComponent.vue'

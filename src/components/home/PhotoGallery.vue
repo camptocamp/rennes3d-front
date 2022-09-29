@@ -17,7 +17,6 @@ const photoUrls = computed(() => {
 
 onMounted(async () => {
   state.photos = await apiClientService.fetchPhotos()
-  state.galleryShown = Boolean
 })
 
 const photosStore = usePhotosStore()
