@@ -7,6 +7,7 @@ import {
   TerrainLayer,
   Viewpoint,
   WMSLayer,
+  GeoJSONLayer,
 } from '@vcmap/core'
 
 const layers = [
@@ -21,32 +22,17 @@ const layers = [
     url: 'https://demo.virtualcitymap.de/rennes/datasource-data/f661c55d-d40b-44fb-889f-88176163cba2',
     activeOnStartup: true,
   }),
-  new WMSLayer({
+  new GeoJSONLayer({
     name: 'metro',
-    url: 'https://public.sig.rennesmetropole.fr/geoserver/ows',
-    layers: 'trp_org:sd_velo_iti_2018',
-    activeOnStartup: false,
-    parameters: {
-      transparent: true,
-    },
+    url: 'https://gist.githubusercontent.com/ismailsunni/561f39f97f8e1a36491207a61224270c/raw/fdd5ff5322336ed54fa6643d520575173fa176c1/metro.geojson',
   }),
-  new WMSLayer({
+  new GeoJSONLayer({
     name: 'bus',
-    url: 'https://public.sig.rennesmetropole.fr/geoserver/ows',
-    layers: 'trp_org:sd_velo_iti_2018',
-    activeOnStartup: false,
-    parameters: {
-      transparent: true,
-    },
+    url: 'https://gist.githubusercontent.com/ismailsunni/561f39f97f8e1a36491207a61224270c/raw/fdd5ff5322336ed54fa6643d520575173fa176c1/bus.geojson',
   }),
-  new WMSLayer({
+  new GeoJSONLayer({
     name: 'bike',
-    url: 'https://public.sig.rennesmetropole.fr/geoserver/ows',
-    layers: 'trp_org:sd_velo_iti_2018',
-    version: '1.3.0',
-    parameters: {
-      transparent: true,
-    },
+    url: 'https://gist.githubusercontent.com/ismailsunni/561f39f97f8e1a36491207a61224270c/raw/fdd5ff5322336ed54fa6643d520575173fa176c1/bike.geojson',
   }),
 ]
 
