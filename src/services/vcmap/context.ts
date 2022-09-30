@@ -24,15 +24,20 @@ const layers = [
   }),
   new GeoJSONLayer({
     name: 'metro',
-    url: 'https://gist.githubusercontent.com/ismailsunni/561f39f97f8e1a36491207a61224270c/raw/fdd5ff5322336ed54fa6643d520575173fa176c1/metro.geojson',
+    url: 'https://gist.githubusercontent.com/ismailsunni/561f39f97f8e1a36491207a61224270c/raw/35e03e2d718e56f1416069892844453a4fc27f9f/metro.geojson',
   }),
   new GeoJSONLayer({
     name: 'bus',
-    url: 'https://gist.githubusercontent.com/ismailsunni/561f39f97f8e1a36491207a61224270c/raw/fdd5ff5322336ed54fa6643d520575173fa176c1/bus.geojson',
+    url: 'https://gist.githubusercontent.com/ismailsunni/561f39f97f8e1a36491207a61224270c/raw/35e03e2d718e56f1416069892844453a4fc27f9f/bus.geojson',
   }),
   new GeoJSONLayer({
     name: 'bike',
-    url: 'https://gist.githubusercontent.com/ismailsunni/561f39f97f8e1a36491207a61224270c/raw/fdd5ff5322336ed54fa6643d520575173fa176c1/bike.geojson',
+    url: 'https://gist.githubusercontent.com/ismailsunni/561f39f97f8e1a36491207a61224270c/raw/35e03e2d718e56f1416069892844453a4fc27f9f/bike.geojson',
+  }),
+  new GeoJSONLayer({
+    name: 'parking',
+    url: 'https://gist.githubusercontent.com/ismailsunni/561f39f97f8e1a36491207a61224270c/raw/35e03e2d718e56f1416069892844453a4fc27f9f/parking.geojson',
+    activeOnStartup: true,
   }),
 ]
 
@@ -50,6 +55,10 @@ export async function prepareContext(): Promise<MapCollection> {
   mapCollection.add(new CesiumMap({ name: 'cesium' }))
   layers.forEach((layer) => {
     mapCollection.layerCollection.add(layer)
+    // Parking is always visible
+    if (layer.name === 'parking') {
+      layer.activate()
+    }
   })
   await layers[0].activate()
   await mapCollection.setActiveMap('ol')
