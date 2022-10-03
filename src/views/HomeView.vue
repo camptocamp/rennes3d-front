@@ -1,23 +1,25 @@
 <script setup lang="ts">
-// import HelloWorld from '../components/HelloWorld.vue'
 import NetworkFigures from '../components/home/NetworkFigures.vue'
+import PhotoGallery from '../components/home/PhotoGallery.vue'
 import MapComponent from '../components/map/MapComponent.vue'
-// import LineDescriptions from '../components/home/LineDescriptions.vue'
-// import TravelTimes from '../components/home/TravelTimes.vue'
+import LineDescriptions from '../components/home/LineDescriptions.vue'
+import TravelTimes from '../components/home/TravelTimes.vue'
+import UiTrambusTitle from '../components/ui/UiTrambusTitle.vue'
 </script>
 
 <template>
   <main class="h-screen flex">
-    <div class="w-72 p-4 bg-blue-300">
-      <div class="">
-        <NetworkFigures></NetworkFigures>
-      </div>
+    <div class="w-96 p-4 bg-blue-300 flex flex-col">
+      <UiTrambusTitle></UiTrambusTitle>
+      <NetworkFigures></NetworkFigures>
+      <TravelTimes></TravelTimes>
+      <LineDescriptions></LineDescriptions>
     </div>
     <div class="flex grow relative">
-      <!-- <HelloWorld msg="The home" /> -->
       <MapComponent></MapComponent>
-      <!-- <div><TravelTimes></TravelTimes></div>
-      <div><LineDescriptions></LineDescriptions></div> -->
+    </div>
+    <div class="z-10 absolute inset-x-0 bottom-0">
+      <PhotoGallery></PhotoGallery>
     </div>
   </main>
 </template>
