@@ -18,7 +18,7 @@ import UiTrambusTitle from '../components/ui/UiTrambusTitle.vue'
     <div class="flex grow relative">
       <MapComponent></MapComponent>
     </div>
-    <div class="z-10 absolute inset-x-0 bottom-0">
+    <div class="z-10 absolute inset-x-0 bottom-0 max-w-max m-auto">
       <PhotoGallery></PhotoGallery>
     </div>
   </main>
