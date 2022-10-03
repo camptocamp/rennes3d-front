@@ -13,6 +13,7 @@ module.exports = {
         't2-line': '#DF51A9',
         't3-line': '#61D03F',
         't4-line': '#68E3DF',
+        'gray-dark': '#5E5E5E',
       },
     },
   },
