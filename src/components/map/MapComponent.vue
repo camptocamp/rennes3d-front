@@ -1,22 +1,23 @@
 <script setup lang="ts">
 import { useLayersStore } from '@/stores/layers'
-import type { MapCollection } from '@vcmap/core'
+import type { VcsApp } from '@vcmap/core'
 import { onMounted, ref } from 'vue'
 import type { Ref } from 'vue'
-import { prepareContext } from '../../services/vcmap/context'
 import UiButton from '../ui/UiButton.vue'
 import UiMap from '../ui/UiMap.vue'
 import TransportButtons from './TransportButtons.vue'
+import mapConfig from '../../map.config.json'
+import initMap from '../../services/vcmap/initMap'
 
-let mapCollection: Ref<MapCollection | undefined> = ref(undefined)
+let vcsApp: Ref<VcsApp | undefined> = ref(undefined)
 const layerStore = useLayersStore()
 
 onMounted(async () => {
-  mapCollection.value = await prepareContext()
+  vcsApp.value = await initMap(mapConfig)
 })
 
 function setLayerVisible(layerName: string, visible: boolean) {
-  const layer = mapCollection.value?.layerCollection.getByKey(layerName)
+  const layer = vcsApp.value?.maps.layerCollection.getByKey(layerName)
   if (visible) {
     layer?.activate()
   } else if (layer?.active) {
@@ -25,11 +26,11 @@ function setLayerVisible(layerName: string, visible: boolean) {
 }
 
 function is3D(): boolean {
-  return mapCollection.value?.activeMap.name === 'cesium'
+  return vcsApp.value?.maps.activeMap.name === 'cesium'
 }
 
 function toggleMap() {
-  mapCollection.value?.setActiveMap(is3D() ? 'ol' : 'cesium')
+  vcsApp.value?.maps.setActiveMap(is3D() ? 'ol' : 'cesium')
 }
 
 layerStore.$subscribe(() => {
@@ -39,7 +40,7 @@ layerStore.$subscribe(() => {
 })
 </script>
 <template>
-  <UiMap :map="mapCollection"> </UiMap>
+  <UiMap :vcsApp="vcsApp"> </UiMap>
   <div class="absolute right-2 top-2 z-10">
     <TransportButtons></TransportButtons>
   </div>

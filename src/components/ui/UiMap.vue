@@ -1,19 +1,19 @@
 <script setup lang="ts">
-import { MapCollection } from '@vcmap/core'
+import { VcsApp } from '@vcmap/core'
 import { ref, watch } from 'vue'
 
 const props = defineProps({
-  map: {
-    type: MapCollection,
+  vcsApp: {
+    type: VcsApp,
   },
 })
 const mapContainer = ref(null)
 
 watch(
-  () => props.map,
+  () => props.vcsApp,
   () => {
     if (mapContainer.value) {
-      props.map?.setTarget(mapContainer.value)
+      props.vcsApp?.maps.setTarget(mapContainer.value)
     }
   }
 )
