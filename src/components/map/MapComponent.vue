@@ -19,11 +19,10 @@ onMounted(async () => {
   mapCollection.value = await prepareContext()
   vcsApp.value = new VcsApp()
   await vcsApp.value.addContext(context)
-  window.vcsapp = vcsApp
 })
 
 function setLayerVisible(layerName: string, visible: boolean) {
-  const layer = mapCollection.value?.layerCollection.getByKey(layerName)
+  const layer = vcsApp?.value.maps.layerCollection.getByKey(layerName)
   if (visible) {
     layer?.activate()
   } else if (layer?.active) {
