@@ -27,12 +27,10 @@ function toggleGallery() {
 </script>
 
 <template>
-  <div class="bg-transparent">
-    <UiPhotoGalery
-      :photos="photoUrls"
-      :galleryShown="photosStore.isGalleryShown"
-      @toggleEvent="toggleGallery"
-    >
-    </UiPhotoGalery>
-  </div>
+  <UiPhotoGalery
+    :photos="photoUrls"
+    :galleryShown="photosStore.isGalleryShown"
+    @toggleEvent="toggleGallery"
+  >
+  </UiPhotoGalery>
 </template>

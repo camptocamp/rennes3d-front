@@ -21,7 +21,7 @@ function sendEvent() {
 }
 </script>
 <template>
-  <div class="flex flex-col items-center justify-end p-0 h-64">
+  <div class="flex flex-col items-center justify-end p-0">
     <button
       @click="sendEvent"
       class="flex flex-row justify-center items-center px-2 py-4 gap-4 w-11 h-7 bg-white rounded-t-xl"
