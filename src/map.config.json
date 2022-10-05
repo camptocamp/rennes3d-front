@@ -888,11 +888,5 @@
       "collectionName": "obliques",
       "title": "Berlin Obliques"
     }
-  ],
-  "plugins": [
-    {
-      "name": "@vcmap/theme-changer",
-      "entry": "plugins/@vcmap/theme-changer/index.js"
-    }
   ]
 }

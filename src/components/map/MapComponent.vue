@@ -1,24 +1,30 @@
 <script setup lang="ts">
 import { useLayersStore } from '@/stores/layers'
-import { VcsApp, type MapCollection, Context } from '@vcmap/core'
+import { VcsApp, Context, Viewpoint } from '@vcmap/core'
 import { onMounted, ref } from 'vue'
 import type { Ref } from 'vue'
-import { prepareContext } from '../../services/vcmap/context'
 import UiButton from '../ui/UiButton.vue'
 import UiMap from '../ui/UiMap.vue'
 import TransportButtons from './TransportButtons.vue'
 import mapConfig from '../../map.config.json'
 
-let mapCollection: Ref<MapCollection | undefined> = ref(undefined)
 let vcsApp: Ref<VcsApp | undefined> = ref(undefined)
 const context = new Context(mapConfig)
 
 const layerStore = useLayersStore()
 
 onMounted(async () => {
-  mapCollection.value = await prepareContext()
   vcsApp.value = new VcsApp()
   await vcsApp.value.addContext(context)
+
+  // Temporary fix until we fix it from the map.config.json
+  const startingViewPoint = new Viewpoint({
+    cameraPosition: [-1.67, 48.1147, 20],
+    groundPosition: [-1.67, 48.1147, 20],
+    pitch: -10,
+    distance: 10000,
+  })
+  await vcsApp?.value?.maps.activeMap.gotoViewpoint(startingViewPoint)
 })
 
 function setLayerVisible(layerName: string, visible: boolean) {
@@ -31,11 +37,11 @@ function setLayerVisible(layerName: string, visible: boolean) {
 }
 
 function is3D(): boolean {
-  return mapCollection.value?.activeMap.name === 'cesium'
+  return vcsApp?.value?.maps.activeMap.name === 'cesium'
 }
 
 function toggleMap() {
-  mapCollection.value?.setActiveMap(is3D() ? 'ol' : 'cesium')
+  vcsApp?.value?.maps.setActiveMap(is3D() ? 'ol3' : 'cesium')
 }
 
 layerStore.$subscribe(() => {
