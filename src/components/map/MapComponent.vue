@@ -24,7 +24,9 @@ onMounted(async () => {
     pitch: -10,
     distance: 10000,
   })
-  await vcsApp?.value?.maps.activeMap.gotoViewpoint(startingViewPoint)
+  await vcsApp?.value?.maps.activeMap.gotoViewpoint(
+    vcsApp?.value?.viewpoints.getByKey('rennes') ?? startingViewPoint
+  )
 })
 
 function setLayerVisible(layerName: string, visible: boolean) {
