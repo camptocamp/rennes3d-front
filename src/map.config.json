@@ -58,35 +58,9 @@
       "exclusiveGroups": ["bldg"]
     },
     {
-      "name": "Openstreetmap OSM Cache",
-      "url": "https://osm.virtualcitymap.de/mapproxy/wmts/osm/{TileMatrixSet}/{TileMatrix}/{TileCol}/{TileRow}.png",
-      "type": "WMTSLayer",
-      "datasourceId": "2jEtgBemjJaSNx3AH",
-      "activeOnStartup": true,
-      "layer": "osm",
-      "style": "default",
-      "format": "image/png",
-      "tileMatrixSetID": "osm_grid",
-      "tileMatrixPrefix": "",
-      "maxLevel": 19,
-      "tilingSchema": "mercator",
-      "opacity": "1",
-      "hiddenObjectIds": [],
-      "copyright": {
-        "provider": "OpenStreetMap contributors",
-        "url": "http://www.openstreetmap.org/",
-        "year": "2019"
-      },
-      "numberOfLevelZeroTilesX": 1,
-      "numberOfLevelZeroTilesY": 1,
-      "exclusiveGroups": ["base"],
-      "properties": {
-        "title": {
-          "en": "OpenStreetMap",
-          "de": "OpenStreetMap",
-          "pl": "OpenStreetMap"
-        }
-      }
+      "name": "osmBase",
+      "type": "OpenStreetMapLayer",
+      "activeOnStartup": true
     },
     {
       "name": "metro",
