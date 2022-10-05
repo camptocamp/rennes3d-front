@@ -6,7 +6,6 @@ import {
   OpenStreetMapLayer,
   TerrainLayer,
   Viewpoint,
-  WMSLayer,
   GeoJSONLayer,
 } from '@vcmap/core'
 
