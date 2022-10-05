@@ -70,12 +70,6 @@
       "tileMatrixPrefix": "",
       "maxLevel": 19,
       "tilingSchema": "mercator",
-      "extent": {
-        "coordinates": [-180, -85, 180, 85],
-        "projection": {
-          "epsg": "EPSG:4326"
-        }
-      },
       "opacity": "1",
       "hiddenObjectIds": [],
       "copyright": {
