@@ -22,7 +22,7 @@ onMounted(async () => {
 })
 
 function setLayerVisible(layerName: string, visible: boolean) {
-  const layer = vcsApp?.value.maps.layerCollection.getByKey(layerName)
+  const layer = vcsApp?.value?.maps.layerCollection.getByKey(layerName)
   if (visible) {
     layer?.activate()
   } else if (layer?.active) {

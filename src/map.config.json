@@ -889,32 +889,6 @@
       "title": "Berlin Obliques"
     }
   ],
-  "obliqueCollections": [
-    {
-      "name": "obliques",
-      "activeOnStartup": true,
-      "dataSets": [
-        {
-          "url": "https://a.3d.blc.shc.eu/WAB/base_layer/obliques_2020/image_tiled.json",
-          "terrainProvider": {
-            "url": "https://b.3d.blc.shc.eu/WAB/base_layer/cesium_terrain/"
-          },
-          "projection": {
-            "epsg": "25833",
-            "proj4": "+proj=utm +zone=33 +ellps=GRS80 +units=m +no_defs"
-          },
-          "copyright": {
-            "provider": "Berlin Partner / Senat von Berlin",
-            "url": "https://www.berlin-partner.de",
-            "year": "2020"
-          }
-        }
-      ],
-      "maxZoom": 7,
-      "minZoom": 3,
-      "hideLevels": null
-    }
-  ],
   "plugins": [
     {
       "name": "@vcmap/theme-changer",
