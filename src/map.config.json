@@ -1,0 +1,91 @@
+{
+  "mapcontainer": "mapContainer",
+  "startingViewpointName": "rennes",
+  "locale": "fr",
+  "startingMapName": "ol",
+  "styles": [
+    {
+      "name": "lineColor",
+      "type": "DeclarativeStyleItem",
+      "declarativeStyle": {
+        "show": "true",
+        "color": {
+          "conditions": [
+            ["${olcs_geometryType} === 2", "color('#49eb34')"],
+            ["true", "color('#707070')"]
+          ]
+        }
+      }
+    }
+  ],
+  "maps": [
+    {
+      "type": "CesiumMap",
+      "name": "cesium",
+      "debugging": false,
+      "fxaa": false,
+      "enableLightning": true,
+      "allowSoftwareRendering": false,
+      "maximumScreenSpaceError": 2,
+      "fogEnabled": true,
+      "fogEnabledMobile": true,
+      "fogDensity": 0.0002,
+      "fogDensityMobile": 0.0004,
+      "fogScreenSpaceError": 2,
+      "fogScreenSpaceErrorMobile": 4
+    },
+    {
+      "type": "OpenlayersMap",
+      "name": "ol"
+    }
+  ],
+  "layers": [
+    {
+      "name": "osmBase",
+      "type": "OpenStreetMapLayer",
+      "activeOnStartup": true
+    },
+    {
+      "name": "metro",
+      "url": "https://gist.githubusercontent.com/ismailsunni/561f39f97f8e1a36491207a61224270c/raw/35e03e2d718e56f1416069892844453a4fc27f9f/metro.geojson",
+      "type": "GeoJSONLayer",
+      "activeOnStartup": false
+    },
+    {
+      "name": "bus",
+      "url": "https://gist.githubusercontent.com/ismailsunni/561f39f97f8e1a36491207a61224270c/raw/35e03e2d718e56f1416069892844453a4fc27f9f/bus.geojson",
+      "type": "GeoJSONLayer",
+      "activeOnStartup": false
+    },
+    {
+      "name": "bike",
+      "url": "https://gist.githubusercontent.com/ismailsunni/561f39f97f8e1a36491207a61224270c/raw/35e03e2d718e56f1416069892844453a4fc27f9f/bike.geojson",
+      "type": "GeoJSONLayer",
+      "activeOnStartup": false
+    },
+    {
+      "name": "parking",
+      "url": "https://gist.githubusercontent.com/ismailsunni/561f39f97f8e1a36491207a61224270c/raw/35e03e2d718e56f1416069892844453a4fc27f9f/parking.geojson",
+      "type": "GeoJSONLayer",
+      "activeOnStartup": true
+    }
+  ],
+  "viewpoints": [
+    {
+      "name": "rennes",
+      "cameraPosition": [-1.67, 48.1147, 20],
+      "groundPosition": [-1.67, 48.1147, 20],
+      "distance": 10,
+      "pitch": -10,
+      "roll": 360,
+      "animate": false,
+      "type": "ViewPoint",
+      "properties": {
+        "title": {
+          "en": "Rennes",
+          "fr": "Rennes"
+        }
+      }
+    }
+  ]
+}
