@@ -49,19 +49,43 @@
       "name": "metro",
       "url": "https://gist.githubusercontent.com/ismailsunni/561f39f97f8e1a36491207a61224270c/raw/35e03e2d718e56f1416069892844453a4fc27f9f/metro.geojson",
       "type": "GeoJSONLayer",
-      "activeOnStartup": false
+      "activeOnStartup": false,
+      "style": {
+        "name": "metroStyle",
+        "type": "VectorStyleItem",
+        "stroke": {
+          "color": "#FF0000",
+          "width": 3
+        }
+      }
     },
     {
       "name": "bus",
       "url": "https://gist.githubusercontent.com/ismailsunni/561f39f97f8e1a36491207a61224270c/raw/35e03e2d718e56f1416069892844453a4fc27f9f/bus.geojson",
       "type": "GeoJSONLayer",
-      "activeOnStartup": false
+      "activeOnStartup": false,
+      "style": {
+        "name": "busStyle",
+        "type": "VectorStyleItem",
+        "stroke": {
+          "color": "#00FF00",
+          "width": 3
+        }
+      }
     },
     {
       "name": "bike",
       "url": "https://gist.githubusercontent.com/ismailsunni/561f39f97f8e1a36491207a61224270c/raw/35e03e2d718e56f1416069892844453a4fc27f9f/bike.geojson",
       "type": "GeoJSONLayer",
-      "activeOnStartup": false
+      "activeOnStartup": false,
+      "style": {
+        "name": "bikeStyle",
+        "type": "VectorStyleItem",
+        "stroke": {
+          "color": "#0000FF",
+          "width": 3
+        }
+      }
     },
     {
       "name": "parking",
