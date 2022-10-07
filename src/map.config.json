@@ -92,6 +92,22 @@
       "url": "https://gist.githubusercontent.com/ismailsunni/561f39f97f8e1a36491207a61224270c/raw/35e03e2d718e56f1416069892844453a4fc27f9f/parking.geojson",
       "type": "GeoJSONLayer",
       "activeOnStartup": true
+    },
+    {
+      "name": "trambusLines",
+      "url": "https://public.sig.rennesmetropole.fr/geoserver/ows",
+      "type": "WMSLayer",
+      "activeOnStartup": true,
+      "layers": "trp_coll:trambus_lignes",
+      "parameters": "format=image/png&transparent=true"
+    },
+    {
+      "name": "trambusStops",
+      "url": "https://public.sig.rennesmetropole.fr/geoserver/ows",
+      "type": "WMSLayer",
+      "activeOnStartup": true,
+      "layers": "trp_coll:trambus_arrets",
+      "parameters": "format=image/png&transparent=true"
     }
   ],
   "viewpoints": [
