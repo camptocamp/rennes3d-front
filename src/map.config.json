@@ -51,6 +51,16 @@
       "activeOnStartup": true
     },
     {
+      "name": "rennesOrtho",
+      "type": "WMTSLayer",
+      "url": "https://public.sig.rennesmetropole.fr/geowebcache/service/wmts",
+      "layer": "raster:ortho2020",
+      "format": "image/jpeg",
+      "tileMatrixSetID": "EPSG:3857",
+      "tileMatrixPrefix": "EPSG:3857:",
+      "activeOnStartup": false
+    },
+    {
       "name": "metro",
       "url": "https://gist.githubusercontent.com/ismailsunni/561f39f97f8e1a36491207a61224270c/raw/35e03e2d718e56f1416069892844453a4fc27f9f/metro.geojson",
       "type": "GeoJSONLayer",
