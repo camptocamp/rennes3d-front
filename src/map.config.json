@@ -41,8 +41,13 @@
   ],
   "layers": [
     {
-      "name": "osmBase",
-      "type": "OpenStreetMapLayer",
+      "name": "rennesBase",
+      "type": "WMTSLayer",
+      "url": "https://public.sig.rennesmetropole.fr/geowebcache/service/wmts",
+      "layer": "ref_fonds:pvci",
+      "format": "image/png",
+      "tileMatrixSetID": "EPSG:3857",
+      "tileMatrixPrefix": "EPSG:3857:",
       "activeOnStartup": true
     },
     {
