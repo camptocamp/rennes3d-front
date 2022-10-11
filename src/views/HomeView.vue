@@ -9,7 +9,7 @@ import UiTrambusTitle from '../components/ui/UiTrambusTitle.vue'
 
 <template>
   <main class="h-screen flex">
-    <div class="w-96 p-4 bg-blue-300 flex flex-col">
+    <div class="w-1/4 p-4 bg-white flex flex-col">
       <UiTrambusTitle></UiTrambusTitle>
       <NetworkFigures></NetworkFigures>
       <TravelTimes></TravelTimes>
