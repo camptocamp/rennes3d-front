@@ -19,7 +19,7 @@ function onNorthPointClick(e) {
   const compass = e.target.parentElement
   const arrow = compass.lastChild
   const { top, left, height, width } = compass.getBoundingClientRect()
-  let mouseInside = true
+
   const compassPos = {
     x: left + width / 2,
     y: top + height / 2,
@@ -65,57 +65,20 @@ const tiltingMap = async (pitch: number) => {
 </script>
 
 <template>
-  <div class="orbit">
-    <div class="north-point" @mousedown="onNorthPointClick">N</div>
-    <div class="compass" @mousedown="onCompassClick"></div>
+  <div
+    class="animate-[compassInit_150ms] h-[100px] w-[100px] border-4 border-white rounded-full flex justify-center items-center absolute bottom-0 shadow-sm"
+  >
+    <div
+      class="h-[13px] w-[10px] flex justify-center items-center text-xs bg-black text-white absolute bottom-[87px] cursor-pointer rounded-sm"
+      @mousedown="onNorthPointClick"
+    >
+      N
+    </div>
+    <div class="h-[70px] w-[70px] bg-white rounded-[100%] z-10 cursor-pointer flex justify-center items-center text-black text-xs shadow" @mousedown="onCompassClick"></div>
   </div>
 </template>
 
 <style scoped>
-/* temporary in css, tailwind will be used instead  */
-.orbit {
-  height: 100px;
-  width: 100px;
-  border-radius: 100%;
-  border: 5px white solid;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  box-shadow: rgba(0, 0, 0, 0.5) 0px 1px 4px;
-  position: absolute;
-  bottom: 0;
-  animation: compassInit 150ms;
-}
-.north-point {
-  height: 13px;
-  width: 10px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 0.7rem;
-  background: black;
-  color: white;
-  position: absolute;
-  bottom: 87px;
-  cursor: pointer;
-  border-radius: 3px;
-}
-.compass {
-  height: 70px;
-  width: 70px;
-  background-color: white;
-  border-radius: 100%;
-  z-index: 100;
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: black;
-  font-size: 0.8rem;
-  box-shadow: rgba(0, 0, 0, 0.5) 0px 1px 4px;
-  perspective: 1000px;
-}
-
 @keyframes compassInit {
   0% {
     height: 10px;
