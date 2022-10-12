@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { VcsApp } from '@vcmap/core'
-import IconCompass from '../ui/icons/IconCompass.vue'
 
 const props = defineProps({
   vcsApp: {
@@ -8,16 +7,19 @@ const props = defineProps({
   },
 })
 
-const trackMouse = (callback: (e: any) => Promise<void>) => {
+// Dirty hack: ts triggers a unused-vars false positive
+// eslint-disable-next-line no-unused-vars
+const trackMouse = (callback: (e: MouseEvent) => Promise<void>) => {
   document.body.addEventListener('mousemove', callback)
   document.body.addEventListener('mouseup', () => {
     document.body.removeEventListener('mousemove', callback)
   })
 }
 
-function onNorthPointClick(e) {
-  const compass = e.target.parentElement
-  const arrow = compass.lastChild
+function onNorthPointClick(e: MouseEvent) {
+  const northPoint = e.target as HTMLDivElement
+  const compass = northPoint.parentElement as HTMLDivElement
+  const arrow = compass?.lastChild as HTMLDivElement
   const { top, left, height, width } = compass.getBoundingClientRect()
 
   const compassPos = {
@@ -37,8 +39,8 @@ function onNorthPointClick(e) {
   })
 }
 
-function onCompassClick(e) {
-  const compass = e.target
+function onCompassClick(e: MouseEvent) {
+  const compass = e.target as HTMLDivElement
   const { top, height } = compass.getBoundingClientRect()
   const yPos = top + height / 2
 
@@ -52,15 +54,19 @@ function onCompassClick(e) {
 }
 
 const headingMap = async (heading: number) => {
-  const vp = await props.vcsApp.maps?.activeMap.getViewpoint()
-  vp.heading = heading
-  props.vcsApp.maps?.activeMap.gotoViewpoint(vp)
+  const vp = await props.vcsApp?.maps?.activeMap.getViewpoint()
+  if (vp) {
+    vp.heading = heading
+    props.vcsApp?.maps?.activeMap.gotoViewpoint(vp)
+  }
 }
 
 const tiltingMap = async (pitch: number) => {
-  const vp = await props.vcsApp.maps?.activeMap.getViewpoint()
-  vp.pitch = pitch
-  props.vcsApp.maps?.activeMap.gotoViewpoint(vp)
+  const vp = await props.vcsApp?.maps?.activeMap.getViewpoint()
+  if (vp) {
+    vp.pitch = pitch
+    props.vcsApp?.maps?.activeMap.gotoViewpoint(vp)
+  }
 }
 </script>
 
@@ -74,7 +80,10 @@ const tiltingMap = async (pitch: number) => {
     >
       N
     </div>
-    <div class="h-[70px] w-[70px] bg-white rounded-[100%] z-10 cursor-pointer flex justify-center items-center text-black text-xs shadow" @mousedown="onCompassClick"></div>
+    <div
+      class="h-[70px] w-[70px] bg-white rounded-[100%] z-10 cursor-pointer flex justify-center items-center text-black text-xs shadow"
+      @mousedown="onCompassClick"
+    ></div>
   </div>
 </template>
 

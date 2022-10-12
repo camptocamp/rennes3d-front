@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { onUnmounted } from "@vue/runtime-core";
+import { onUnmounted } from 'vue'
 
-  onUnmounted(() => {
-    sessionStorage.setItem('nav-help-displayed', 'true')
-  })
+onUnmounted(() => {
+  sessionStorage.setItem('nav-help-displayed', 'true')
+})
 </script>
 
 <template>
