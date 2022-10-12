@@ -120,17 +120,50 @@
       "name": "trambusLines",
       "url": "https://public.sig.rennesmetropole.fr/geoserver/ows",
       "type": "WMSLayer",
-      "activeOnStartup": true,
       "layers": "trp_coll:trambus_lignes",
-      "parameters": "format=image/png&transparent=true"
+      "parameters": "format=image/png&transparent=true",
+      "activeOnStartup": false
+    },
+    {
+      "name": "trambusLinesWFS",
+      "url": "https://public.sig.rennesmetropole.fr/geoserver/ows",
+      "type": "WFSLayer",
+      "version": "2.0.0",
+      "typename": "trp_coll:trambus_lignes",
+      "featureNS": "",
+      "featurePrefix": "",
+      "featureType": "",
+      "activeOnStartup": false
+    },
+    {
+      "name": "ahocevarWaterWFS",
+      "url": "https://ahocevar.com/geoserver/wfs",
+      "type": "WFSLayer",
+      "version": "1.1.0",
+      "typename": "osm:water_areas",
+      "featureNS": "",
+      "featurePrefix": "",
+      "featureType": "",
+      "activeOnStartup": false
+    },
+    {
+      "name": "localWFS",
+      "url": "http://localhost:8080/wfs",
+      "type": "WFSLayer",
+      "version": "1.1.0",
+      "typename": "tiger:poly_landmarks",
+      "featureNS": "",
+      "featurePrefix": "",
+      "featureType": "",
+      "activeOnStartup": true
     },
     {
       "name": "trambusStops",
       "url": "https://public.sig.rennesmetropole.fr/geoserver/ows",
       "type": "WMSLayer",
-      "activeOnStartup": true,
       "layers": "trp_coll:trambus_arrets",
-      "parameters": "format=image/png&transparent=true"
+      "parameters": "format=image/png&transparent=true",
+      "activeOnStartup": false
     }
   ],
   "viewpoints": [
