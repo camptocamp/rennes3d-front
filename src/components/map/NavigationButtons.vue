@@ -5,6 +5,7 @@ import { inject, reactive } from 'vue'
 import IconHome from '../ui/icons/IconHome.vue'
 import UiButton from '../ui/UiButton.vue'
 import CompassComponent from './CompassComponent.vue'
+import NavigationHelp from './NavigationHelp.vue'
 
 const vcsApp = inject('vcsApp') as VcsApp
 
@@ -45,10 +46,17 @@ async function returnToHome() {
 
   await activeMap?.gotoViewpoint(homeViewPoint)
 }
+
+const shouldDisplayNavHelp = () => {
+  return sessionStorage.getItem('nav-help-displayed') !== 'true' && is3D()
+}
 </script>
 
 <template>
-  <div v-bind:class="{ 'h-96': is3D() }" class="h-72 transition-[height] absolute right-2 bottom-2 flex flex-col [&>*]:m-2 text-gray-dark items-center overflow-hidden w-32">
+  <div
+    v-bind:class="{ 'h-[23rem]': is3D() }"
+    class="h-72 transition-[height] absolute right-2 bottom-2 flex flex-col [&>*]:m-2 text-gray-dark items-center overflow-hidden w-32"
+  >
     <UiButton @click="returnToHome"><IconHome /></UiButton>
     <div
       class="flex w-12 flex-col zoom-buttons text-2xl [&>*]:p-2 first:[&>*]:rounded-b-3xl last:[&>*]:rounded-t-3xl"
@@ -61,4 +69,5 @@ async function returnToHome() {
     }}</UiButton>
     <CompassComponent :vcsApp="props.vcsApp" v-if="is3D()" />
   </div>
+  <NavigationHelp v-if="shouldDisplayNavHelp()" />
 </template>

@@ -1,0 +1,35 @@
+<script setup lang="ts">
+import { onUnmounted } from "@vue/runtime-core";
+
+  onUnmounted(() => {
+    sessionStorage.setItem('nav-help-displayed', 'true')
+  })
+</script>
+
+<template>
+  <div class="nav-help-container absolute w-36 bottom-12 right-36">
+    <p class="text-sm text-gray-dark">Indications</p>
+    <div
+      class="border-l-2 border-[#b91c1c] pl-4 [&>*]:mt-2 text-[#b91c1c] font-medium"
+    >
+      <h2>BOUSSOLE</h2>
+      <p>Cliquer + glisser pour incliner le plan (= Tilt down/up)</p>
+      <p>Clic dessus pour revenir en vue de dessus</p>
+    </div>
+  </div>
+</template>
+
+<style scoped>
+.nav-help-container {
+  animation: navHelpInit 150ms;
+}
+
+@keyframes navHelpInit {
+  0% {
+    right: 5rem;
+  }
+  100% {
+    right: 9rem;
+  }
+}
+</style>
