@@ -15,6 +15,9 @@ onMounted(async () => {
 </script>
 
 <template>
+  <div class="font-dm-sans font-bold text-lg leading-6 text-neutral-400">
+    Vos temps de parcours bientot réduits
+  </div>
   <div class="flex flex-row items-start p-0 gap-3 overflow-x-auto">
     <UiTravelTime
       v-for="travelTime in state.travelTimes"
@@ -27,4 +30,5 @@ onMounted(async () => {
     >
     </UiTravelTime>
   </div>
+  <a href="">Voir plus</a>
 </template>

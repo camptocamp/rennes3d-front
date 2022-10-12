@@ -5,15 +5,17 @@ import MapComponent from '../components/map/MapComponent.vue'
 import LineDescriptions from '../components/home/LineDescriptions.vue'
 import TravelTimes from '../components/home/TravelTimes.vue'
 import UiTrambusTitle from '../components/ui/UiTrambusTitle.vue'
+import UiRennesLogo from '../components/ui/UiRennesLogo.vue'
 </script>
 
 <template>
   <main class="h-screen flex">
-    <div class="w-96 p-4 bg-blue-300 flex flex-col">
+    <div class="w-1/4 p-4 bg-white flex flex-col gap-2">
       <UiTrambusTitle></UiTrambusTitle>
       <NetworkFigures></NetworkFigures>
       <TravelTimes></TravelTimes>
       <LineDescriptions></LineDescriptions>
+      <UiRennesLogo></UiRennesLogo>
     </div>
     <div class="flex grow relative">
       <MapComponent></MapComponent>
