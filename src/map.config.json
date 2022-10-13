@@ -60,7 +60,7 @@
       "format": "image/png",
       "tileMatrixSetID": "EPSG:3857",
       "tileMatrixPrefix": "EPSG:3857:",
-      "activeOnStartup": true
+      "activeOnStartup": false
     },
     {
       "name": "rennesOrtho",
@@ -70,7 +70,7 @@
       "format": "image/jpeg",
       "tileMatrixSetID": "EPSG:3857",
       "tileMatrixPrefix": "EPSG:3857:",
-      "activeOnStartup": false
+      "activeOnStartup": true
     },
     {
       "name": "metro",
@@ -115,6 +115,41 @@
       }
     },
     {
+      "name": "trambusLines",
+      "url": "https://public.sig.rennesmetropole.fr/geoserver/wfs?service=WFS&request=getFeature&typename=trp_coll:trambus_lignes&outputFormat=application/json&srsName=EPSG:4326",
+      "type": "GeoJSONLayer",
+      "style": {
+        "name": "trambusLineStyle",
+        "type": "DeclarativeStyleItem",
+        "declarativeStyle": {
+          "strokeWidth": "6",
+          "color": {
+            "conditions": [["true", "color(${couleur})"]]
+          }
+        }
+      },
+      "activeOnStartup": true
+    },
+    {
+      "name": "trambusStops",
+      "url": "https://public.sig.rennesmetropole.fr/geoserver/wfs?service=WFS&request=getFeature&typename=trp_coll:trambus_arrets&outputFormat=application/json&srsName=EPSG:4326",
+      "type": "GeoJSONLayer",
+      "style": {
+        "name": "trambusStopStyle",
+        "type": "VectorStyleItem",
+        "image": {
+          "radius": 3,
+          "fill": {
+            "color": "#fff"
+          },
+          "stroke": {
+            "color": "#000"
+          }
+        }
+      },
+      "activeOnStartup": true
+    },
+    {
       "name": "parking",
       "url": "https://gist.githubusercontent.com/ismailsunni/561f39f97f8e1a36491207a61224270c/raw/35e03e2d718e56f1416069892844453a4fc27f9f/parking.geojson",
       "type": "GeoJSONLayer",
@@ -129,20 +164,28 @@
       }
     },
     {
-      "name": "trambusLines",
-      "url": "https://public.sig.rennesmetropole.fr/geoserver/ows",
-      "type": "WMSLayer",
+      "name": "poi",
+      "url": "/src/assets/data/POI.json",
+      "type": "GeoJSONLayer",
       "activeOnStartup": true,
-      "layers": "trp_coll:trambus_lignes",
-      "parameters": "format=image/png&transparent=true"
-    },
-    {
-      "name": "trambusStops",
-      "url": "https://public.sig.rennesmetropole.fr/geoserver/ows",
-      "type": "WMSLayer",
-      "activeOnStartup": true,
-      "layers": "trp_coll:trambus_arrets",
-      "parameters": "format=image/png&transparent=true"
+      "style": {
+        "name": "poiStyle",
+        "type": "DeclarativeStyleItem",
+        "declarativeStyle": {
+          "pointOutlineColor": "color('#6B23C9')",
+          "pointOutlineWidth": "2",
+          "labelText": {
+            "conditions": [
+              ["${ordre}===1", "'${nom_site}'"],
+              ["true", "''"]
+            ]
+          },
+          "labelOutlineColor": "color('#ffffff')",
+          "labelColor": "color('#6B23C9')",
+          "labelOutlineWidth": "2",
+          "font": "'13px sans-serif'"
+        }
+      }
     }
   ],
   "viewpoints": [
