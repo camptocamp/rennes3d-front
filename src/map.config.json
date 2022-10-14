@@ -56,11 +56,11 @@
       "name": "rennesBase",
       "type": "WMTSLayer",
       "url": "https://public.sig.rennesmetropole.fr/geowebcache/service/wmts",
-      "layer": "ref_fonds:pvci",
+      "layer": "ref_fonds:pvci_simple_gris",
       "format": "image/png",
       "tileMatrixSetID": "EPSG:3857",
       "tileMatrixPrefix": "EPSG:3857:",
-      "activeOnStartup": false
+      "activeOnStartup": true
     },
     {
       "name": "rennesOrtho",
@@ -70,7 +70,7 @@
       "format": "image/jpeg",
       "tileMatrixSetID": "EPSG:3857",
       "tileMatrixPrefix": "EPSG:3857:",
-      "activeOnStartup": true
+      "activeOnStartup": false
     },
     {
       "name": "metro",
