@@ -27,7 +27,7 @@ function toggleInformationPanel() {
       <LineDescriptions></LineDescriptions>
       <UiRennesLogo></UiRennesLogo>
     </div>
-    <div class="mt-16 max-h-0">
+    <div class="relative max-h-0 top-28">
       <button
         @click="toggleInformationPanel"
         class="w-7 h-11 gap-4 bg-white rounded-r-xl"
