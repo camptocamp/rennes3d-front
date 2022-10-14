@@ -6,7 +6,7 @@ import InformationPanel from '../components/home/InformationPanel.vue'
 
 <template>
   <main class="h-screen flex">
-    <div class="w-1/4 p-4 bg-white flex flex-col gap-2">
+    <div class="w-1/4 z-10 absolute">
       <InformationPanel></InformationPanel>
     </div>
     <div class="flex grow relative">
