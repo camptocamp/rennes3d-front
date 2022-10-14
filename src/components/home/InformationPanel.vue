@@ -6,6 +6,9 @@ import UiRennesLogo from '../ui/UiRennesLogo.vue'
 import NetworkFigures from './NetworkFigures.vue'
 import { usePanelsStore } from '@/stores/panels'
 
+import { ChevronRightIcon } from '@heroicons/vue/20/solid'
+import { ChevronLeftIcon } from '@heroicons/vue/20/solid'
+
 const panelStore = usePanelsStore()
 function toggleInformationPanel() {
   panelStore.toggleInformationPanel()
@@ -24,8 +27,18 @@ function toggleInformationPanel() {
       <LineDescriptions></LineDescriptions>
       <UiRennesLogo></UiRennesLogo>
     </div>
-    <div @click="toggleInformationPanel" class="mt-16 max-h-0">
-      <button>X</button>
+    <div class="mt-16 max-h-0">
+      <button
+        @click="toggleInformationPanel"
+        class="w-7 h-11 gap-4 bg-white rounded-r-xl"
+      >
+        <ChevronLeftIcon
+          :class="{ hidden: !panelStore.isInformationPanelShown }"
+        ></ChevronLeftIcon>
+        <ChevronRightIcon
+          :class="{ hidden: panelStore.isInformationPanelShown }"
+        ></ChevronRightIcon>
+      </button>
     </div>
   </div>
 </template>
