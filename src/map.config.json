@@ -197,7 +197,7 @@
       "pitch": -10,
       "roll": 360,
       "animate": false,
-      "type": "ViewPoint",
+      "type": "Viewpoint",
       "properties": {
         "title": {
           "en": "Rennes",

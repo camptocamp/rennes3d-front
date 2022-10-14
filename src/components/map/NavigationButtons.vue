@@ -39,9 +39,8 @@ function toggleMap() {
 async function returnToHome() {
   const activeMap = props.vcsApp?.maps?.activeMap
   const homeViewPoint = new Viewpoint({
-    cameraPosition: [-1.67, 48.1147, 10000],
-    groundPosition: [-1.67, 48.1147, 10000],
-    pitch: -10,
+    cameraPosition: [-1.7219, 48.09, 30000],
+    groundPosition: [-1.7219, 48.09, 30000],
   })
 
   await activeMap?.gotoViewpoint(homeViewPoint)
