@@ -111,7 +111,7 @@
         "type": "VectorStyleItem",
         "title": "Point Circle",
         "image": {
-          "src": "./src/assets/icons/parkIcon.png",
+          "src": "./src/assets/icons/parkingLocation.svg",
           "scale": 1
         }
       }
