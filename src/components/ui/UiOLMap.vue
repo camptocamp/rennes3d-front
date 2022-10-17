@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue'
 import Map from 'ol/Map'
+import 'ol/ol.css'
 
 const props = defineProps({
   map: {

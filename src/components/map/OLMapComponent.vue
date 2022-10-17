@@ -14,8 +14,8 @@ onMounted(async () => {
   map.value = new Map({
     layers: [new TileLayer({ source: new OSM() })],
     view: new View({
-      center: [0, 0],
-      zoom: 2,
+      center: [-185727.3326708549, 6125517.193873904],
+      zoom: 13,
     }),
     target: 'mapContainer',
   })
