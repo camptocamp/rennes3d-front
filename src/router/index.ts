@@ -13,6 +13,11 @@ const router = createRouter({
       component: () => import('../views/HomeView.vue'),
     },
     {
+      path: '/planning',
+      name: 'planning',
+      component: () => import('../views/PlanningView.vue'),
+    },
+    {
       path: '/line/:id',
       name: 'line',
       component: () => import('../views/LineView.vue'),
