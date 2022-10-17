@@ -4,17 +4,50 @@ import type { Ref } from 'vue'
 import Map from 'ol/Map'
 import UiOLMap from '../ui/UiOLMap.vue'
 import View from 'ol/View'
-import OSM from 'ol/source/OSM'
 import TileLayer from 'ol/layer/Tile'
+import WMTS from 'ol/source/WMTS'
+import WMTSTileGrid from 'ol/tilegrid/WMTS'
+import { fromLonLat, get as getProjection } from 'ol/proj'
+import { getWidth } from 'ol/extent'
+
+const resolutions = []
+const matrixIds = []
+const proj3857 = getProjection('EPSG:3857')
+const maxResolution = getWidth(proj3857.getExtent()) / 256
+
+for (let i = 0; i < 20; i++) {
+  matrixIds[i] = 'EPSG:3857:' + i.toString()
+  resolutions[i] = maxResolution / Math.pow(2, i)
+}
+
+const tileGrid = new WMTSTileGrid({
+  origin: [-20037508, 20037508],
+  resolutions: resolutions,
+  matrixIds: matrixIds,
+})
+
+const rennesSource = new WMTS({
+  url: 'https://public.sig.rennesmetropole.fr/geowebcache/service/wmts',
+  layer: 'ref_fonds:pvci_simple_gris',
+  matrixSet: 'EPSG:3857',
+  format: 'image/png',
+  projection: 'EPSG:3857',
+  tileGrid: tileGrid,
+  style: 'normal',
+})
+
+const rennesBaseMap = new TileLayer({
+  source: rennesSource,
+})
 
 let map: Ref<Map | undefined> = ref(undefined)
 
 onMounted(async () => {
   // Setup map here
   map.value = new Map({
-    layers: [new TileLayer({ source: new OSM() })],
+    layers: [rennesBaseMap],
     view: new View({
-      center: [-185727.3326708549, 6125517.193873904],
+      center: fromLonLat([-1.67, 48.1147]),
       zoom: 13,
     }),
     target: 'mapContainer',
