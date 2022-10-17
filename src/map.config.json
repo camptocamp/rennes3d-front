@@ -60,6 +60,13 @@
       "format": "image/png",
       "tileMatrixSetID": "EPSG:3857",
       "tileMatrixPrefix": "EPSG:3857:",
+      "extent": {
+        "coordinates": [
+          -2.1170142251181825, 47.78117827367612, -1.170835369910388,
+          48.39479586736775
+        ],
+        "epsg": "EPSG:4326"
+      },
       "activeOnStartup": true
     },
     {
@@ -70,6 +77,13 @@
       "format": "image/jpeg",
       "tileMatrixSetID": "EPSG:3857",
       "tileMatrixPrefix": "EPSG:3857:",
+      "extent": {
+        "coordinates": [
+          -2.1170142251181825, 47.78117827367612, -1.170835369910388,
+          48.39479586736775
+        ],
+        "epsg": "EPSG:4326"
+      },
       "activeOnStartup": false
     },
     {
