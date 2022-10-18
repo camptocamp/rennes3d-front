@@ -23,12 +23,3 @@ import router from '../router/index'
     </div>
   </main>
 </template>
-
-<style scoped>
-:deep(.ol-zoom) {
-  top: auto;
-  bottom: 10px;
-  left: auto;
-  right: 10px;
-}
-</style>
