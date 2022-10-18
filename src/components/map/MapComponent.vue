@@ -8,6 +8,8 @@ import TransportButtons from './TransportButtons.vue'
 import NavigationButtons from './NavigationButtons.vue'
 import mapConfig from '../../map.config.json'
 import initMap from '../../services/vcmap/initMap'
+import IconPlanning from '../ui/icons/IconPlanning.vue'
+import Button from '../ui/UiButton.vue'
 
 let vcsApp: Ref<VcsApp | undefined> = ref(undefined)
 const layerStore = useLayersStore()
@@ -33,8 +35,12 @@ layerStore.$subscribe(() => {
 </script>
 <template>
   <UiMap :vcsApp="vcsApp"> </UiMap>
-  <div class="absolute right-2 top-2 z-10">
+  <div class="absolute right-2 top-2 z-10 flex [&>*]:m-1">
     <TransportButtons></TransportButtons>
+    <Button>
+      <IconPlanning />
+      <span class="pl-2 font-semibold"> Planning du projet </span>
+    </Button>
   </div>
   <NavigationButtons :vcsApp="vcsApp" />
 </template>
