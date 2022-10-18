@@ -44,13 +44,16 @@
       "name": "terrain",
       "type": "TerrainLayer",
       "url": "https://rennes3d-dev-tiles-1.s3.fr-par.scw.cloud/b3ef17bf-fdde-4979-8f05-8b4db5811c43",
-      "activeOnStartup": true
+      "activeOnStartup": false,
+      "requestVertexNormals": true
     },
     {
       "type": "CesiumTilesetLayer",
       "name": "building",
       "url": "https://rennes3d-dev-tiles-1.s3.fr-par.scw.cloud/f661c55d-d40b-44fb-889f-88176163cba2",
-      "activeOnStartup": true
+      "activeOnStartup": true,
+      "screenSpaceError": 16,
+      "screenSpaceErrorMobile": 32
     },
     {
       "name": "rennesBase",
@@ -60,6 +63,13 @@
       "format": "image/png",
       "tileMatrixSetID": "EPSG:3857",
       "tileMatrixPrefix": "EPSG:3857:",
+      "extent": {
+        "coordinates": [
+          -2.1170142251181825, 47.78117827367612, -1.170835369910388,
+          48.39479586736775
+        ],
+        "epsg": "EPSG:4326"
+      },
       "activeOnStartup": true
     },
     {
@@ -70,6 +80,13 @@
       "format": "image/jpeg",
       "tileMatrixSetID": "EPSG:3857",
       "tileMatrixPrefix": "EPSG:3857:",
+      "extent": {
+        "coordinates": [
+          -2.1170142251181825, 47.78117827367612, -1.170835369910388,
+          48.39479586736775
+        ],
+        "epsg": "EPSG:4326"
+      },
       "activeOnStartup": false
     },
     {
