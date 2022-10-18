@@ -1,16 +1,14 @@
 <script setup lang="ts">
-import { VcsApp, Viewpoint } from '@vcmap/core'
-import UiButton from '../ui/UiButton.vue'
+import type { VcsApp } from '@vcmap/core'
+import { Viewpoint } from '@vcmap/core'
+import { inject } from 'vue'
 import IconHome from '../ui/icons/IconHome.vue'
+import UiButton from '../ui/UiButton.vue'
 
-const props = defineProps({
-  vcsApp: {
-    type: VcsApp,
-  },
-})
+const vcsApp = inject('vcsApp') as VcsApp
 
 async function zoom(out = false, zoomFactor = 2): Promise<void> {
-  const activeMap = props.vcsApp?.maps?.activeMap
+  const activeMap = vcsApp.maps.activeMap
   const viewpoint = await activeMap?.getViewpoint()
 
   if (activeMap && viewpoint) {
@@ -29,15 +27,15 @@ async function zoom(out = false, zoomFactor = 2): Promise<void> {
 }
 
 function is3D(): boolean {
-  return props.vcsApp?.maps.activeMap.name === 'cesium'
+  return vcsApp.maps.activeMap.name === 'cesium'
 }
 
 function toggleMap() {
-  props.vcsApp?.maps.setActiveMap(is3D() ? 'ol' : 'cesium')
+  vcsApp.maps.setActiveMap(is3D() ? 'ol' : 'cesium')
 }
 
 async function returnToHome() {
-  const activeMap = props.vcsApp?.maps?.activeMap
+  const activeMap = vcsApp.maps?.activeMap
   const homeViewPoint = new Viewpoint({
     cameraPosition: [-1.7219, 48.09, 30000],
     groundPosition: [-1.7219, 48.09, 30000],
