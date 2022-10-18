@@ -3,9 +3,16 @@ import type { Ref } from 'vue'
 import { defineStore } from 'pinia'
 
 export const useProjectSchedulesStore = defineStore('projectSchedules', () => {
-  const selectedDate: Ref<Date> = ref(new Date(2029, 1, 1))
+  const selectedYear: Ref<number> = ref(2029)
+  const selectedMonth: Ref<number> = ref(1)
+
+  function getSelectedDate() {
+    return new Date(selectedYear.value, selectedMonth.value)
+  }
 
   return {
-    selectedDate,
+    getSelectedDate,
+    selectedMonth,
+    selectedYear,
   }
 })

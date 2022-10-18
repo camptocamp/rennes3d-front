@@ -94,19 +94,19 @@ function getStyleName(feature: FeatureLike): string {
     String(feature.getProperties()['livre_t'])
   )
 
-  if (projectSchedulesStore.selectedDate >= commisionedDate) {
+  if (projectSchedulesStore.getSelectedDate() >= commisionedDate) {
     return 'commisioning'
   } else if (
-    projectSchedulesStore.selectedDate >= finishedDate &&
-    projectSchedulesStore.selectedDate < commisionedDate
+    projectSchedulesStore.getSelectedDate() >= finishedDate &&
+    projectSchedulesStore.getSelectedDate() < commisionedDate
   ) {
     return 'constructionFinished'
   } else if (
-    projectSchedulesStore.selectedDate >= inProgressDate &&
-    projectSchedulesStore.selectedDate < finishedDate
+    projectSchedulesStore.getSelectedDate() >= inProgressDate &&
+    projectSchedulesStore.getSelectedDate() < finishedDate
   ) {
     return 'underConstruction'
-  } else if (projectSchedulesStore.selectedDate < inProgressDate) {
+  } else if (projectSchedulesStore.getSelectedDate() < inProgressDate) {
     return 'unStarted'
   } else {
     return 'unStarted'
@@ -137,6 +137,9 @@ onMounted(async () => {
     }),
     target: 'mapContainer',
   })
+})
+projectSchedulesStore.$subscribe(() => {
+  planningLayer.setStyle(styleFunction)
 })
 </script>
 <template>
