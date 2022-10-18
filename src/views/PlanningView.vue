@@ -1,10 +1,22 @@
 <script setup lang="ts">
 import OLMapComponent from '../components/map/OLMapComponent.vue'
+import UiButton from '../components/ui/UiButton.vue'
+import { ArrowLeftIcon } from '@heroicons/vue/20/solid'
 </script>
 
 <template>
   <main class="h-screen flex flex-col">
-    <div class="h-1/6 p-4 bg-white flex flex-col gap-2"></div>
+    <div class="h-1/6 p-4 bg-white flex flex-row gap-2 items-center">
+      <div>
+        <UiButton class="shadow-sm">
+          <ArrowLeftIcon class="w-6 h-6"></ArrowLeftIcon>
+        </UiButton>
+      </div>
+      <div class="font-poppins font-semibold text-xl w-72">
+        Planning d’aménagement du réseau trambus
+      </div>
+      <div>Timeline</div>
+    </div>
     <div class="flex grow relative">
       <OLMapComponent></OLMapComponent>
     </div>
