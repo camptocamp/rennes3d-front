@@ -43,14 +43,14 @@
     {
       "name": "terrain",
       "type": "TerrainLayer",
-      "url": "https://rennes3d-dev-tiles-1.s3.fr-par.scw.cloud/b3ef17bf-fdde-4979-8f05-8b4db5811c43",
-      "activeOnStartup": false,
+      "url": "https://rennes3d-dev-tiles.s3.fr-par.scw.cloud/b3ef17bf-fdde-4979-8f05-8b4db5811c43",
+      "activeOnStartup": true,
       "requestVertexNormals": true
     },
     {
       "type": "CesiumTilesetLayer",
       "name": "building",
-      "url": "https://rennes3d-dev-tiles-1.s3.fr-par.scw.cloud/f661c55d-d40b-44fb-889f-88176163cba2",
+      "url": "https://rennes3d-dev-tiles.s3.fr-par.scw.cloud/f661c55d-d40b-44fb-889f-88176163cba2",
       "activeOnStartup": true,
       "screenSpaceError": 16,
       "screenSpaceErrorMobile": 32
