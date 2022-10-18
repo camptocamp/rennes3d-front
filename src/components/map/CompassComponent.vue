@@ -35,8 +35,7 @@ function onNorthPointClick() {
       e.clientX - compassPos.x
     )
     const angle = (180 / Math.PI) * radians + 90
-    compass.value.style.transform = `rotate(${Math.round(angle)}deg)`
-    arrow.value.style.transform = `rotate(${Math.round(-angle)}deg)`
+    transformNorthPoint(angle)
     await headingMap(angle)
   })
 }
@@ -52,7 +51,7 @@ function onCompassClick() {
     if (tilt < -90 || tilt > 0) {
       return
     }
-    arrow.value.style.height = `${10 - tilt * 0.6}px`
+    transformArrow(tilt)
     await tiltingMap(tilt)
   })
 }
@@ -70,6 +69,21 @@ const tiltingMap = async (pitch: number) => {
   if (vp) {
     vp.pitch = pitch
     props.vcsApp?.maps?.activeMap.gotoViewpoint(vp)
+  }
+}
+
+const transformNorthPoint = (angle: number) => {
+  if (compass.value && arrow.value) {
+    angle = Math.round(angle)
+    compass.value.style.transform = `rotate(${angle}deg)`
+    arrow.value.style.transform = `rotate(${-angle}deg)`
+  }
+}
+
+const transformArrow = (tilt: number) => {
+  if (arrow.value) {
+    tilt = Math.round(tilt)
+    arrow.value.style.height = `${10 - tilt * 0.6}px`
   }
 }
 </script>
