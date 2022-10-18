@@ -25,17 +25,22 @@ function syncCompass(map: VcsMap) {
   })
 }
 
-// Dirty hack: ts triggers a unused-vars false positive
-// eslint-disable-next-line no-unused-vars
-const trackMouse = (callback: (e: MouseEvent) => Promise<void>) => {
+const trackMouse = (
+  // Dirty hack: eslint triggers a unused-vars false positive
+  // eslint-disable-next-line no-unused-vars
+  callback: (e: MouseEvent) => Promise<void>,
+  endCallback: Function = () => {}
+) => {
   document.body.addEventListener('mousemove', callback)
   document.body.addEventListener('mouseup', () => {
     document.body.removeEventListener('mousemove', callback)
+    endCallback()
   })
 }
 
 function onNorthPointClick() {
   if (!compass.value || !arrow.value) return
+  const ts = Date.now()
   const { top, left, height, width } = compass.value.getBoundingClientRect()
 
   const compassPos = {
@@ -43,15 +48,22 @@ function onNorthPointClick() {
     y: top + height / 2,
   }
 
-  trackMouse(async (e) => {
-    const radians = Math.atan2(
-      e.clientY - compassPos.y,
-      e.clientX - compassPos.x
-    )
-    const angle = (180 / Math.PI) * radians + 90
-    transformNorthPoint(angle)
-    await headingMap(angle)
-  })
+  trackMouse(
+    async (e) => {
+      const radians = Math.atan2(
+        e.clientY - compassPos.y,
+        e.clientX - compassPos.x
+      )
+      const angle = (180 / Math.PI) * radians + 90
+      transformNorthPoint(angle)
+      await headingMap(angle)
+    },
+    () => {
+      if (Date.now() - ts < 50) {
+        headingMap(0, true)
+      }
+    }
+  )
 }
 
 function onCompassClick() {
@@ -70,10 +82,11 @@ function onCompassClick() {
   })
 }
 
-const headingMap = async (heading: number) => {
+const headingMap = async (heading: number, animate = false) => {
   const vp = await props.vcsApp?.maps?.activeMap.getViewpoint()
   if (vp) {
     vp.heading = heading
+    vp.animate = animate
     props.vcsApp?.maps?.activeMap.gotoViewpoint(vp)
   }
 }
