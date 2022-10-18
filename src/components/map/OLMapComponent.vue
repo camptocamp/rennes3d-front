@@ -13,7 +13,7 @@ import { getWidth } from 'ol/extent'
 const resolutions = []
 const matrixIds = []
 const proj3857 = getProjection('EPSG:3857')
-const maxResolution = getWidth(proj3857.getExtent()) / 256
+const maxResolution = getWidth(proj3857!.getExtent()) / 256
 
 for (let i = 0; i < 20; i++) {
   matrixIds[i] = 'EPSG:3857:' + i.toString()
