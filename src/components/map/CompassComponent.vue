@@ -9,10 +9,13 @@ const props = defineProps({
   },
 })
 
-const compass = ref(null)
-const arrow = ref(null)
+const compass = ref<HTMLDivElement | null>(null)
+const arrow = ref<HTMLDivElement | null>(null)
 
 onMounted(() => {
+  if (!props.vcsApp?.maps?.activeMap) {
+    return
+  }
   syncCompass(props.vcsApp?.maps?.activeMap)
 })
 
@@ -104,7 +107,8 @@ const transformNorthPoint = (angle: number) => {
   if (compass.value && arrow.value) {
     angle = Math.round(angle)
     compass.value.style.transform = `rotate(${angle}deg)`
-    arrow.value.parentNode.style.transform = `rotate(${-angle}deg)`
+    const parentElement = arrow.value.parentNode as HTMLDivElement
+    parentElement.style.transform = `rotate(${-angle}deg)`
   }
 }
 
@@ -119,10 +123,10 @@ const transformArrow = (tilt: number) => {
 <template>
   <div
     ref="compass"
-    class="orbit h-[100px] w-[100px] border-4 border-white rounded-full flex justify-center items-center absolute bottom-0 shadow-sm"
+    class="orbit h-[100px] w-[100px] border-4 border-gray-300 rounded-full flex justify-center items-center absolute bottom-0 shadow-lg"
   >
     <div
-      class="h-[13px] w-[10px] flex justify-center items-center text-xs bg-black text-white absolute bottom-[87px] cursor-pointer rounded-sm"
+      class="h-[13px] w-[13px] flex justify-center items-center text-[8px] bg-black text-white absolute bottom-[87px] cursor-pointer rounded"
       @mousedown="onNorthPointClick"
     >
       N
@@ -130,7 +134,7 @@ const transformArrow = (tilt: number) => {
     <div>
       <div
         ref="arrow"
-        class="h-[70px] w-[70px] bg-white rounded-[100%] z-10 cursor-pointer flex justify-center items-center text-black text-xs shadow"
+        class="h-[65px] w-[65px] bg-white rounded-[100%] z-10 cursor-pointer flex justify-center items-center text-black text-xs shadow-md"
         @mousedown="onCompassClick"
       >
         <IconCompass />

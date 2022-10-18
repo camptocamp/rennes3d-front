@@ -55,7 +55,7 @@ const shouldDisplayNavHelp = () => {
 <template>
   <div
     v-bind:class="{ 'h-[23rem]': is3D() }"
-    class="h-72 transition-[height] absolute right-2 bottom-2 flex flex-col [&>*]:m-2 text-gray-dark items-center overflow-hidden w-32"
+    class="h-90 transition-[height] absolute right-2 bottom-10 flex flex-col [&>*]:m-2 text-gray-dark items-center overflow-hidden w-32 select-none"
   >
     <UiButton @click="returnToHome"><IconHome /></UiButton>
     <div
