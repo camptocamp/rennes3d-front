@@ -44,7 +44,7 @@
       "name": "terrain",
       "type": "TerrainLayer",
       "url": "https://rennes3d-dev-tiles-1.s3.fr-par.scw.cloud/b3ef17bf-fdde-4979-8f05-8b4db5811c43",
-      "activeOnStartup": true,
+      "activeOnStartup": false,
       "requestVertexNormals": true
     },
     {
