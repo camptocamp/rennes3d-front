@@ -13,7 +13,8 @@ import GeoJSON from 'ol/format/GeoJSON'
 import { Vector as VectorSource } from 'ol/source'
 import { Vector as VectorLayer } from 'ol/layer'
 import { Style, Stroke } from 'ol/style'
-import type { Feature } from 'ol'
+import type { StyleFunction } from 'ol/style/Style'
+import type { FeatureLike } from 'ol/Feature'
 
 const resolutions = []
 const matrixIds = []
@@ -72,7 +73,7 @@ const styles: { [styleName: string]: Style } = {
   }),
 }
 
-function getStyleName(feature: Feature): string {
+function getStyleName(feature: FeatureLike): string {
   // TODO: Do it better, and compare with the selected time
   const property = String(feature.getProperties()['en_cours_t'])
   if (property.startsWith('2025')) {
@@ -96,7 +97,7 @@ function getStyleName(feature: Feature): string {
   return 'unStarted'
 }
 
-const styleFunction = function (feature: Feature): Style {
+const styleFunction: StyleFunction = function (feature: FeatureLike): Style {
   return styles[getStyleName(feature)]
 }
 
