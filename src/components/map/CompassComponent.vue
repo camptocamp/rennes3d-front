@@ -40,16 +40,17 @@ function onNorthPointClick(e: MouseEvent) {
 }
 
 function onCompassClick(e: MouseEvent) {
-  const compass = e.target as HTMLDivElement
-  const { top, height } = compass.getBoundingClientRect()
+  const arrow = e.target as HTMLDivElement
+  const { top, height } = arrow.getBoundingClientRect()
   const yPos = top + height / 2
 
   trackMouse(async (e) => {
-    if (e.clientY - yPos > 70 || e.clientY - yPos < 10) {
+    const tilt = yPos - e.clientY - 90
+    if (tilt < -90 || tilt > 0) {
       return
     }
-    compass.style.height = e.clientY - yPos + 'px'
-    await tiltingMap(e.clientY - yPos)
+    arrow.style.height = `${10 - tilt * 0.6}px`
+    await tiltingMap(tilt)
   })
 }
 
