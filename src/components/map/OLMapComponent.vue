@@ -115,8 +115,8 @@ onMounted(async () => {
   map.value = new Map({
     layers: [rennesBaseMap, planningLayer],
     view: new View({
-      center: fromLonLat([-1.67, 48.1147]),
-      zoom: 13,
+      center: fromLonLat([-1.67, 48.101]),
+      zoom: 12.5,
     }),
     target: 'mapContainer',
   })
