@@ -2,13 +2,14 @@
 import OLMapComponent from '../components/map/OLMapComponent.vue'
 import UiButton from '../components/ui/UiButton.vue'
 import { ArrowLeftIcon } from '@heroicons/vue/20/solid'
+import router from '../router/index'
 </script>
 
 <template>
   <main class="h-screen flex flex-col">
     <div class="h-1/6 p-4 bg-white flex flex-row gap-2 items-center">
       <div>
-        <UiButton class="shadow-sm">
+        <UiButton class="shadow-sm" @click="router.back">
           <ArrowLeftIcon class="w-6 h-6"></ArrowLeftIcon>
         </UiButton>
       </div>
