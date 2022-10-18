@@ -143,7 +143,8 @@
             "color": "#fff"
           },
           "stroke": {
-            "color": "#000"
+            "color": "#000",
+            "width": "1.5"
           }
         }
       },
