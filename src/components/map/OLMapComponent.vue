@@ -15,6 +15,9 @@ import { Vector as VectorLayer } from 'ol/layer'
 import { Style, Stroke } from 'ol/style'
 import type { StyleFunction } from 'ol/style/Style'
 import type { FeatureLike } from 'ol/Feature'
+import { useProjectSchedulesStore } from '@/stores/projectSchedules'
+
+const projectSchedulesStore = useProjectSchedulesStore()
 
 const resolutions = []
 const matrixIds = []
@@ -75,6 +78,7 @@ const styles: { [styleName: string]: Style } = {
 
 function getStyleName(feature: FeatureLike): string {
   // TODO: Do it better, and compare with the selected time
+  console.log(projectSchedulesStore.selectedDate)
   const property = String(feature.getProperties()['en_cours_t'])
   if (property.startsWith('2025')) {
     return 'commisioning'
