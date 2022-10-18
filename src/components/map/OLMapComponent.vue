@@ -94,20 +94,20 @@ function getStyleName(feature: FeatureLike): string {
     String(feature.getProperties()['livre_t'])
   )
 
-  if (projectSchedulesStore.selectedDate < inProgressDate) {
-    return 'unStarted'
-  } else if (
-    projectSchedulesStore.selectedDate >= inProgressDate &&
-    projectSchedulesStore.selectedDate < finishedDate
-  ) {
-    return 'underConstruction'
+  if (projectSchedulesStore.selectedDate >= commisionedDate) {
+    return 'commisioning'
   } else if (
     projectSchedulesStore.selectedDate >= finishedDate &&
     projectSchedulesStore.selectedDate < commisionedDate
   ) {
     return 'constructionFinished'
-  } else if (projectSchedulesStore.selectedDate >= commisionedDate) {
-    return 'commisioning'
+  } else if (
+    projectSchedulesStore.selectedDate >= inProgressDate &&
+    projectSchedulesStore.selectedDate < finishedDate
+  ) {
+    return 'underConstruction'
+  } else if (projectSchedulesStore.selectedDate < inProgressDate) {
+    return 'unStarted'
   } else {
     return 'unStarted'
   }
