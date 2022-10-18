@@ -45,7 +45,8 @@ function onCompassClick(e: MouseEvent) {
   const yPos = top + height / 2
 
   trackMouse(async (e) => {
-    const tilt = yPos - e.clientY - 90
+    const speed = 0.5
+    const tilt = (yPos - e.clientY) * speed - 90
     if (tilt < -90 || tilt > 0) {
       return
     }
