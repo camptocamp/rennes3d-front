@@ -84,7 +84,6 @@ function convertAttributeToDate(attribute: string): Date {
 }
 
 function getStyleName(feature: FeatureLike): string {
-  // TODO: Do it better, and compare with the selected time
   const inProgressDate = convertAttributeToDate(
     String(feature.getProperties()['en_cours_t'])
   )
@@ -94,12 +93,6 @@ function getStyleName(feature: FeatureLike): string {
   const commisionedDate = convertAttributeToDate(
     String(feature.getProperties()['livre_t'])
   )
-
-  console.log(projectSchedulesStore.selectedDate)
-  console.log(inProgressDate)
-  console.log(finishedDate)
-  console.log(commisionedDate)
-  console.log('')
 
   if (projectSchedulesStore.selectedDate < inProgressDate) {
     return 'unStarted'
