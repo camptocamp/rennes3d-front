@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { VcsApp } from '@vcmap/core'
-import { ref } from 'vue'
+import { VcsApp, VcsMap } from '@vcmap/core'
+import { onMounted, ref } from 'vue'
 
 const props = defineProps({
   vcsApp: {
@@ -10,6 +10,20 @@ const props = defineProps({
 
 const compass = ref(null)
 const arrow = ref(null)
+
+onMounted(() => {
+  syncCompass(props.vcsApp?.maps?.activeMap)
+})
+
+function syncCompass(map: VcsMap) {
+  return map.postRender.addEventListener(({ map }) => {
+    const vp = map.getViewpointSync()
+    if (vp && vp.isValid()) {
+      transformArrow(vp.pitch)
+      transformNorthPoint(vp.heading)
+    }
+  })
+}
 
 // Dirty hack: ts triggers a unused-vars false positive
 // eslint-disable-next-line no-unused-vars
