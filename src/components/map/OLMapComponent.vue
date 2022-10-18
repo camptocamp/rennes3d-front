@@ -76,29 +76,48 @@ const styles: { [styleName: string]: Style } = {
   }),
 }
 
+function convertAttributeToDate(attribute: string): Date {
+  // The string format is "YYYY S1" or "YYYY S2"
+  const year = parseInt(attribute.split(' ')[0])
+  const month = attribute.split(' ')[1] == 'S1' ? 1 : 7
+  return new Date(year, month)
+}
+
 function getStyleName(feature: FeatureLike): string {
   // TODO: Do it better, and compare with the selected time
+  const inProgressDate = convertAttributeToDate(
+    String(feature.getProperties()['en_cours_t'])
+  )
+  const finishedDate = convertAttributeToDate(
+    String(feature.getProperties()['amenage_t'])
+  )
+  const commisionedDate = convertAttributeToDate(
+    String(feature.getProperties()['livre_t'])
+  )
+
   console.log(projectSchedulesStore.selectedDate)
-  const property = String(feature.getProperties()['en_cours_t'])
-  if (property.startsWith('2025')) {
+  console.log(inProgressDate)
+  console.log(finishedDate)
+  console.log(commisionedDate)
+  console.log('')
+
+  if (projectSchedulesStore.selectedDate < inProgressDate) {
+    return 'unStarted'
+  } else if (
+    projectSchedulesStore.selectedDate >= inProgressDate &&
+    projectSchedulesStore.selectedDate < finishedDate
+  ) {
+    return 'underConstruction'
+  } else if (
+    projectSchedulesStore.selectedDate >= finishedDate &&
+    projectSchedulesStore.selectedDate < commisionedDate
+  ) {
+    return 'constructionFinished'
+  } else if (projectSchedulesStore.selectedDate >= commisionedDate) {
     return 'commisioning'
-  }
-  if (property.startsWith('2026')) {
-    return 'constructionFinished'
-  }
-  if (property.startsWith('2027')) {
-    return 'constructionFinished'
-  }
-  if (property.startsWith('2028')) {
-    return 'underConstruction'
-  }
-  if (property.startsWith('2029')) {
-    return 'underConstruction'
-  }
-  if (property.startsWith('2030')) {
+  } else {
     return 'unStarted'
   }
-  return 'unStarted'
 }
 
 const styleFunction: StyleFunction = function (feature: FeatureLike): Style {
