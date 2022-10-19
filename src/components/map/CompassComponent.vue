@@ -1,22 +1,18 @@
 <script setup lang="ts">
-import { VcsApp, VcsMap } from '@vcmap/core'
-import { onMounted, ref } from 'vue'
+import type { VcsApp, VcsMap } from '@vcmap/core'
+import { inject, onMounted, ref } from 'vue'
 import IconCompass from '../ui/icons/IconCompass.vue'
 
-const props = defineProps({
-  vcsApp: {
-    type: VcsApp,
-  },
-})
+const vcsApp = inject('vcsApp') as VcsApp
 
 const compass = ref<HTMLDivElement | null>(null)
 const arrow = ref<HTMLDivElement | null>(null)
 
 onMounted(() => {
-  if (!props.vcsApp?.maps?.activeMap) {
+  if (!vcsApp?.maps?.activeMap) {
     return
   }
-  syncCompass(props.vcsApp?.maps?.activeMap)
+  syncCompass(vcsApp?.maps?.activeMap)
 })
 
 function syncCompass(map: VcsMap) {
@@ -87,19 +83,19 @@ function onCompassClick() {
 }
 
 const headingMap = async (heading: number, animate = false) => {
-  const vp = await props.vcsApp?.maps?.activeMap.getViewpoint()
+  const vp = await vcsApp?.maps?.activeMap.getViewpoint()
   if (vp) {
     vp.heading = heading
     vp.animate = animate
-    props.vcsApp?.maps?.activeMap.gotoViewpoint(vp)
+    vcsApp?.maps?.activeMap.gotoViewpoint(vp)
   }
 }
 
 const tiltingMap = async (pitch: number) => {
-  const vp = await props.vcsApp?.maps?.activeMap.getViewpoint()
+  const vp = await vcsApp?.maps?.activeMap.getViewpoint()
   if (vp) {
     vp.pitch = pitch
-    props.vcsApp?.maps?.activeMap.gotoViewpoint(vp)
+    vcsApp?.maps?.activeMap.gotoViewpoint(vp)
   }
 }
 

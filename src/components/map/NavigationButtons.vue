@@ -10,7 +10,7 @@ import NavigationHelp from './NavigationHelp.vue'
 const vcsApp = inject('vcsApp') as VcsApp
 
 const state = reactive({
-  is3D: vcsApp.maps.activeMap.name === 'cesium',
+  is3D: vcsApp?.maps?.activeMap?.name === 'cesium',
 })
 
 async function toggleMap() {
@@ -48,13 +48,13 @@ async function returnToHome() {
 }
 
 const shouldDisplayNavHelp = () => {
-  return sessionStorage.getItem('nav-help-displayed') !== 'true' && is3D()
+  return sessionStorage.getItem('nav-help-displayed') !== 'true' && state.is3D
 }
 </script>
 
 <template>
   <div
-    v-bind:class="{ 'h-[23rem]': is3D() }"
+    v-bind:class="{ 'h-[23rem]': state.is3D }"
     class="h-90 transition-[height] absolute right-2 bottom-10 flex flex-col [&>*]:m-2 text-gray-dark items-center overflow-hidden w-32 select-none"
   >
     <UiButton @click="returnToHome"><IconHome /></UiButton>
@@ -67,7 +67,7 @@ const shouldDisplayNavHelp = () => {
     <UiButton class="font-semibold" @click="toggleMap">{{
       state.is3D ? '2D' : '3D'
     }}</UiButton>
-    <CompassComponent :vcsApp="props.vcsApp" v-if="is3D()" />
+    <CompassComponent v-if="state.is3D" />
   </div>
   <NavigationHelp v-if="shouldDisplayNavHelp()" />
 </template>
