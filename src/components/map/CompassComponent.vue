@@ -40,7 +40,8 @@ const trackMouse = (
 
 function onNorthPointClick() {
   if (!compass.value || !arrow.value) return
-  const ts = Date.now()
+  const timestamp = Date.now()
+  const clickDuration = 100
   const { top, left, height, width } = compass.value.getBoundingClientRect()
 
   const compassPos = {
@@ -51,15 +52,15 @@ function onNorthPointClick() {
   trackMouse(
     async (e) => {
       const radians = Math.atan2(
-        e.clientY - compassPos.y,
-        e.clientX - compassPos.x
+        compassPos.x - e.clientX,
+        compassPos.y - e.clientY
       )
-      const angle = (180 / Math.PI) * radians + 90
+      const angle = (180 / Math.PI) * radians
       transformNorthPoint(angle)
       await headingMap(angle)
     },
     () => {
-      if (Date.now() - ts < 50) {
+      if (Date.now() - timestamp < clickDuration) {
         headingMap(0, true)
       }
     }
@@ -73,8 +74,10 @@ function onCompassClick() {
 
   trackMouse(async (e) => {
     const speed = 0.5
-    const tilt = (yPos - e.clientY) * speed - 90
-    if (tilt < -90 || tilt > -15) {
+    const initialTilt = -90
+    const maxTilt = -15 // arbitrary
+    const tilt = (yPos - e.clientY) * speed + initialTilt
+    if (tilt < initialTilt || tilt > maxTilt) {
       return
     }
     transformArrow(tilt)
@@ -102,15 +105,16 @@ const tiltingMap = async (pitch: number) => {
 const transformNorthPoint = (angle: number) => {
   if (compass.value && arrow.value) {
     angle = Math.round(angle)
-    compass.value.style.transform = `rotate(${angle}deg)`
+    compass.value.style.transform = `rotate(${-angle}deg)`
     const parentElement = arrow.value.parentNode as HTMLDivElement
-    parentElement.style.transform = `rotate(${-angle}deg)`
+    parentElement.style.transform = `rotate(${angle}deg)`
   }
 }
 
 const transformArrow = (tilt: number) => {
   if (arrow.value) {
-    tilt = Math.round(90 - tilt)
+    const initialTilt = 90
+    tilt = Math.round(initialTilt - tilt)
     arrow.value.style.transform = `rotateX(${tilt}deg)`
   }
 }
