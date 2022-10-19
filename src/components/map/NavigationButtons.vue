@@ -1,11 +1,20 @@
 <script setup lang="ts">
 import type { VcsApp } from '@vcmap/core'
 import { Viewpoint } from '@vcmap/core'
-import { inject } from 'vue'
+import { inject, reactive } from 'vue'
 import IconHome from '../ui/icons/IconHome.vue'
 import UiButton from '../ui/UiButton.vue'
 
 const vcsApp = inject('vcsApp') as VcsApp
+
+const state = reactive({
+  is3D: vcsApp.maps.activeMap.name === 'cesium',
+})
+
+async function toggleMap() {
+  await vcsApp.maps.setActiveMap(state.is3D ? 'ol' : 'cesium')
+  state.is3D = vcsApp.maps.activeMap.name === 'cesium'
+}
 
 async function zoom(out = false, zoomFactor = 2): Promise<void> {
   const activeMap = vcsApp.maps.activeMap
@@ -24,14 +33,6 @@ async function zoom(out = false, zoomFactor = 2): Promise<void> {
 
     await activeMap.gotoViewpoint(viewpoint)
   }
-}
-
-function is3D(): boolean {
-  return vcsApp.maps.activeMap.name === 'cesium'
-}
-
-function toggleMap() {
-  vcsApp.maps.setActiveMap(is3D() ? 'ol' : 'cesium')
 }
 
 async function returnToHome() {
@@ -55,7 +56,7 @@ async function returnToHome() {
       <UiButton @click="() => zoom(true)">{{ '-' }}</UiButton>
     </div>
     <UiButton class="font-semibold" @click="toggleMap">{{
-      is3D() ? '2D' : '3D'
+      state.is3D ? '2D' : '3D'
     }}</UiButton>
   </div>
 </template>
