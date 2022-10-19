@@ -1,27 +1,30 @@
 <script setup lang="ts">
 import { useLayersStore } from '@/stores/layers'
-import type { VcsApp } from '@vcmap/core'
-import { onMounted, ref } from 'vue'
-import type { Ref } from 'vue'
-import UiMap from '../ui/UiMap.vue'
-import TransportButtons from './TransportButtons.vue'
-import NavigationButtons from './NavigationButtons.vue'
+import { usePanelsStore } from '@/stores/panels'
+import { Context, VcsApp } from '@vcmap/core'
+import { onMounted, provide, ref } from 'vue'
 import mapConfig from '../../map.config.json'
-import initMap from '../../services/vcmap/initMap'
 import IconPlanning from '../ui/icons/IconPlanning.vue'
 import UiButton from '../ui/UiButton.vue'
-import { usePanelsStore } from '@/stores/panels'
+import UiMap from '../ui/UiMap.vue'
+import NavigationButtons from './NavigationButtons.vue'
+import TransportButtons from './TransportButtons.vue'
 
-let vcsApp: Ref<VcsApp | undefined> = ref(undefined)
+const app = new VcsApp()
+provide('vcsApp', app)
+
+const appLoaded = ref(false)
 const layerStore = useLayersStore()
 const panelStore = usePanelsStore()
 
 onMounted(async () => {
-  vcsApp.value = await initMap(mapConfig)
+  const context = new Context(mapConfig)
+  await app.addContext(context)
+  appLoaded.value = true
 })
 
 function setLayerVisible(layerName: string, visible: boolean) {
-  const layer = vcsApp.value?.maps.layerCollection.getByKey(layerName)
+  const layer = app.maps.layerCollection.getByKey(layerName)
   if (visible) {
     layer?.activate()
   } else if (layer?.active) {
@@ -36,7 +39,7 @@ layerStore.$subscribe(() => {
 })
 </script>
 <template>
-  <UiMap :vcsApp="vcsApp"> </UiMap>
+  <UiMap v-if="appLoaded"> </UiMap>
   <div class="absolute right-2 top-2 z-10 flex [&>*]:m-1">
     <TransportButtons></TransportButtons>
     <UiButton @click="panelStore.isPlanningViewShown = true">
@@ -44,5 +47,5 @@ layerStore.$subscribe(() => {
       <span class="pl-2 font-semibold"> Planning du projet </span>
     </UiButton>
   </div>
-  <NavigationButtons :vcsApp="vcsApp" />
+  <NavigationButtons v-if="appLoaded" />
 </template>

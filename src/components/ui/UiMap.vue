@@ -1,22 +1,14 @@
 <script setup lang="ts">
-import { VcsApp } from '@vcmap/core'
-import { ref, watch } from 'vue'
+import { inject, onMounted, ref } from 'vue'
+import type { VcsApp } from '@vcmap/core'
 
-const props = defineProps({
-  vcsApp: {
-    type: VcsApp,
-  },
-})
 const mapContainer = ref(null)
-
-watch(
-  () => props.vcsApp,
-  () => {
-    if (mapContainer.value) {
-      props.vcsApp?.maps.setTarget(mapContainer.value)
-    }
+onMounted(async () => {
+  if (mapContainer.value) {
+    const app = inject('vcsApp') as VcsApp
+    app.maps.setTarget(mapContainer.value)
   }
-)
+})
 </script>
 
 <template>
