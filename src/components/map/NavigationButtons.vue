@@ -4,6 +4,7 @@ import { Viewpoint } from '@vcmap/core'
 import { inject, reactive } from 'vue'
 import IconHome from '../ui/icons/IconHome.vue'
 import UiButton from '../ui/UiButton.vue'
+import CompassComponent from './CompassComponent.vue'
 
 const vcsApp = inject('vcsApp') as VcsApp
 
@@ -47,10 +48,10 @@ async function returnToHome() {
 </script>
 
 <template>
-  <div class="absolute right-4 bottom-2 flex flex-col [&>*]:m-2 text-gray-dark">
+  <div v-bind:class="{ 'h-96': is3D() }" class="h-72 transition-[height] absolute right-2 bottom-2 flex flex-col [&>*]:m-2 text-gray-dark items-center overflow-hidden w-32">
     <UiButton @click="returnToHome"><IconHome /></UiButton>
     <div
-      class="flex flex-col zoom-buttons text-2xl [&>*]:p-2 first:[&>*]:rounded-b-3xl last:[&>*]:rounded-t-3xl"
+      class="flex w-12 flex-col zoom-buttons text-2xl [&>*]:p-2 first:[&>*]:rounded-b-3xl last:[&>*]:rounded-t-3xl"
     >
       <UiButton @click="() => zoom(false)">{{ '+' }}</UiButton>
       <UiButton @click="() => zoom(true)">{{ '-' }}</UiButton>
@@ -58,5 +59,6 @@ async function returnToHome() {
     <UiButton class="font-semibold" @click="toggleMap">{{
       state.is3D ? '2D' : '3D'
     }}</UiButton>
+    <CompassComponent :vcsApp="props.vcsApp" v-if="is3D()" />
   </div>
 </template>

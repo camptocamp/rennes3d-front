@@ -8,16 +8,10 @@ import IconPlanning from '../ui/icons/IconPlanning.vue'
 import UiButton from '../ui/UiButton.vue'
 import UiMap from '../ui/UiMap.vue'
 import NavigationButtons from './NavigationButtons.vue'
-<<<<<<< HEAD
 import TransportButtons from './TransportButtons.vue'
 
 const app = new VcsApp()
 provide('vcsApp', app)
-=======
-import mapConfig from '../../map.config.json'
-import initMap from '../../services/vcmap/initMap'
-import CompassComponent from './CompassComponent.vue'
->>>>>>> 1f18699... feat(map): init the CompassComponent
 
 const appLoaded = ref(false)
 const layerStore = useLayersStore()
@@ -65,5 +59,4 @@ function onPlanningButtonClicked() {
     </UiButton>
   </div>
   <NavigationButtons :vcsApp="vcsApp" />
-  <CompassComponent :vcsApp="vcsApp" />
 </template>
