@@ -2,6 +2,10 @@
 import PhotoGallery from '../components/home/PhotoGallery.vue'
 import MapComponent from '../components/map/MapComponent.vue'
 import InformationPanel from '../components/home/InformationPanel.vue'
+import PlanningView from './PlanningView.vue'
+import { usePanelsStore } from '@/stores/panels'
+
+const panelStore = usePanelsStore()
 </script>
 
 <template>
@@ -14,6 +18,12 @@ import InformationPanel from '../components/home/InformationPanel.vue'
     </div>
     <div class="z-10 absolute inset-x-0 bottom-0 max-w-max m-auto">
       <PhotoGallery></PhotoGallery>
+    </div>
+    <div
+      class="absolute h-screen w-screen"
+      :class="panelStore.isPlanningViewShown ? 'z-20' : '-z-10'"
+    >
+      <PlanningView></PlanningView>
     </div>
   </main>
 </template>
