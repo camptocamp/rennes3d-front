@@ -15,9 +15,9 @@ import { Vector as VectorLayer } from 'ol/layer'
 import { Style, Stroke } from 'ol/style'
 import type { StyleFunction } from 'ol/style/Style'
 import type { FeatureLike } from 'ol/Feature'
-import { useProjectSchedulesStore } from '@/stores/projectSchedules'
+import { usePlanningStore } from '@/stores/planning'
 
-const projectSchedulesStore = useProjectSchedulesStore()
+const planningStore = usePlanningStore()
 
 const resolutions = []
 const matrixIds = []
@@ -95,7 +95,7 @@ function getStyleName(feature: FeatureLike): LineStatus {
   )
   const finishedDate = convertAttributeToDate(String(feature.get('amenage_t')))
   const commisionedDate = convertAttributeToDate(String(feature.get('livre_t')))
-  const selectedDate = projectSchedulesStore.getSelectedDate()
+  const selectedDate = planningStore.getSelectedDate()
 
   if (selectedDate >= commisionedDate) {
     return 'commisioning'
@@ -135,7 +135,7 @@ onMounted(async () => {
     target: 'mapContainer',
   })
 })
-projectSchedulesStore.$subscribe(() => {
+planningStore.$subscribe(() => {
   planningLayer.setStyle(styleFunction)
 })
 </script>

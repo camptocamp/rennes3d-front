@@ -2,7 +2,7 @@ import { ref } from 'vue'
 import type { Ref } from 'vue'
 import { defineStore } from 'pinia'
 
-export const useProjectSchedulesStore = defineStore('projectSchedules', () => {
+export const usePlanningStore = defineStore('planning', () => {
   const selectedYear: Ref<number> = ref(2029)
   const selectedSemester: Ref<number> = ref(1)
 
