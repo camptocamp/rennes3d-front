@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
-import type { Ref } from 'vue'
+import { onMounted, provide, ref } from 'vue'
 import Map from 'ol/Map'
 import UiOLMap from '../ui/UiOLMap.vue'
 import View from 'ol/View'
@@ -18,6 +17,12 @@ import type { FeatureLike } from 'ol/Feature'
 import { usePlanningStore } from '@/stores/planning'
 
 const planningStore = usePlanningStore()
+
+// Create map and provide it to the descendant to avoid reactivity on map object
+let map = new Map()
+provide('map', map)
+
+const mapLoaded = ref(false)
 
 const resolutions = []
 const matrixIds = []
@@ -122,23 +127,23 @@ const planningLayer = new VectorLayer({
   style: styleFunction,
 })
 
-let map: Ref<Map | undefined> = ref(undefined)
-
 onMounted(async () => {
   // Setup map here
-  map.value = new Map({
-    layers: [rennesBaseMap, planningLayer],
-    view: new View({
+  map.setTarget('mapContainer')
+  map.setView(
+    new View({
       center: fromLonLat([-1.67, 48.101]),
       zoom: 12.5,
-    }),
-    target: 'mapContainer',
-  })
+    })
+  )
+  map.setLayers([rennesBaseMap, planningLayer])
+  mapLoaded.value = true
 })
+
 planningStore.$subscribe(() => {
   planningLayer.setStyle(styleFunction)
 })
 </script>
 <template>
-  <UiOLMap :map="map"></UiOLMap>
+  <UiOLMap v-if="mapLoaded"></UiOLMap>
 </template>
