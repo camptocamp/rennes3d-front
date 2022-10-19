@@ -2,6 +2,7 @@
 import PhotoGallery from '../components/home/PhotoGallery.vue'
 import MapComponent from '../components/map/MapComponent.vue'
 import InformationPanel from '../components/home/InformationPanel.vue'
+import PlanningView from './PlanningView.vue'
 </script>
 
 <template>
@@ -14,6 +15,9 @@ import InformationPanel from '../components/home/InformationPanel.vue'
     </div>
     <div class="z-10 absolute inset-x-0 bottom-0 max-w-max m-auto">
       <PhotoGallery></PhotoGallery>
+    </div>
+    <div class="z-20 h-screen w-screen">
+      <PlanningView></PlanningView>
     </div>
   </main>
 </template>
