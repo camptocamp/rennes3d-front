@@ -85,7 +85,7 @@ function convertAttributeToDate(attribute: string): Date {
 
 function getStyleName(feature: FeatureLike): string {
   const inProgressDate = convertAttributeToDate(
-    String(feature.getProperties()['en_cours_t'])
+    String(feature.get('en_cours_t'))
   )
   const finishedDate = convertAttributeToDate(
     String(feature.getProperties()['amenage_t'])
