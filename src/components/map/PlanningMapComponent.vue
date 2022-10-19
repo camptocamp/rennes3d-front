@@ -87,26 +87,17 @@ function getStyleName(feature: FeatureLike): string {
   const inProgressDate = convertAttributeToDate(
     String(feature.get('en_cours_t'))
   )
-  const finishedDate = convertAttributeToDate(
-    String(feature.getProperties()['amenage_t'])
-  )
-  const commisionedDate = convertAttributeToDate(
-    String(feature.getProperties()['livre_t'])
-  )
+  const finishedDate = convertAttributeToDate(String(feature.get('amenage_t')))
+  const commisionedDate = convertAttributeToDate(String(feature.get('livre_t')))
+  const selectedDate = projectSchedulesStore.getSelectedDate()
 
-  if (projectSchedulesStore.getSelectedDate() >= commisionedDate) {
+  if (selectedDate >= commisionedDate) {
     return 'commisioning'
-  } else if (
-    projectSchedulesStore.getSelectedDate() >= finishedDate &&
-    projectSchedulesStore.getSelectedDate() < commisionedDate
-  ) {
+  } else if (selectedDate >= finishedDate && selectedDate < commisionedDate) {
     return 'constructionFinished'
-  } else if (
-    projectSchedulesStore.getSelectedDate() >= inProgressDate &&
-    projectSchedulesStore.getSelectedDate() < finishedDate
-  ) {
+  } else if (selectedDate >= inProgressDate && selectedDate < finishedDate) {
     return 'underConstruction'
-  } else if (projectSchedulesStore.getSelectedDate() < inProgressDate) {
+  } else if (selectedDate < inProgressDate) {
     return 'unStarted'
   } else {
     return 'unStarted'
