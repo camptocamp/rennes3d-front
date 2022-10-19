@@ -2,14 +2,19 @@
 import PlanningMapComponent from '../components/map/PlanningMapComponent.vue'
 import UiButton from '../components/ui/UiButton.vue'
 import { ArrowLeftIcon } from '@heroicons/vue/20/solid'
-import router from '../router/index'
+import { usePanelsStore } from '@/stores/panels'
+
+const panelStore = usePanelsStore()
 </script>
 
 <template>
   <main class="h-screen flex flex-col">
     <div class="h-1/6 p-4 bg-white flex flex-row gap-2 items-center">
       <div>
-        <UiButton class="shadow-sm" @click="router.back">
+        <UiButton
+          class="shadow-sm"
+          @click="panelStore.isPlanningViewShown = false"
+        >
           <ArrowLeftIcon class="w-6 h-6"></ArrowLeftIcon>
         </UiButton>
       </div>
