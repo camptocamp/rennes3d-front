@@ -11,9 +11,15 @@ export const useProjectSchedulesStore = defineStore('projectSchedules', () => {
     return new Date(selectedYear.value, selectedMonth)
   }
 
+  function setDate(date: Date) {
+    selectedYear.value = date.getFullYear()
+    selectedSemester.value = date.getMonth() < 7 ? 1 : 2
+  }
+
   return {
     getSelectedDate,
     selectedSemester,
     selectedYear,
+    setDate,
   }
 })
