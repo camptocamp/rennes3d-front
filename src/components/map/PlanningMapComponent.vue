@@ -48,7 +48,13 @@ const rennesBaseMap = new TileLayer({
 })
 
 // Styles
-const styles: Record<string, Style> = {
+type LineStatus =
+  | 'unStarted'
+  | 'underConstruction'
+  | 'constructionFinished'
+  | 'commisioning'
+
+const styles: Record<LineStatus, Style> = {
   unStarted: new Style({
     stroke: new Stroke({
       color: '#000000',
@@ -83,7 +89,7 @@ function convertAttributeToDate(attribute: string): Date {
   return new Date(year, month)
 }
 
-function getStyleName(feature: FeatureLike): string {
+function getStyleName(feature: FeatureLike): LineStatus {
   const inProgressDate = convertAttributeToDate(
     String(feature.get('en_cours_t'))
   )
