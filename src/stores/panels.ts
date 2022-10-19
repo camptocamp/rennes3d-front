@@ -5,6 +5,7 @@ import { defineStore } from 'pinia'
 export const usePanelsStore = defineStore('panels', () => {
   const isGalleryShown: Ref<boolean> = ref(false)
   const isInformationPanelShown: Ref<boolean> = ref(true)
+  const isPlanningViewShown: Ref<boolean> = ref(false)
 
   function toggleGallery() {
     isGalleryShown.value = !isGalleryShown.value
@@ -18,5 +19,6 @@ export const usePanelsStore = defineStore('panels', () => {
     toggleGallery,
     isInformationPanelShown,
     toggleInformationPanel,
+    isPlanningViewShown,
   }
 })
