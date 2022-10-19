@@ -48,7 +48,7 @@ const rennesBaseMap = new TileLayer({
 })
 
 // Styles
-const styles: { [styleName: string]: Style } = {
+const styles: Record<string, Style> = {
   unStarted: new Style({
     stroke: new Stroke({
       color: '#000000',
