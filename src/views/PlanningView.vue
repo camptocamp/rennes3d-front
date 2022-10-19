@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import OLMapComponent from '../components/map/OLMapComponent.vue'
+import PlanningMapComponent from '../components/map/PlanningMapComponent.vue'
 import UiButton from '../components/ui/UiButton.vue'
 import { ArrowLeftIcon } from '@heroicons/vue/20/solid'
 import router from '../router/index'
@@ -19,7 +19,7 @@ import router from '../router/index'
       <div>Timeline</div>
     </div>
     <div class="flex grow relative">
-      <OLMapComponent></OLMapComponent>
+      <PlanningMapComponent></PlanningMapComponent>
     </div>
   </main>
 </template>
