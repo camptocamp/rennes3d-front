@@ -19,9 +19,12 @@ const panelStore = usePanelsStore()
     <div class="z-10 absolute inset-x-0 bottom-0 max-w-max m-auto">
       <PhotoGallery></PhotoGallery>
     </div>
+    <!--Do lazy loading for planning view.
+      Only render it once, and after that 'hide' the planning view so that we can keep its state and no need to load it again. -->
     <div
-      class="absolute h-screen w-screen z-20"
-      v-if="panelStore.isPlanningViewShown"
+      class="absolute h-screen w-screen"
+      v-if="panelStore.hasPlanningViewRendered"
+      :class="panelStore.isPlanningViewShown ? 'z-20' : '-z-10'"
     >
       <PlanningView></PlanningView>
     </div>

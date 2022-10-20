@@ -37,12 +37,18 @@ layerStore.$subscribe(() => {
   setLayerVisible('bus', layerStore.visibilities.bus)
   setLayerVisible('bike', layerStore.visibilities.bike)
 })
+
+function onPlanningButtonClicked() {
+  panelStore.isPlanningViewShown = true
+  panelStore.hasPlanningViewRendered = true
+}
 </script>
+
 <template>
   <UiMap v-if="appLoaded"> </UiMap>
   <div class="absolute right-2 top-2 z-10 flex [&>*]:m-1">
     <TransportButtons></TransportButtons>
-    <UiButton @click="panelStore.isPlanningViewShown = true">
+    <UiButton @click="onPlanningButtonClicked">
       <IconPlanning />
       <span class="pl-2 font-semibold"> Planning du projet </span>
     </UiButton>
