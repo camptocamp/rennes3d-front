@@ -1,11 +1,13 @@
 <script lang="ts" setup>
-import { ref, Ref } from '@vue/reactivity'
+import { ref, Ref } from 'vue'
 
 const props = defineProps({
   keydates: {
     default: [],
   },
 })
+
+const emit = defineEmits(['current-date'])
 
 let circle: Ref<HTMLDivElement | undefined> = ref(undefined)
 let currentActive: Ref<number | undefined> = ref(2)
@@ -21,9 +23,19 @@ const translateCircle = (index: number) => {
   circle.value.style.left = `${distance}px`
 }
 
+const getDate = (index: number): Date | undefined => {
+  const { year, month } = props.keydates[index]
+
+  if (year && month) {
+    return new Date(year, month, 1)
+  }
+  return undefined
+}
+
 const setCurrentActive = (index: number) => {
   currentActive.value = index
   translateCircle(index)
+  emit('current-date', getDate(index))
 }
 </script>
 
@@ -47,7 +59,9 @@ const setCurrentActive = (index: number) => {
       <div
         class="h-[0.05rem] w-full mt-4 bg-gray-400 flex items-center absolute bottom-8"
         v-bind:class="[
-          0 === index ? 'first-step w-1/2 ml-[50%] !justify-start' : 'justify-center',
+          0 === index
+            ? 'first-step w-1/2 ml-[50%] !justify-start'
+            : 'justify-center',
           keydates.length - 1 === index
             ? 'last-step w-1/2 mr-[50%] !justify-end'
             : 'justify-center',
