@@ -1,18 +1,19 @@
 <script lang="ts" setup>
-import { onMounted, PropType, ref, Ref } from 'vue'
-import { TimeLineItem } from '../../model/timeLineItems.model'
+import { onMounted, ref } from 'vue'
+import type { Ref, PropType } from 'vue'
+import type { TimeLineItem } from '../../model/timeLineItems.model'
 
 const props = defineProps({
   items: {
     type: Array as PropType<TimeLineItem[]>,
-    default: [],
+    default: () => [],
   },
 })
 
 const emit = defineEmits(['current-date'])
 
-let circle: Ref<HTMLDivElement> = ref(undefined)
-let container: Ref<HTMLDivElement> = ref(undefined)
+let circle: Ref<HTMLDivElement | null> = ref(null)
+let container: Ref<HTMLDivElement | null> = ref(null)
 let currentActive: Ref<number> = ref(0)
 
 onMounted(() => {
@@ -21,13 +22,18 @@ onMounted(() => {
 
 const translateCircle = (index: number) => {
   currentActive.value = index
-  const circleSize = circle.value.getBoundingClientRect().width
-  const parentSize = container.value.getBoundingClientRect().width
+  const circleSize = circle.value?.getBoundingClientRect().width
+  const parentSize = container.value?.getBoundingClientRect().width
+
+  if (!circleSize || !parentSize) return
+
   const numberOfSections = props.items.length
   const sectionWidth = parentSize / numberOfSections
 
   const distance = Math.round(sectionWidth * (index + 0.5) - circleSize / 2)
-  circle.value.style.left = `${distance}px`
+  if (circle.value) {
+    circle.value.style.left = `${distance}px`
+  }
 }
 
 const getDate = (index: number): Date | undefined => {
