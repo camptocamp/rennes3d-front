@@ -1,11 +1,6 @@
 <script lang="ts" setup>
 import { ref, Ref } from '@vue/reactivity'
 
-type KeyDateType = {
-  name: string
-  year: number
-}
-
 const props = defineProps({
   keydates: {
     default: [],
@@ -33,8 +28,12 @@ const setCurrentActive = (index: number) => {
 </script>
 
 <template>
-  <div class="container" @click="test">
-    <div v-bind:key="index" v-for="(keydate, index) of keydates">
+  <div class="w-[1250px] h-32 bg-white relative flex text-black">
+    <div
+      v-bind:key="index"
+      v-for="(keydate, index) of keydates"
+      class="flex-1 flex justify-center items-center relative pb-4 hover:font-medium"
+    >
       <div>
         <div
           class="text-center cursor-pointer"
@@ -46,82 +45,25 @@ const setCurrentActive = (index: number) => {
         </div>
       </div>
       <div
-        class="line"
+        class="h-[0.05rem] w-full mt-4 bg-gray-400 flex items-center absolute bottom-8"
         v-bind:class="[
-          0 === index ? 'first' : ' ',
-          keydates.length - 1 === index ? 'last' : '',
+          0 === index ? 'first-step w-1/2 ml-[50%] !justify-start' : 'justify-center',
+          keydates.length - 1 === index
+            ? 'last-step w-1/2 mr-[50%] !justify-end'
+            : 'justify-center',
         ]"
       >
-        <div class="step"></div>
+        <div class="h-[8px] w-[8px] bg-gray-400 rounded-full"></div>
       </div>
     </div>
-    <div class="circle" ref="circle"></div>
+    <div
+      class="circle h-[30px] w-[30px] z-10 shadow border-gray-400 border-[0.2px] bg-white rounded-full absolute"
+      ref="circle"
+    ></div>
   </div>
 </template>
 <style scoped>
-.container {
-  height: 8rem;
-  width: 1250px;
-  background-color: white;
-  color: black;
-  display: flex;
-  position: relative;
-}
-
-.container > * {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  position: relative;
-  padding-bottom: 1rem;
-}
-
-.test > *:hover {
-  font-weight: 500;
-}
-
-.line {
-  height: 0.05rem;
-  width: 100%;
-  margin-top: 1rem;
-  background: grey;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-  bottom: 2rem;
-}
-
-.step {
-  height: 8px;
-  width: 8px;
-  background: #adadad;
-  border-radius: 100%;
-}
-
-.first {
-  width: 50%;
-  margin-left: 50%;
-  justify-content: start;
-}
-
-.last {
-  width: 50%;
-  margin-right: 50%;
-  justify-content: end;
-}
-
 .circle {
-  height: 30px;
-  width: 30px;
-  z-index: 10;
-  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
-  border: 0.2px solid #adadad;
-  background: white;
-  border-radius: 100%;
-  position: absolute;
   bottom: calc(2rem - 13px);
   transition: 400ms;
 }
