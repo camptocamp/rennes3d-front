@@ -10,16 +10,17 @@ const props = defineProps({
 const emit = defineEmits(['current-date'])
 
 let circle: Ref<HTMLDivElement | undefined> = ref(undefined)
+let container: Ref<HTMLDivElement | undefined> = ref(undefined)
 let currentActive: Ref<number | undefined> = ref(2)
 
 const translateCircle = (index: number) => {
   currentActive.value = index
-  const ballSize = 30
-  const parentSize = 1250
+  const circleSize = circle.value.getBoundingClientRect().width
+  const parentSize = container.value.getBoundingClientRect().width
   const numberOfSections = props.keydates.length
   const sectionWidth = parentSize / numberOfSections
 
-  const distance = sectionWidth * (index + 0.5) - ballSize / 2
+  const distance = Math.round(sectionWidth * (index + 0.5) - circleSize / 2)
   circle.value.style.left = `${distance}px`
 }
 
@@ -40,7 +41,10 @@ const setCurrentActive = (index: number) => {
 </script>
 
 <template>
-  <div class="w-[1250px] h-32 bg-white relative flex text-black">
+  <div
+    class="w-[78rem] h-32 bg-white relative flex text-black"
+    ref="container"
+  >
     <div
       v-bind:key="index"
       v-for="(keydate, index) of keydates"
