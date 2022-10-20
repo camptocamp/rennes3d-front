@@ -20,8 +20,8 @@ const panelStore = usePanelsStore()
       <PhotoGallery></PhotoGallery>
     </div>
     <div
-      class="absolute h-screen w-screen"
-      :class="panelStore.isPlanningViewShown ? 'z-20' : '-z-10'"
+      class="absolute h-screen w-screen z-20"
+      v-if="panelStore.isPlanningViewShown"
     >
       <PlanningView></PlanningView>
     </div>
