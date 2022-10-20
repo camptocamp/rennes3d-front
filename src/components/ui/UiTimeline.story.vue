@@ -1,58 +1,10 @@
 <script lang="ts" setup>
 import UiTimeline from './UiTimeline.vue'
+import { timeLineFixtures } from '../../model/timeLineItems.fixtures'
 
 function initState() {
   return {
-    keydates: [
-      {
-        name: 'Semestre 1',
-        year: 2025,
-      },
-      {
-        name: 'Semestre 2',
-        year: 2025,
-      },
-      {
-        name: 'Semestre 1',
-        year: 2026,
-      },
-      {
-        name: 'Semestre 2',
-        year: 2026,
-      },
-      {
-        name: 'Semestre 1',
-        year: 2027,
-      },
-      {
-        name: 'Semestre 2',
-        year: 2027,
-      },
-      {
-        name: 'Semestre 1',
-        year: 2028,
-      },
-      {
-        name: 'Semestre 2',
-        year: 2028,
-      },
-      {
-        name: 'Semestre 1',
-        year: 2029,
-      },
-      {
-        name: 'Semestre 2',
-        year: 2029,
-      },
-      {
-        name: 'Semestre 1',
-        year: 2030,
-      },
-      {
-        name: 'Semestre 2',
-        year: 2030,
-      },
-    ],
+    items: timeLineFixtures(),
   }
 }
 </script>
@@ -68,7 +20,7 @@ function initState() {
     :init-state="initState"
   >
     <template #default="{ state }">
-      <UiTimeline :keydates="state.keydates"></UiTimeline>
+      <UiTimeline :items="state.items"></UiTimeline>
     </template>
   </Story>
 </template>
