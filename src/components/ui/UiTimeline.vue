@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { PropType, ref, Ref } from 'vue'
+import { onMounted, PropType, ref, Ref } from 'vue'
 import { TimeLineItem } from '../../model/timeLineItems.model'
 
 const props = defineProps({
@@ -13,7 +13,11 @@ const emit = defineEmits(['current-date'])
 
 let circle: Ref<HTMLDivElement> = ref(undefined)
 let container: Ref<HTMLDivElement> = ref(undefined)
-let currentActive: Ref<number> = ref(2)
+let currentActive: Ref<number> = ref(0)
+
+onMounted(() => {
+  translateCircle(currentActive.value)
+})
 
 const translateCircle = (index: number) => {
   currentActive.value = index
