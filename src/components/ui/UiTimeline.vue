@@ -1,17 +1,19 @@
 <script lang="ts" setup>
-import { ref, Ref } from 'vue'
+import { PropType, ref, Ref } from 'vue'
+import { TimeLineItem } from '../../model/timeLineItems.model'
 
 const props = defineProps({
   items: {
+    type: Array as PropType<TimeLineItem[]>,
     default: [],
   },
 })
 
 const emit = defineEmits(['current-date'])
 
-let circle: Ref<HTMLDivElement | undefined> = ref(undefined)
-let container: Ref<HTMLDivElement | undefined> = ref(undefined)
-let currentActive: Ref<number | undefined> = ref(2)
+let circle: Ref<HTMLDivElement> = ref(undefined)
+let container: Ref<HTMLDivElement> = ref(undefined)
+let currentActive: Ref<number> = ref(2)
 
 const translateCircle = (index: number) => {
   currentActive.value = index
@@ -25,10 +27,10 @@ const translateCircle = (index: number) => {
 }
 
 const getDate = (index: number): Date | undefined => {
-  const { year, month } = props.items[index]
+  const { year, semester } = props.items[index]
 
-  if (year && month) {
-    return new Date(year, month, 1)
+  if (year && semester) {
+    return new Date(year, semester * 6, 1)
   }
   return undefined
 }
@@ -41,10 +43,7 @@ const setCurrentActive = (index: number) => {
 </script>
 
 <template>
-  <div
-    class="w-[78rem] h-32 bg-white relative flex text-black"
-    ref="container"
-  >
+  <div class="w-[78rem] h-32 bg-white relative flex text-black" ref="container">
     <div
       v-bind:key="index"
       v-for="(item, index) of items"
