@@ -2,7 +2,7 @@
 import { ref, Ref } from 'vue'
 
 const props = defineProps({
-  keydates: {
+  items: {
     default: [],
   },
 })
@@ -17,7 +17,7 @@ const translateCircle = (index: number) => {
   currentActive.value = index
   const circleSize = circle.value.getBoundingClientRect().width
   const parentSize = container.value.getBoundingClientRect().width
-  const numberOfSections = props.keydates.length
+  const numberOfSections = props.items.length
   const sectionWidth = parentSize / numberOfSections
 
   const distance = Math.round(sectionWidth * (index + 0.5) - circleSize / 2)
@@ -25,7 +25,7 @@ const translateCircle = (index: number) => {
 }
 
 const getDate = (index: number): Date | undefined => {
-  const { year, month } = props.keydates[index]
+  const { year, month } = props.items[index]
 
   if (year && month) {
     return new Date(year, month, 1)
@@ -47,7 +47,7 @@ const setCurrentActive = (index: number) => {
   >
     <div
       v-bind:key="index"
-      v-for="(keydate, index) of keydates"
+      v-for="(item, index) of items"
       class="flex-1 flex justify-center items-center relative pb-4 hover:font-medium"
     >
       <div>
@@ -56,8 +56,8 @@ const setCurrentActive = (index: number) => {
           v-bind:class="[currentActive === index ? 'font-bold' : ' ']"
           @click="() => setCurrentActive(index)"
         >
-          <p>{{ keydate.name }}</p>
-          <p>{{ keydate.year }}</p>
+          <p>{{ item.name }}</p>
+          <p>{{ item.year }}</p>
         </div>
       </div>
       <div
@@ -66,7 +66,7 @@ const setCurrentActive = (index: number) => {
           0 === index
             ? 'first-step w-1/2 ml-[50%] !justify-start'
             : 'justify-center',
-          keydates.length - 1 === index
+          items.length - 1 === index
             ? 'last-step w-1/2 mr-[50%] !justify-end'
             : 'justify-center',
         ]"
