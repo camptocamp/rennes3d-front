@@ -1,11 +1,13 @@
 <script lang="ts" setup>
 import UiNetworkFigure from '../ui/UiNetworkFigure.vue'
+import parkingIcon from '../../assets/icons/parkingLocation.svg'
 
 function initState() {
   return {
     figure: 128,
     description: 'New lines',
     unit: 'km',
+    icon: parkingIcon,
   }
 }
 </script>
@@ -25,6 +27,7 @@ function initState() {
           :figure="state.figure"
           :description="state.description"
           :unit="state.unit"
+          :icon="state.icon"
         ></UiNetworkFigure>
       </template>
     </Variant>
