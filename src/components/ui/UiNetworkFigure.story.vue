@@ -18,14 +18,23 @@ function initState() {
       width: 200,
     }"
     group="homepage"
-    :init-state="initState"
   >
-    <template #default="{ state }">
-      <UiNetworkFigure
-        :figure="state.figure"
-        :description="state.description"
-        :unit="state.unit"
-      ></UiNetworkFigure>
-    </template>
+    <Variant title="Full Information" :init-state="initState">
+      <template #default="{ state }">
+        <UiNetworkFigure
+          :figure="state.figure"
+          :description="state.description"
+          :unit="state.unit"
+        ></UiNetworkFigure>
+      </template>
+    </Variant>
+    <Variant title="No Unit" :init-state="initState">
+      <template #default="{ state }">
+        <UiNetworkFigure
+          :figure="state.figure"
+          :description="state.description"
+        ></UiNetworkFigure>
+      </template>
+    </Variant>
   </Story>
 </template>
