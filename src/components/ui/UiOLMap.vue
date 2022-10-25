@@ -14,7 +14,7 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div ref="mapContainer" class="h-full w-full"></div>
+  <div ref="mapContainer" class="h-full w-full bg-gray-100"></div>
 </template>
 
 <style scoped>

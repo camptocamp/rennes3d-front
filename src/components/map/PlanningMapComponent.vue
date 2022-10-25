@@ -127,8 +127,7 @@ const planningLayer = new VectorLayer({
   style: styleFunction,
 })
 
-onMounted(async () => {
-  // Setup map here
+function setupMap() {
   map.setTarget('mapContainer')
   map.setView(
     new View({
@@ -138,6 +137,10 @@ onMounted(async () => {
   )
   map.setLayers([rennesBaseMap, planningLayer])
   mapLoaded.value = true
+}
+
+onMounted(async () => {
+  setupMap()
 })
 
 planningStore.$subscribe(() => {
