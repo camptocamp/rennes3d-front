@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useLayersStore } from '@/stores/layers'
 import { usePanelsStore } from '@/stores/panels'
-import { Context, VcsApp } from '@vcmap/core'
+import { Context, OpenlayersMap, VcsApp, VectorLayer } from '@vcmap/core'
 import { onMounted, provide, ref } from 'vue'
 import mapConfig from '../../map.config.json'
 import IconPlanning from '../ui/icons/IconPlanning.vue'
@@ -9,6 +9,7 @@ import UiButton from '../ui/UiButton.vue'
 import UiMap from '../ui/UiMap.vue'
 import NavigationButtons from './NavigationButtons.vue'
 import TransportButtons from './TransportButtons.vue'
+import setDistanceDisplayCondition from '@/services/vcmap/setDistanceDisplayCondition'
 
 const app = new VcsApp()
 provide('vcsApp', app)
@@ -20,6 +21,14 @@ const panelStore = usePanelsStore()
 onMounted(async () => {
   const context = new Context(mapConfig)
   await app.addContext(context)
+  const distanceLayer = app.layers.getByKey('poi')
+  const olMaps = app.maps.getByType('OpenlayersMap')
+  if (
+    distanceLayer instanceof VectorLayer &&
+    olMaps[0] instanceof OpenlayersMap
+  ) {
+    setDistanceDisplayCondition(distanceLayer, olMaps[0], 1200)
+  }
   appLoaded.value = true
 })
 
