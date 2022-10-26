@@ -1,7 +1,11 @@
 <script lang="ts" setup>
+import UiParkingInformation from './UiParkingInformation.vue'
 function initState() {
   return {
-    check: true,
+    name: 'Parking Lorem',
+    station: 'Station Champs-Daguet',
+    address: '3 avenue Hambourg - 35000 Rennes',
+    place: 300,
   }
 }
 </script>
@@ -16,8 +20,14 @@ function initState() {
     group="homepage"
     :init-state="initState"
   >
-    <template #default>
-      <UiParkingInformation> </UiParkingInformation>
+    <template #default="{ state }">
+      <UiParkingInformation
+        :name="state.name"
+        :station="state.station"
+        :address="state.address"
+        :place="state.place"
+      >
+      </UiParkingInformation>
     </template>
   </Story>
 </template>
