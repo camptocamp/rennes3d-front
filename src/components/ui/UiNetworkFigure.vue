@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import informationIcon from '../../assets/icons/informationIcon.svg'
 const props = defineProps({
   figure: Number,
   description: String,
@@ -20,7 +21,9 @@ const props = defineProps({
       <div class="font-normal text-sm leading-5 text-black">
         {{ props.description }}
       </div>
-      <div v-if="props.moreInformation"></div>
+      <div v-if="props.moreInformation">
+        <img class="w-4 h-4" :src="informationIcon" />
+      </div>
     </div>
   </div>
 </template>

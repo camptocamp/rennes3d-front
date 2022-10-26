@@ -8,6 +8,7 @@ function initState() {
     description: 'New lines',
     unit: 'km',
     icon: parkingIcon,
+    moreInformation: 'something more',
   }
 }
 </script>
@@ -21,17 +22,36 @@ function initState() {
     }"
     group="homepage"
   >
-    <Variant title="Full Information" :init-state="initState">
+    <Variant title="Full" :init-state="initState">
       <template #default="{ state }">
         <UiNetworkFigure
           :figure="state.figure"
           :description="state.description"
           :unit="state.unit"
           :icon="state.icon"
+          :moreInformation="state.moreInformation"
         ></UiNetworkFigure>
       </template>
     </Variant>
     <Variant title="No Unit" :init-state="initState">
+      <template #default="{ state }">
+        <UiNetworkFigure
+          :figure="state.figure"
+          :description="state.description"
+          :moreInformation="state.moreInformation"
+        ></UiNetworkFigure>
+      </template>
+    </Variant>
+    <Variant title="No Information" :init-state="initState">
+      <template #default="{ state }">
+        <UiNetworkFigure
+          :figure="state.figure"
+          :description="state.description"
+          :icon="state.icon"
+        ></UiNetworkFigure>
+      </template>
+    </Variant>
+    <Variant title="No Unit and Informtion" :init-state="initState">
       <template #default="{ state }">
         <UiNetworkFigure
           :figure="state.figure"
