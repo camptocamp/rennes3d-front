@@ -15,15 +15,25 @@ const panelStore = usePanelsStore()
 
 <template>
   <main class="h-screen flex">
-    <div class="z-10 absolute">
+    <aside class="z-10 absolute">
       <SidePanel>
-        <UiTrambusTitle></UiTrambusTitle>
-        <NetworkFigures></NetworkFigures>
-        <TravelTimes></TravelTimes>
-        <LineDescriptions></LineDescriptions>
-        <UiRennesLogo></UiRennesLogo>
+        <article>
+          <UiTrambusTitle></UiTrambusTitle>
+        </article>
+        <article>
+          <NetworkFigures></NetworkFigures>
+        </article>
+        <article>
+          <TravelTimes></TravelTimes>
+        </article>
+        <article>
+          <LineDescriptions></LineDescriptions>
+        </article>
+        <article>
+          <UiRennesLogo></UiRennesLogo>
+        </article>
       </SidePanel>
-    </div>
+    </aside>
     <div class="grow">
       <MapComponent></MapComponent>
     </div>
