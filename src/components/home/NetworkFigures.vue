@@ -23,6 +23,7 @@ onMounted(async () => {
       :description="networkFigure.description"
       :unit="networkFigure.unit"
       :icon="networkFigure.icon"
+      :moreInformation="networkFigure.moreInformation"
     >
     </UiNetworkFigure>
   </div>
