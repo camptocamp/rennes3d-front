@@ -1,13 +1,13 @@
 <script lang="ts" setup>
 import UiNetworkFigure from '../ui/UiNetworkFigure.vue'
-import parkingIcon from '../../assets/icons/parkingLocation.svg'
+import linesIcon from '../../assets/icons/lines.svg'
 
 function initState() {
   return {
     figure: 128,
-    description: 'New lines',
+    description: 'Nouvelles lignes',
     unit: 'km',
-    icon: parkingIcon,
+    icon: linesIcon,
     moreInformation: 'something more',
   }
 }
@@ -51,7 +51,7 @@ function initState() {
         ></UiNetworkFigure>
       </template>
     </Variant>
-    <Variant title="No Unit and Informtion" :init-state="initState">
+    <Variant title="No Unit and Information" :init-state="initState">
       <template #default="{ state }">
         <UiNetworkFigure
           :figure="state.figure"
