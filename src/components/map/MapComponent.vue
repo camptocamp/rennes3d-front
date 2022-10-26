@@ -23,7 +23,7 @@ onMounted(async () => {
   const cesiumMap = app.maps.getByKey('cesium')
   await cesiumMap?.initialize()
   if (cesiumMap && cesiumMap instanceof CesiumMap) {
-    cesiumMap.getScene().globe.maximumScreenSpaceError = 1.33
+    cesiumMap.getScene().globe.maximumScreenSpaceError = 1
   }
   appLoaded.value = true
 })

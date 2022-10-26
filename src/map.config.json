@@ -26,7 +26,6 @@
       "fxaa": false,
       "enableLightning": true,
       "allowSoftwareRendering": false,
-      "maximumScreenSpaceError": 2,
       "fogEnabled": true,
       "fogEnabledMobile": true,
       "fogDensity": 0.0002,
@@ -50,7 +49,7 @@
     {
       "type": "CesiumTilesetLayer",
       "name": "building",
-      "url": "https://demo.virtualcitymap.de/rennes/datasource-data/dbacdb7e-ed98-4017-a2b4-7cf7f2bc2d36",
+      "url": "https://demo.virtualcitymap.de/rennes/datasource-data/f8a215a9-d0cc-4804-b284-0eac8a58924d",
       "activeOnStartup": true,
       "screenSpaceError": 16,
       "screenSpaceErrorMobile": 32
