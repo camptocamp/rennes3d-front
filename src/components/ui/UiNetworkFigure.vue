@@ -15,13 +15,15 @@ const props = defineProps({
         <span class="text-2xl">{{ props.figure }}</span>
         <span class="text-base">{{ props.unit }}</span>
       </div>
-      <div v-if="props.icon"><img class="w-9 h-9" :src="props.icon" /></div>
+      <div v-if="props.icon" class="pr-3">
+        <img class="w-9 h-9" :src="props.icon" />
+      </div>
     </div>
     <div class="flex flex-row items-center p-0 gap-2 w-28 h-10">
       <div class="font-normal text-sm leading-5 text-black flex-grow">
         {{ props.description }}
       </div>
-      <div v-if="props.moreInformation">
+      <div v-if="props.moreInformation" class="pr-3">
         <img class="w-4 h-4" :src="informationIcon" />
       </div>
     </div>
