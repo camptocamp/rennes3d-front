@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useLayersStore } from '@/stores/layers'
 import { usePanelsStore } from '@/stores/panels'
-import { Context, VcsApp } from '@vcmap/core'
+import { CesiumMap, Context, VcsApp } from '@vcmap/core'
 import { onMounted, provide, ref } from 'vue'
 import mapConfig from '../../map.config.json'
 import IconPlanning from '../ui/icons/IconPlanning.vue'
@@ -20,6 +20,11 @@ const panelStore = usePanelsStore()
 onMounted(async () => {
   const context = new Context(mapConfig)
   await app.addContext(context)
+  const cesiumMap = app.maps.getByKey('cesium')
+  await cesiumMap?.initialize()
+  if (cesiumMap && cesiumMap instanceof CesiumMap) {
+    cesiumMap.getScene().globe.maximumScreenSpaceError = 1.33
+  }
   appLoaded.value = true
 })
 
