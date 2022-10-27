@@ -8,20 +8,25 @@ const props = defineProps({
     type: Array as PropType<TimeLineItem[]>,
     default: () => [],
   },
+  selectedIndex: {
+    type: Number,
+    default: 0,
+  },
 })
 
-const emit = defineEmits(['current-date'])
+const emit = defineEmits(['selected-date'])
 
 let circle: Ref<HTMLDivElement | null> = ref(null)
 let container: Ref<HTMLDivElement | null> = ref(null)
-let currentActive: Ref<number> = ref(0)
+let selectedIndexRef: Ref<number> = ref(0)
 
 onMounted(() => {
-  translateCircle(currentActive.value)
+  selectedIndexRef.value = props.selectedIndex
+  translateCircle(selectedIndexRef.value)
 })
 
 const translateCircle = (index: number) => {
-  currentActive.value = index
+  selectedIndexRef.value = index
   const circleSize = circle.value?.getBoundingClientRect().width
   const parentSize = container.value?.getBoundingClientRect().width
 
@@ -45,10 +50,14 @@ const getDate = (index: number): Date | undefined => {
   return undefined
 }
 
-const setCurrentActive = (index: number) => {
-  currentActive.value = index
+const toString = (timelineItem: TimeLineItem) => {
+  return `Semestre ${timelineItem.semester} ${timelineItem.year}`
+}
+
+const setselectedIndex = (index: number) => {
+  selectedIndexRef.value = index
   translateCircle(index)
-  emit('current-date', getDate(index))
+  emit('selected-date', getDate(index))
 }
 </script>
 
@@ -62,11 +71,10 @@ const setCurrentActive = (index: number) => {
       <div>
         <div
           class="text-center cursor-pointer"
-          v-bind:class="[currentActive === index ? 'font-bold' : ' ']"
-          @click="() => setCurrentActive(index)"
+          v-bind:class="[selectedIndex === index ? 'font-bold' : ' ']"
+          @click="() => setselectedIndex(index)"
         >
-          <p>{{ item.name }}</p>
-          <p>{{ item.year }}</p>
+          <p>{{ toString(item) }}</p>
         </div>
       </div>
       <div
@@ -80,18 +88,17 @@ const setCurrentActive = (index: number) => {
             : 'justify-center',
         ]"
       >
-        <div class="h-[8px] w-[8px] bg-gray-400 rounded-full"></div>
+        <div class="h-2 w-2 bg-gray-400 rounded-full"></div>
       </div>
     </div>
     <div
-      class="circle h-[30px] w-[30px] z-10 shadow border-gray-400 border-[0.2px] bg-white rounded-full absolute"
+      class="bottom-[calc(2rem-13px)] circle h-[30px] w-[30px] z-10 shadow border-gray-400 border-[0.2px] bg-white rounded-full absolute"
       ref="circle"
     ></div>
   </div>
 </template>
 <style scoped>
 .circle {
-  bottom: calc(2rem - 13px);
   transition: 400ms;
 }
 </style>
