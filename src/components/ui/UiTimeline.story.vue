@@ -7,27 +7,22 @@ function initState() {
     items: timeLineFixtures(),
     itemsPrototype: [
       {
-        name: 'Semestre 1',
         semester: 1,
         year: 2025,
       },
       {
-        name: 'Semestre 2',
         semester: 2,
         year: 2025,
       },
       {
-        name: 'Semestre 1',
         semester: 1,
         year: 2026,
       },
       {
-        name: 'Semestre 2',
         semester: 2,
         year: 2026,
       },
       {
-        name: 'Semestre 1',
         semester: 1,
         year: 2027,
       },
