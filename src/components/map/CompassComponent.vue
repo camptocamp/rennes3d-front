@@ -9,14 +9,13 @@ const compass = ref<HTMLDivElement | null>(null)
 const arrow = ref<HTMLDivElement | null>(null)
 
 onMounted(() => {
-  if (!vcsApp?.maps?.activeMap) {
-    return
+  if (vcsApp?.maps?.activeMap) {
+    syncCompass(vcsApp.maps.activeMap)
   }
-  syncCompass(vcsApp?.maps?.activeMap)
 })
 
 function syncCompass(map: VcsMap) {
-  return map.postRender.addEventListener(({ map }) => {
+  map.postRender.addEventListener(({ map }) => {
     const vp = map.getViewpointSync()
     if (vp && vp.isValid()) {
       transformArrow(vp.pitch)
@@ -51,11 +50,11 @@ function onNorthPointClick() {
 
   trackMouse(
     async (e) => {
-      const radians = Math.atan2(
+      const angleRadians = Math.atan2(
         compassPos.x - e.clientX,
         compassPos.y - e.clientY
       )
-      const angle = (180 / Math.PI) * radians
+      const angle = (180 / Math.PI) * angleRadians
       transformNorthPoint(angle)
       await headingMap(angle)
     },
@@ -86,19 +85,19 @@ function onCompassClick() {
 }
 
 const headingMap = async (heading: number, animate = false) => {
-  const vp = await vcsApp?.maps?.activeMap.getViewpoint()
+  const vp = await vcsApp.maps?.activeMap.getViewpoint()
   if (vp) {
     vp.heading = heading
     vp.animate = animate
-    vcsApp?.maps?.activeMap.gotoViewpoint(vp)
+    vcsApp.maps?.activeMap.gotoViewpoint(vp)
   }
 }
 
 const tiltingMap = async (pitch: number) => {
-  const vp = await vcsApp?.maps?.activeMap.getViewpoint()
+  const vp = await vcsApp.maps?.activeMap.getViewpoint()
   if (vp) {
     vp.pitch = pitch
-    vcsApp?.maps?.activeMap.gotoViewpoint(vp)
+    vcsApp.maps?.activeMap.gotoViewpoint(vp)
   }
 }
 
@@ -113,7 +112,7 @@ const transformNorthPoint = (angle: number) => {
 
 const transformArrow = (tilt: number) => {
   if (arrow.value) {
-    const initialTilt = 90
+    const initialTilt = -90
     tilt = Math.round(initialTilt - tilt)
     arrow.value.style.transform = `rotateX(${tilt}deg)`
   }
