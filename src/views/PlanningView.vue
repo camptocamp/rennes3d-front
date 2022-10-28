@@ -31,7 +31,7 @@ const updateDate = (date: Date) => {
       <div class="font-poppins font-semibold text-xl w-72">
         Planning d’aménagement du réseau trambus
       </div>
-      <div><Timeline :items="timeLineItems" @current-date="updateDate" /></div>
+      <div><Timeline :items="timeLineItems" @selected-date="updateDate" /></div>
     </div>
     <div class="flex grow relative">
       <PlanningMapComponent></PlanningMapComponent>
