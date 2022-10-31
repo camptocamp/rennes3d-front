@@ -15,7 +15,7 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div class="flex flex-row">
+  <div class="flex flex-row px-4 py-3 gap-3">
     <UiNetworkFigure
       v-for="networkFigure in state.networkFigures"
       :key="networkFigure.id"
@@ -24,6 +24,7 @@ onMounted(async () => {
       :unit="networkFigure.unit"
       :icon="networkFigure.icon"
       :moreInformation="networkFigure.moreInformation"
+      class="w-28 h-20"
     >
     </UiNetworkFigure>
   </div>
