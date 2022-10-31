@@ -12,20 +12,32 @@ const state = reactive({
 onMounted(async () => {
   state.networkFigures = await apiClientService.fetchNetworkFigure()
 })
+
+function getLength(networkFigures: null | NetworkFigureModel[]): Number {
+  if (networkFigures == null) {
+    return 0
+  } else {
+    return networkFigures.length
+  }
+}
 </script>
 
 <template>
   <div class="flex flex-row px-4 py-3 gap-3">
-    <UiNetworkFigure
-      v-for="networkFigure in state.networkFigures"
+    <template
+      v-for="(networkFigure, index) in state.networkFigures"
       :key="networkFigure.id"
-      :figure="networkFigure.figure"
-      :description="networkFigure.description"
-      :unit="networkFigure.unit"
-      :icon="networkFigure.icon"
-      :moreInformation="networkFigure.moreInformation"
-      class="w-28 h-20"
     >
-    </UiNetworkFigure>
+      <UiNetworkFigure
+        :figure="networkFigure.figure"
+        :description="networkFigure.description"
+        :unit="networkFigure.unit"
+        :icon="networkFigure.icon"
+        :moreInformation="networkFigure.moreInformation"
+        class="w-28 h-20"
+      >
+      </UiNetworkFigure>
+      <div v-if="index + 1 < getLength(state.networkFigures)">X</div>
+    </template>
   </div>
 </template>
