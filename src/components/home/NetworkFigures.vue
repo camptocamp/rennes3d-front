@@ -3,6 +3,7 @@ import { reactive, onMounted } from 'vue'
 
 import { apiClientService } from '@/services/api.client'
 import UiNetworkFigure from '../ui/UiNetworkFigure.vue'
+import UiVerticalSeparator from '../ui/UiVerticalSeparator.vue'
 import type { NetworkFigureModel } from '../../model/network-figures.model'
 
 const state = reactive({
@@ -37,7 +38,9 @@ function getLength(networkFigures: null | NetworkFigureModel[]): Number {
         class="w-28 h-20"
       >
       </UiNetworkFigure>
-      <div v-if="index + 1 < getLength(state.networkFigures)">X</div>
+      <div v-if="index + 1 < getLength(state.networkFigures)">
+        <UiVerticalSeparator></UiVerticalSeparator>
+      </div>
     </template>
   </div>
 </template>
