@@ -9,9 +9,9 @@ const props = defineProps({
 })
 </script>
 <template>
-  <div class="flex flex-col items-start p-0 font-dm-sans">
+  <div class="flex flex-col p-0 font-dm-sans">
     <div class="flex items-center p-0 gap-2">
-      <div class="leading-8 font-bold">
+      <div class="leading-8 font-bold grow">
         <span class="text-2xl">{{ props.figure }}</span>
         <span class="text-base leading-8">{{ props.unit }}</span>
       </div>
@@ -20,7 +20,7 @@ const props = defineProps({
       </div>
     </div>
     <div class="flex items-center p-0 gap-2">
-      <div class="font-normal text-sm">
+      <div class="font-normal text-sm grow">
         {{ props.description }}
       </div>
       <div v-if="props.moreInformation">
