@@ -38,9 +38,9 @@ function getLength(networkFigures: null | NetworkFigureModel[]): Number {
         class="w-28 h-20"
       >
       </UiNetworkFigure>
-      <div v-if="index + 1 < getLength(state.networkFigures)">
-        <UiVerticalSeparator></UiVerticalSeparator>
-      </div>
+      <UiVerticalSeparator
+        v-if="index + 1 < getLength(state.networkFigures)"
+      ></UiVerticalSeparator>
     </template>
   </div>
 </template>
