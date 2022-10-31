@@ -1,7 +1,12 @@
 <script setup lang="ts">
 import PhotoGallery from '../components/home/PhotoGallery.vue'
 import MapComponent from '../components/map/MapComponent.vue'
-import InformationPanel from '../components/home/InformationPanel.vue'
+import LineDescriptions from '../components/home/LineDescriptions.vue'
+import TravelTimes from '../components/home/TravelTimes.vue'
+import UiTrambusTitle from '../components/ui/UiTrambusTitle.vue'
+import UiRennesLogo from '../components/ui/UiRennesLogo.vue'
+import NetworkFigures from '../components/home/NetworkFigures.vue'
+import SidePanel from '@/components/home/SidePanel.vue'
 import PlanningView from './PlanningView.vue'
 import { usePanelsStore } from '@/stores/panels'
 
@@ -10,10 +15,26 @@ const panelStore = usePanelsStore()
 
 <template>
   <main class="h-screen flex">
-    <div class="w-1/4 z-10 absolute">
-      <InformationPanel></InformationPanel>
-    </div>
-    <div class="flex grow relative">
+    <aside class="z-10 absolute">
+      <SidePanel>
+        <article>
+          <UiTrambusTitle></UiTrambusTitle>
+        </article>
+        <article>
+          <NetworkFigures></NetworkFigures>
+        </article>
+        <article>
+          <TravelTimes></TravelTimes>
+        </article>
+        <article>
+          <LineDescriptions></LineDescriptions>
+        </article>
+        <article>
+          <UiRennesLogo></UiRennesLogo>
+        </article>
+      </SidePanel>
+    </aside>
+    <div class="grow">
       <MapComponent></MapComponent>
     </div>
     <div class="z-10 absolute inset-x-0 bottom-0 max-w-max m-auto">
