@@ -22,14 +22,13 @@ function initState() {
     }"
     group="homepage"
   >
-    <Variant title="Full" :init-state="initState">
+    <Variant title="Network Figure (no info)" :init-state="initState">
       <template #default="{ state }">
         <UiNetworkFigure
           :figure="state.figure"
           :description="state.description"
           :unit="state.unit"
           :icon="state.icon"
-          :moreInformation="state.moreInformation"
         ></UiNetworkFigure>
       </template>
     </Variant>
@@ -38,20 +37,21 @@ function initState() {
         <UiNetworkFigure
           :figure="state.figure"
           :description="state.description"
-          :moreInformation="state.moreInformation"
-        ></UiNetworkFigure>
-      </template>
-    </Variant>
-    <Variant title="No Information" :init-state="initState">
-      <template #default="{ state }">
-        <UiNetworkFigure
-          :figure="state.figure"
-          :description="state.description"
           :icon="state.icon"
         ></UiNetworkFigure>
       </template>
     </Variant>
-    <Variant title="No Unit and Information" :init-state="initState">
+    <Variant title="Line figure (no icon)" :init-state="initState">
+      <template #default="{ state }">
+        <UiNetworkFigure
+          :figure="state.figure"
+          :description="state.description"
+          :unit="state.unit"
+          :moreInformation="state.moreInformation"
+        ></UiNetworkFigure>
+      </template>
+    </Variant>
+    <Variant title="Line Figure (plain)" :init-state="initState">
       <template #default="{ state }">
         <UiNetworkFigure
           :figure="state.figure"

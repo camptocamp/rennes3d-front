@@ -9,7 +9,7 @@ export const lineFiguresFixtures = (): LineFigureModel[] => [
   {
     id: 'parking',
     figure: 2,
-    description: 'Parkig relais',
+    description: 'Parking relais',
   },
   {
     id: 'frequency',

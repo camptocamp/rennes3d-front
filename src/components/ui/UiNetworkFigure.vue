@@ -11,7 +11,7 @@ const props = defineProps({
 <template>
   <div class="flex flex-col p-0 font-dm-sans">
     <div class="flex items-center p-0 gap-2">
-      <div class="leading-8 font-bold grow">
+      <div class="leading-8 font-bold grow gap-10">
         <span class="text-2xl">{{ props.figure }}</span>
         <span class="text-base leading-8">{{ props.unit }}</span>
       </div>
@@ -24,7 +24,7 @@ const props = defineProps({
         {{ props.description }}
       </div>
       <div v-if="props.moreInformation">
-        <img class="w-4 h-4" :src="informationIcon" />
+        <img :src="informationIcon" />
       </div>
     </div>
   </div>
