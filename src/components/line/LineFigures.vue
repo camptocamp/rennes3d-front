@@ -24,7 +24,9 @@ function getLength(networkFigures: null | LineFigureModel[]): Number {
 </script>
 
 <template>
-  <div class="flex flex-row px-4 py-3 gap-3">
+  <div
+    class="flex flex-row px-4 py-3 gap-3 bg-slate-50 border rounded-lg border-slate-100"
+  >
     <template
       v-for="(networkFigure, index) in state.lineFigures"
       :key="networkFigure.id"
