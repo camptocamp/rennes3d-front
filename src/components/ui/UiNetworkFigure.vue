@@ -11,15 +11,15 @@ const props = defineProps({
 <template>
   <div class="flex flex-col p-0 font-dm-sans">
     <div class="flex items-center p-0 gap-2">
-      <div class="leading-8 font-bold grow gap-10">
+      <div class="leading-8 font-bold grow">
         <span class="text-2xl">{{ props.figure }}</span>
-        <span class="text-base leading-8">{{ props.unit }}</span>
+        <span class="text-base leading-8 pl-1">{{ props.unit }}</span>
       </div>
       <div v-if="props.icon">
         <img class="w-9 h-9" :src="props.icon" />
       </div>
     </div>
-    <div class="flex items-center p-0 gap-2">
+    <div class="flex items-center p-0">
       <div class="font-normal text-sm grow">
         {{ props.description }}
       </div>

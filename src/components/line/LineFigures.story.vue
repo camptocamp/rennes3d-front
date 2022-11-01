@@ -7,7 +7,7 @@ import LineFigures from './LineFigures.vue'
     title="LineFigure"
     :layout="{
       type: 'grid',
-      width: 400,
+      width: 450,
     }"
     group="homepage"
   >
