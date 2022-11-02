@@ -19,7 +19,7 @@ export const networkFiguresFixtures = (): NetworkFigureModel[] => [
   {
     id: 'bike',
     figure: 128,
-    description: 'Pistes cyclables crées',
+    description: 'Aménagement cyclables',
     unit: 'km',
     icon: bikeIcon,
   },
