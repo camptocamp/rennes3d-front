@@ -31,15 +31,17 @@ function getLength(networkFigures: null | LineFigureModel[]): Number {
       v-for="(networkFigure, index) in state.lineFigures"
       :key="networkFigure.id"
     >
-      <UiNetworkFigure
-        :figure="networkFigure.figure"
-        :description="networkFigure.description"
-        :unit="networkFigure.unit"
-        :icon="networkFigure.icon"
-        :moreInformation="networkFigure.moreInformation"
-        class="w-28 h-20"
-      >
-      </UiNetworkFigure>
+      <article>
+        <UiNetworkFigure
+          :figure="networkFigure.figure"
+          :description="networkFigure.description"
+          :unit="networkFigure.unit"
+          :icon="networkFigure.icon"
+          :moreInformation="networkFigure.moreInformation"
+          class="w-28 h-20"
+        >
+        </UiNetworkFigure>
+      </article>
       <UiVerticalSeparator
         v-if="index + 1 < getLength(state.lineFigures)"
       ></UiVerticalSeparator>
