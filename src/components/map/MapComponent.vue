@@ -58,5 +58,5 @@ function onPlanningButtonClicked() {
       <span class="pl-2 font-semibold"> Planning du projet </span>
     </UiButton>
   </div>
-  <NavigationButtons v-if="appLoaded" />
+  <NavigationButtons />
 </template>

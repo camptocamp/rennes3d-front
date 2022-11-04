@@ -4,11 +4,13 @@ import { Viewpoint } from '@vcmap/core'
 import { inject, reactive } from 'vue'
 import IconHome from '../ui/icons/IconHome.vue'
 import UiButton from '../ui/UiButton.vue'
+import CompassComponent from './CompassComponent.vue'
+import NavigationHelp from './NavigationHelp.vue'
 
 const vcsApp = inject('vcsApp') as VcsApp
 
 const state = reactive({
-  is3D: vcsApp.maps.activeMap.name === 'cesium',
+  is3D: vcsApp?.maps?.activeMap?.name === 'cesium',
 })
 
 async function toggleMap() {
@@ -44,13 +46,20 @@ async function returnToHome() {
 
   await activeMap?.gotoViewpoint(homeViewPoint)
 }
+
+const shouldDisplayNavHelp = () => {
+  return sessionStorage.getItem('nav-help-displayed') !== 'true' && state.is3D
+}
 </script>
 
 <template>
-  <div class="absolute right-4 bottom-2 flex flex-col [&>*]:m-2 text-gray-dark">
+  <div
+    v-bind:class="{ 'h-[23rem]': state.is3D }"
+    class="h-90 transition-[height] absolute right-2 bottom-10 flex flex-col [&>*]:m-2 text-gray-dark items-center overflow-hidden w-32 select-none"
+  >
     <UiButton @click="returnToHome"><IconHome /></UiButton>
     <div
-      class="flex flex-col zoom-buttons text-2xl [&>*]:p-2 first:[&>*]:rounded-b-3xl last:[&>*]:rounded-t-3xl"
+      class="flex w-12 flex-col zoom-buttons text-2xl [&>*]:p-2 first:[&>*]:rounded-b-3xl last:[&>*]:rounded-t-3xl"
     >
       <UiButton @click="() => zoom(false)">{{ '+' }}</UiButton>
       <UiButton @click="() => zoom(true)">{{ '-' }}</UiButton>
@@ -58,5 +67,7 @@ async function returnToHome() {
     <UiButton class="font-semibold" @click="toggleMap">{{
       state.is3D ? '2D' : '3D'
     }}</UiButton>
+    <CompassComponent v-if="state.is3D" />
   </div>
+  <NavigationHelp v-if="shouldDisplayNavHelp()" />
 </template>
