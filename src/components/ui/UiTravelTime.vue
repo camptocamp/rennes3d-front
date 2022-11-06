@@ -16,7 +16,13 @@ const props = defineProps({
 </script>
 <template>
   <div
-    class="flex items-center px-0 py-12 gap-2.5 w-80 h-20 bg-neutral-200 rounded-md"
+    class="flex items-center px-0 py-3 gap-2.5 w-80 h-16 rounded"
+    :class="{
+      'bg-indigo-100 border-indigo-50': $props.lineNumber == 1,
+      'bg-pink-100 border-pink-50': $props.lineNumber == 2,
+      'bg-emerald-100 border-emerald-50': $props.lineNumber == 3,
+      'bg-purple-100 border-purple-50': $props.lineNumber == 4,
+    }"
   >
     <div
       class="box-border flex flex-col justify-center items-start p-0 w-24 h-20"
