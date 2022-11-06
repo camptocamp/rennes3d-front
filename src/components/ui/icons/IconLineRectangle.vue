@@ -18,11 +18,10 @@ const props = defineProps({
       'bg-purple-300': props.lineNumber == 4,
     }"
     width="1"
-    height="30"
-    viewBox="0 0 1 30"
+    viewBox="0 0 1 20"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
   >
-    <rect y="0.5" width="1" height="29" />
+    <rect y="0.5" width="1" />
   </svg>
 </template>

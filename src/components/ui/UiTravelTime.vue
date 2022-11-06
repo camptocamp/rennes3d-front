@@ -18,7 +18,7 @@ const props = defineProps({
 </script>
 <template>
   <div
-    class="flex items-center px-3 py-0 gap-2.5 w-80 h-16 rounded font-dm-sans"
+    class="flex items-center px-3 py-0 gap-2.5 rounded font-dm-sans"
     :class="{
       'bg-indigo-100 border-indigo-50': props.lineNumber == 1,
       'bg-pink-100 border-pink-50': props.lineNumber == 2,
@@ -39,7 +39,7 @@ const props = defineProps({
         </div>
       </div>
     </div>
-    <div class="flex flex-col items-center rounded">
+    <div class="flex flex-col items-center rounded p-0">
       <IconLineEllipse :lineNumber="props.lineNumber"></IconLineEllipse>
       <IconLineRectangle
         class="grow"
