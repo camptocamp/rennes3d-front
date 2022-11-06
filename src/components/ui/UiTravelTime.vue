@@ -16,7 +16,7 @@ const props = defineProps({
 </script>
 <template>
   <div
-    class="flex items-center px-0 py-3 gap-2.5 w-80 h-16 rounded font-dm-sans"
+    class="flex items-center px-3 py-0 gap-2.5 w-80 h-16 rounded font-dm-sans"
     :class="{
       'bg-indigo-100 border-indigo-50': $props.lineNumber == 1,
       'bg-pink-100 border-pink-50': $props.lineNumber == 2,
@@ -48,12 +48,12 @@ const props = defineProps({
         class="box-border w-2 h-2 bg-white border-2 border-solid border-black origin-center rotate-90 rounded-full"
       ></div>
     </div>
-    <div class="flex flex-col items-start p-0 gap-1 w-28 h-12">
-      <div class="flex flex-col justify-center items-start p-0 gap-1 w-28 h-12">
-        <div class="w-28 h-5 font-medium text-sm leading-5">
+    <div class="flex flex-col items-start p-0 gap-1 grow">
+      <div class="flex flex-col justify-center items-start p-0 gap-1.5">
+        <div class="font-medium text-sm leading-5">
           {{ props.startStation }}
         </div>
-        <div class="w-28 h-5 font-medium text-sm leading-5">
+        <div class="font-medium text-sm leading-5">
           {{ props.endStation }}
         </div>
       </div>
