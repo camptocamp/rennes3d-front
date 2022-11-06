@@ -20,10 +20,10 @@ const props = defineProps({
   <div
     class="flex items-center px-3 py-0 gap-2.5 w-80 h-16 rounded font-dm-sans"
     :class="{
-      'bg-indigo-100 border-indigo-50': $props.lineNumber == 1,
-      'bg-pink-100 border-pink-50': $props.lineNumber == 2,
-      'bg-emerald-100 border-emerald-50': $props.lineNumber == 3,
-      'bg-purple-100 border-purple-50': $props.lineNumber == 4,
+      'bg-indigo-100 border-indigo-50': props.lineNumber == 1,
+      'bg-pink-100 border-pink-50': props.lineNumber == 2,
+      'bg-emerald-100 border-emerald-50': props.lineNumber == 3,
+      'bg-purple-100 border-purple-50': props.lineNumber == 4,
     }"
   >
     <div class="flex flex-col justify-center items-start pt-3 pl-3 pb-3 pr-0">

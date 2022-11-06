@@ -24,13 +24,6 @@ const props = defineProps({
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
   >
-    <circle
-      cx="4.5"
-      cy="5"
-      r="4"
-      transform="rotate(90 4.5 5)"
-      fill="#4F46E5"
-      stroke="#EEF2FF"
-    />
+    <circle cx="4.5" cy="5" r="4" transform="rotate(90 4.5 5)" />
   </svg>
 </template>

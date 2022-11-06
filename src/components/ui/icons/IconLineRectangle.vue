@@ -23,6 +23,6 @@ const props = defineProps({
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
   >
-    <rect y="0.5" width="1" height="29" fill="#A5B4FC" />
+    <rect y="0.5" width="1" height="29" />
   </svg>
 </template>
