@@ -17,9 +17,8 @@ onMounted(async () => {
 function getLength(networkFigures: null | NetworkFigureModel[]): Number {
   if (networkFigures == null) {
     return 0
-  } else {
-    return networkFigures.length
   }
+  return networkFigures.length
 }
 </script>
 
