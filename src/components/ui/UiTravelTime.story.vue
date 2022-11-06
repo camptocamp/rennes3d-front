@@ -29,6 +29,7 @@ function initState() {
         :lineNumber="state.lineNumber"
         :startStation="state.startStation"
         :endStation="state.endStation"
+        class="w-72 h-16"
       >
       </UiTravelTime>
     </template>

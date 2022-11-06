@@ -16,7 +16,7 @@ const props = defineProps({
 </script>
 <template>
   <div
-    class="flex items-center px-0 py-3 gap-2.5 w-80 h-16 rounded"
+    class="flex items-center px-0 py-3 gap-2.5 w-80 h-16 rounded font-dm-sans"
     :class="{
       'bg-indigo-100 border-indigo-50': $props.lineNumber == 1,
       'bg-pink-100 border-pink-50': $props.lineNumber == 2,
@@ -24,19 +24,15 @@ const props = defineProps({
       'bg-purple-100 border-purple-50': $props.lineNumber == 4,
     }"
   >
-    <div
-      class="box-border flex flex-col justify-center items-start p-0 w-24 h-20"
-    >
-      <div class="h-8 w-6 flex gap-1 items-baseline pl-3">
-        <div class="text-sm leading-8 font-bold font-poppins">
-          {{ props.newDuration }}
+    <div class="flex flex-col justify-center items-start pt-3 pl-3 pb-3 pr-0">
+      <div class="flex items-center px-0.5 py-0 gap-1 rounded">
+        <div class="font-bold text-base leading-5">
+          {{ props.newDuration }} min
         </div>
-        <div class="text-xs leading-4 font-medium font-poppins">min</div>
+        <!-- TODO: Information Icon here -->
       </div>
-      <div class="flex flex-col items-start h-7 w-16 pl-3">
-        <div
-          class="w-20 h-4 font-poppins font-medium text-xs leading-4 bg-neutral-200"
-        >
+      <div class="flex flex-col items-start p-0 gap-1">
+        <div class="font-normal text-xs leading-4 text-neutral-500">
           au lie de {{ props.oldDuration }}
         </div>
       </div>
@@ -54,10 +50,10 @@ const props = defineProps({
     </div>
     <div class="flex flex-col items-start p-0 gap-1 w-28 h-12">
       <div class="flex flex-col justify-center items-start p-0 gap-1 w-28 h-12">
-        <div class="w-28 h-5 font-poppins font-medium text-sm leading-5">
+        <div class="w-28 h-5 font-medium text-sm leading-5">
           {{ props.startStation }}
         </div>
-        <div class="w-28 h-5 font-poppins font-medium text-sm leading-5">
+        <div class="w-28 h-5 font-medium text-sm leading-5">
           {{ props.endStation }}
         </div>
       </div>
