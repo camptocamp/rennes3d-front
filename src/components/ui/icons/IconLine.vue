@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, type PropType } from 'vue'
+import type { LineNumber } from '@/model/lines.model'
 
-type LineNumber = 1 | 2 | 3 | 4
 type LineIconSize = 's' | 'm' | 'l' | 'xl'
 
 const props = defineProps({

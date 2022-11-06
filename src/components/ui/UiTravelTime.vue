@@ -1,8 +1,15 @@
 <script setup lang="ts">
+import type { LineNumber } from '@/model/lines.model'
+import type { PropType } from 'vue'
+import IconLine from '../ui/icons/IconLine.vue'
+
 const props = defineProps({
   newDuration: Number,
   oldDuration: Number,
-  lineNumber: Number,
+  lineNumber: {
+    type: Number as PropType<LineNumber>,
+    required: true,
+  },
   startStation: String,
   endStation: String,
 })
@@ -28,11 +35,7 @@ const props = defineProps({
         </div>
       </div>
     </div>
-    <div
-      class="flex flex-row items-center px-2 py-4 w-9 h-7 bg-neutral-300 rounded-2xl"
-    >
-      T{{ props.lineNumber }}
-    </div>
+    <IconLine :line="lineNumber" :size="'l'"></IconLine>
     <div
       class="flex flex-row items-start p-0 gap-5 w-9 h-2 rounded origin-center rotate-90"
       :class="'bg-t' + props.lineNumber + '-line'"
