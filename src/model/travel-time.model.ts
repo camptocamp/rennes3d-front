@@ -1,5 +1,6 @@
+import type { LineNumber } from './lines.model'
 export interface TravelTimeModel {
-  line: number
+  line: LineNumber
   new: number
   old: number
   start: string
