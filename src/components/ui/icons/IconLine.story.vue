@@ -9,7 +9,7 @@ import IconLine from './IconLine.vue'
       type: 'grid',
       width: 200,
     }"
-    group="map"
+    group="ui-base"
   >
     <Variant title="Small">
       <template #default>
