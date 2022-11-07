@@ -20,8 +20,9 @@ onMounted(async () => {
       <div class="font-dm-sans font-bold text-lg leading-6">
         Vos futurs temps de parcours
       </div>
-      <div class="flex flex-row items-start p-0 gap-3 overflow-x-scroll">
+      <div class="flex flex-row items-start p-0 gap-3 overflow-x-auto">
         <UiTravelTime
+          class="w-72"
           v-for="travelTime in state.travelTimes"
           :key="travelTime.line"
           :newDuration="travelTime.new"
