@@ -24,24 +24,22 @@ function getLength(networkFigures: null | NetworkFigureModel[]): Number {
 
 <template>
   <div
-    class="flex flex-row px-4 py-3 gap-3 bg-slate-50 border rounded-lg border-slate-100"
+    class="flex flex-row px-4 py-3 gap-3 bg-slate-50 border rounded-lg border-slate-100 items-center"
   >
     <template
       v-for="(networkFigure, index) in state.networkFigures"
       :key="networkFigure.id"
     >
-      <article>
+      <article class="w-[110px] grow">
         <UiNetworkFigure
           :figure="networkFigure.figure"
           :description="networkFigure.description"
           :unit="networkFigure.unit"
           :icon="networkFigure.icon"
           :moreInformation="networkFigure.moreInformation"
-          class="basis-1/3"
         >
         </UiNetworkFigure>
       </article>
-
       <UiVerticalSeparator
         v-if="index + 1 < getLength(state.networkFigures)"
       ></UiVerticalSeparator>
