@@ -4,7 +4,7 @@ import { usePanelsStore } from '@/stores/panels'
 import { CesiumMap, Context, VcsApp } from '@vcmap/core'
 import { onMounted, provide, ref } from 'vue'
 import mapConfig from '../../map.config.json'
-import IconPlanning from '../ui/icons/IconPlanning.vue'
+import IconCalendar from '../ui/icons/IconCalendar.vue'
 import UiButton from '../ui/UiButton.vue'
 import UiMap from '../ui/UiMap.vue'
 import NavigationButtons from './NavigationButtons.vue'
@@ -50,12 +50,17 @@ function onPlanningButtonClicked() {
 </script>
 
 <template>
-  <UiMap v-if="appLoaded"> </UiMap>
+  <UiMap v-if="appLoaded"></UiMap>
   <div class="absolute right-2 top-2 z-10 flex [&>*]:m-1">
     <TransportButtons></TransportButtons>
-    <UiButton @click="onPlanningButtonClicked">
-      <IconPlanning />
-      <span class="pl-2 font-semibold"> Planning du projet </span>
+    <UiButton
+      class="ui-btn-floating ui-btn-regular-size"
+      @click="onPlanningButtonClicked"
+      :icon="IconCalendar"
+      :notification="3"
+      :disabled="false"
+    >
+      Planning du projet
     </UiButton>
   </div>
   <NavigationButtons />

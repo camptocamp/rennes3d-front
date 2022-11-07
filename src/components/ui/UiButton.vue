@@ -1,23 +1,36 @@
-<script lang="ts" setup>
+<script setup lang="ts">
 defineProps({
-  active: {
+  disabled: {
     type: Boolean,
     default: false,
   },
 
-  disabled: {
-    type: Boolean,
-    default: false,
+  notification: {
+    type: Number,
+  },
+
+  icon: {
+    type: Object,
   },
 })
 </script>
 
 <template>
-  <button
-    :disabled="disabled"
-    class="shadow-lg px-4 py-4 rounded-full bg-white flex items-center"
-    :class="{ 'bg-blue-500': active, 'text-white': active }"
-  >
-    <slot></slot>
+  <button :disabled="disabled">
+    <component
+      v-if="icon"
+      :is="icon"
+      role="img"
+      class="m-auto mr-2"
+    ></component>
+    <span class="m-auto font-semibold">
+      <slot></slot>
+    </span>
+    <div
+      v-if="notification"
+      class="m-auto mx-1 rounded bg-red-500 px-2 text-white"
+    >
+      {{ notification }}
+    </div>
   </button>
 </template>

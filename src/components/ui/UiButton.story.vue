@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import UiButton from './UiButton.vue'
+import IconCalendar from './icons/IconCalendar.vue'
 
 function initState() {
   return {
@@ -14,62 +15,165 @@ function initState() {
     title="UiButton"
     :layout="{
       type: 'grid',
-      width: 200,
+      width: 300,
     }"
     group="map"
   >
-    <Variant title="Text Button" :init-state="initState">
-      <template #default="{ state }">
-        <UiButton :disabled="state.disabled" :active="state.active"
-          >Click
-        </UiButton>
-      </template>
-    </Variant>
-
-    <Variant title="Icon Button" :init-state="initState" icon="lucide:camera">
-      <template #default="{ state }">
-        <UiButton :disabled="state.disabled" :active="state.active">
-          <svg width="32" height="32" viewBox="0 0 24 24">
-            <g
-              fill="none"
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-            >
-              <path
-                d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"
-              />
-              <circle cx="12" cy="13" r="3" />
-            </g>
-          </svg>
-        </UiButton>
-      </template>
-    </Variant>
-
     <Variant
-      title="Icon and text Button"
+      title="Floating: Icon, text, notif"
       :init-state="initState"
       icon="lucide:camera"
     >
-      <template #default="{ state }">
-        <UiButton :disabled="state.disabled" :active="state.active">
-          <svg width="32" height="32" viewBox="0 0 24 24">
-            <g
-              fill="none"
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-            >
-              <path
-                d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"
-              />
-              <circle cx="12" cy="13" r="3" />
-            </g>
-          </svg>
-
-          <span class="pl-2">Text</span>
+      <template #default>
+        <UiButton
+          class="ui-btn-regular-size ui-btn-floating"
+          :icon="IconCalendar"
+          :notification="3"
+          :disabled="false"
+        >
+          Planning du projet
+        </UiButton>
+      </template>
+    </Variant>
+    <Variant
+      title="Floating: Icon, text"
+      :init-state="initState"
+      icon="lucide:camera"
+    >
+      <template #default>
+        <UiButton
+          class="ui-btn-regular-size ui-btn-floating"
+          :icon="IconCalendar"
+          :disabled="false"
+        >
+          Planning du projet
+        </UiButton>
+      </template>
+    </Variant>
+    <Variant
+      title="Floating: text"
+      :init-state="initState"
+      icon="lucide:camera"
+    >
+      <template #default>
+        <UiButton class="ui-btn-regular-size ui-btn-floating" :disabled="false">
+          Planning du projet
+        </UiButton>
+      </template>
+    </Variant>
+    <Variant
+      title="primary: Icon, text, notif"
+      :init-state="initState"
+      icon="lucide:camera"
+    >
+      <template #default>
+        <UiButton
+          class="ui-btn-regular-size ui-btn-primary"
+          :icon="IconCalendar"
+          :notification="3"
+          :disabled="false"
+        >
+          Planning du projet
+        </UiButton>
+      </template>
+    </Variant>
+    <Variant
+      title="primary: Icon, text"
+      :init-state="initState"
+      icon="lucide:camera"
+    >
+      <template #default>
+        <UiButton
+          class="ui-btn-regular-size ui-btn-primary"
+          :icon="IconCalendar"
+          :disabled="false"
+        >
+          Planning du projet
+        </UiButton>
+      </template>
+    </Variant>
+    <Variant title="primary: text" :init-state="initState" icon="lucide:camera">
+      <template #default>
+        <UiButton class="ui-btn-regular-size ui-btn-primary" :disabled="false">
+          Planning du projet
+        </UiButton>
+      </template>
+    </Variant>
+    <Variant
+      title="secondary: Icon, text, notif"
+      :init-state="initState"
+      icon="lucide:camera"
+    >
+      <template #default>
+        <UiButton
+          class="ui-btn-regular-size ui-btn-secondary"
+          :icon="IconCalendar"
+          :notification="3"
+          :disabled="false"
+        >
+          Planning du projet
+        </UiButton>
+      </template>
+    </Variant>
+    <Variant
+      title="secondary: Icon, text"
+      :init-state="initState"
+      icon="lucide:camera"
+    >
+      <template #default>
+        <UiButton
+          class="ui-btn-regular-size ui-btn-secondary"
+          :icon="IconCalendar"
+          :disabled="false"
+        >
+          Planning du projet
+        </UiButton>
+      </template>
+    </Variant>
+    <Variant
+      title="secondary: text"
+      :init-state="initState"
+      icon="lucide:camera"
+    >
+      <template #default>
+        <UiButton
+          class="ui-btn-regular-size ui-btn-secondary"
+          :disabled="false"
+        >
+          Planning du projet
+        </UiButton>
+      </template>
+    </Variant>
+    <Variant
+      title="Floating: small"
+      :init-state="initState"
+      icon="lucide:camera"
+    >
+      <template #default>
+        <UiButton class="ui-btn-small-size ui-btn-floating" :disabled="false">
+          Bouton
+        </UiButton>
+      </template>
+    </Variant>
+    <Variant
+      title="Primary: small"
+      :init-state="initState"
+      icon="lucide:camera"
+    >
+      <template #default>
+        <UiButton class="ui-btn-small-size ui-btn-primary" :disabled="false">
+          Bouton
+        </UiButton>
+      </template>
+    </Variant>
+    <Variant
+      title="Secondary: small"
+      :init-state="initState"
+      icon="lucide:camera"
+    >
+      <template #default>
+        <UiButton class="ui-btn-small-size ui-btn-secondary" :disabled="false">
+          Bouton
         </UiButton>
       </template>
     </Variant>

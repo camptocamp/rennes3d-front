@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useLayersStore } from '../../stores/layers'
 import type { TransportLayers } from '../../stores/layers'
-import MapButton from '../ui/UiButton.vue'
+import UiIconButton from '@/components/ui/UiIconButton.vue'
 
 const layerStore = useLayersStore()
 
@@ -11,25 +11,22 @@ function toggleLayer(name: TransportLayers) {
 </script>
 
 <template>
-  <MapButton
-    @click="toggleLayer('metro')"
-    class=""
+  <UiIconButton
+    @click="() => toggleLayer('metro')"
     :active="layerStore.visibilities.metro"
   >
     metro
-  </MapButton>
-  <MapButton
-    @click="toggleLayer('bus')"
-    class=""
+  </UiIconButton>
+  <UiIconButton
+    @click="() => toggleLayer('bus')"
     :active="layerStore.visibilities.bus"
   >
     bus
-  </MapButton>
-  <MapButton
-    @click="toggleLayer('bike')"
-    class=""
+  </UiIconButton>
+  <UiIconButton
+    @click="() => toggleLayer('bike')"
     :active="layerStore.visibilities.bike"
   >
     bike
-  </MapButton>
+  </UiIconButton>
 </template>
