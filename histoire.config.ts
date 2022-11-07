@@ -22,6 +22,10 @@ export default defineConfig({
         id: 'ui-base',
         title: 'UI Base',
       },
+      {
+        id: 'sidepanel',
+        title: 'Side Panel',
+      },
     ],
   },
 })
