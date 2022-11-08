@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { LineNumber } from '@/model/lines.model'
-import type { PropType } from 'vue'
+import { computed, type PropType } from 'vue'
+import { getColor } from '@/services/color'
 
 const props = defineProps({
   lineNumber: {
@@ -8,15 +9,16 @@ const props = defineProps({
     required: true,
   },
 })
+
+const colorClass = computed(() => {
+  const bgColor = getColor('bg', props.lineNumber, 300)
+
+  return [bgColor]
+})
 </script>
 <template>
   <svg
-    :class="{
-      'bg-indigo-300': props.lineNumber == 1,
-      'bg-pink-300': props.lineNumber == 2,
-      'bg-emerald-300': props.lineNumber == 3,
-      'bg-purple-300': props.lineNumber == 4,
-    }"
+    :class="colorClass"
     width="1"
     viewBox="0 0 1 20"
     fill="none"

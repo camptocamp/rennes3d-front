@@ -7,7 +7,7 @@ import TravelTimes from './TravelTimes.vue'
     title="TravelTime"
     :layout="{
       type: 'grid',
-      width: 450,
+      width: 500,
     }"
     group="sidepanel"
   >
