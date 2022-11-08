@@ -1,9 +1,12 @@
 import { fileURLToPath, URL } from 'node:url'
 
-import { defineConfig, type UserConfig } from 'vite'
+import { defineConfig, type UserConfig, type Plugin } from 'vite'
 import vue from '@vitejs/plugin-vue'
+import rollupPluginStripPragma from 'rollup-plugin-strip-pragma'
 import path from 'path'
 import fs from 'fs'
+
+type stripPragmas = (options: { pragmas: string[] }) => Plugin
 
 // https://vitejs.dev/config/
 export default defineConfig(({ command }) => {
@@ -20,6 +23,9 @@ export default defineConfig(({ command }) => {
     base.build = {
       rollupOptions: {
         plugins: [
+          (rollupPluginStripPragma as stripPragmas)({
+            pragmas: ['debug'],
+          }),
           {
             name: 'Rename Cesium',
             transform(source, sid) {
