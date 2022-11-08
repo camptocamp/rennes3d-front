@@ -4,6 +4,7 @@ import { reactive, onMounted } from 'vue'
 import { apiClientService } from '@/services/api.client'
 import UiTravelTime from '../ui/UiTravelTime.vue'
 import type { TravelTimeModel } from '@/model/travel-time.model'
+import UiOverflowContainer from '../ui/UiOverflowContainer.vue'
 
 const state = reactive({
   travelTimes: null as null | TravelTimeModel[],
@@ -20,9 +21,9 @@ onMounted(async () => {
       <div class="font-dm-sans font-bold text-lg leading-6">
         Vos futurs temps de parcours
       </div>
-      <div class="flex flex-row items-start p-0 gap-3 overflow-x-auto">
+      <UiOverflowContainer class="w-[402px] p-0 gap-3 flex items-start">
         <UiTravelTime
-          class="w-72"
+          class="w-72 flex-none"
           v-for="travelTime in state.travelTimes"
           :key="travelTime.line"
           :newDuration="travelTime.new"
@@ -32,7 +33,7 @@ onMounted(async () => {
           :endStation="travelTime.end"
         >
         </UiTravelTime>
-      </div>
+      </UiOverflowContainer>
       <div class="flex items-center gap-1 pt-0 pb-1 pl-0 pr-0">
         <div class="font-dm-sans font-medium text-base">
           <a href="">Voir plus</a>
