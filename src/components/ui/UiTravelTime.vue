@@ -2,8 +2,7 @@
 import type { LineNumber } from '@/model/lines.model'
 import type { PropType } from 'vue'
 import IconLine from '../ui/icons/IconLine.vue'
-import IconLineEllipse from '../ui/icons/IconLineEllipse.vue'
-import IconLineRectangle from '../ui/icons/IconLineRectangle.vue'
+import IconLineArrow from './icons/IconLineArrow.vue'
 
 const props = defineProps({
   newDuration: Number,
@@ -39,14 +38,7 @@ const props = defineProps({
         </div>
       </div>
     </div>
-    <div class="flex flex-col items-center rounded p-0">
-      <IconLineEllipse :lineNumber="props.lineNumber"></IconLineEllipse>
-      <IconLineRectangle
-        class="grow"
-        :lineNumber="props.lineNumber"
-      ></IconLineRectangle>
-      <IconLineEllipse :lineNumber="props.lineNumber"></IconLineEllipse>
-    </div>
+    <IconLineArrow :lineNumber="props.lineNumber"></IconLineArrow>
     <div class="flex flex-col items-start p-0 gap-1 grow">
       <div class="flex flex-col justify-center items-start p-0 gap-1.5">
         <div class="font-medium text-sm leading-5">

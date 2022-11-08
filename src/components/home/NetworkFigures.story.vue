@@ -9,7 +9,7 @@ import NetworkFigures from './NetworkFigures.vue'
       type: 'grid',
       width: 450,
     }"
-    group="homepage"
+    group="sidepanel"
   >
     <template #default>
       <NetworkFigures></NetworkFigures>
