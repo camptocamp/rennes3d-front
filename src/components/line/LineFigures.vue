@@ -4,17 +4,17 @@ import { reactive, onMounted } from 'vue'
 import { apiClientService } from '@/services/api.client'
 import UiNetworkFigure from '../ui/UiNetworkFigure.vue'
 import UiVerticalSeparator from '../ui/UiVerticalSeparator.vue'
-import type { NetworkFigureModel } from '../../model/network-figures.model'
+import type { LineFigureModel } from '../../model/line-figures.model'
 
 const state = reactive({
-  networkFigures: null as null | NetworkFigureModel[],
+  lineFigures: null as null | LineFigureModel[],
 })
 
 onMounted(async () => {
-  state.networkFigures = await apiClientService.fetchNetworkFigure()
+  state.lineFigures = await apiClientService.fetchLineFigure()
 })
 
-function getLength(networkFigures: null | NetworkFigureModel[]): Number {
+function getLength(networkFigures: null | LineFigureModel[]): Number {
   if (networkFigures == null) {
     return 0
   }
@@ -24,24 +24,25 @@ function getLength(networkFigures: null | NetworkFigureModel[]): Number {
 
 <template>
   <div
-    class="flex flex-row px-4 py-3 gap-3 bg-slate-50 border rounded-lg border-slate-100 items-center"
+    class="flex flex-row px-4 py-3 gap-3 bg-slate-50 border rounded-lg border-slate-100"
   >
     <template
-      v-for="(networkFigure, index) in state.networkFigures"
+      v-for="(networkFigure, index) in state.lineFigures"
       :key="networkFigure.id"
     >
-      <article class="w-[110px] grow">
+      <article>
         <UiNetworkFigure
           :figure="networkFigure.figure"
           :description="networkFigure.description"
           :unit="networkFigure.unit"
           :icon="networkFigure.icon"
           :moreInformation="networkFigure.moreInformation"
+          class="w-28 h-20"
         >
         </UiNetworkFigure>
       </article>
       <UiVerticalSeparator
-        v-if="index + 1 < getLength(state.networkFigures)"
+        v-if="index + 1 < getLength(state.lineFigures)"
       ></UiVerticalSeparator>
     </template>
   </div>
