@@ -11,7 +11,7 @@ function toggleInformationPanel() {
 </script>
 
 <template>
-  <div class="shadow-sm w-[450px] min-h-screen">
+  <div class="flex shadow-sm w-[450px] min-h-screen">
     <div
       class="px-6 py-8 bg-white flex flex-col gap-2 max-w-full"
       :class="{ hidden: !panelStore.isInformationPanelShown }"
