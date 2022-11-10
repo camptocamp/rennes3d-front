@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import type { LineNumber } from '@/model/lines.model'
-import type { PropType } from 'vue'
+import { type PropType, computed } from 'vue'
 import IconLine from '../ui/icons/IconLine.vue'
 import IconLineArrow from './icons/IconLineArrow.vue'
+import { getColor } from '@/services/color'
 
 const props = defineProps({
   newDuration: Number,
@@ -14,16 +15,17 @@ const props = defineProps({
   startStation: String,
   endStation: String,
 })
+
+const containerStyle = computed(() => {
+  const bgColor = getColor('bg', props.lineNumber, 100)
+  const borderColor = getColor('border', props.lineNumber, 50)
+  return [bgColor, borderColor]
+})
 </script>
 <template>
   <div
     class="flex items-center px-3 py-0 gap-2.5 rounded font-dm-sans"
-    :class="{
-      'bg-indigo-100 border-indigo-50': props.lineNumber == 1,
-      'bg-pink-100 border-pink-50': props.lineNumber == 2,
-      'bg-emerald-100 border-emerald-50': props.lineNumber == 3,
-      'bg-purple-100 border-purple-50': props.lineNumber == 4,
-    }"
+    :class="containerStyle"
   >
     <div class="flex flex-col justify-center items-start pt-3 pl-3 pb-3 pr-0">
       <div class="flex items-center px-0.5 py-0 gap-1 rounded">
