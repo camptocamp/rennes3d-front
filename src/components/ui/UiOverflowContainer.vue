@@ -3,21 +3,15 @@ import { ref } from 'vue'
 
 const scrollBar = ref<HTMLDivElement | null>(null)
 
-function scrollRight() {
+function scroll(amount: number) {
   const currentScroll = scrollBar.value?.scrollLeft || 0
   scrollBar.value?.scrollTo({
-    left: currentScroll + 200,
-    behavior: 'smooth',
-  })
-}
-function scrollLeft() {
-  const currentScroll = scrollBar.value?.scrollLeft || 0
-  scrollBar.value?.scrollTo({
-    left: currentScroll - 200,
+    left: currentScroll + amount,
     behavior: 'smooth',
   })
 }
 </script>
+
 <template>
   <div class="relative">
     <div
@@ -29,13 +23,13 @@ function scrollLeft() {
     </div>
     <button
       class="absolute inset-y-0 right-0 bg-blue-600 w-6 h-6"
-      @click="scrollRight"
+      @click="scroll(200)"
     >
       R
     </button>
     <button
       class="absolute inset-y-0 left-0 bg-blue-600 w-6 h-6"
-      @click="scrollLeft"
+      @click="scroll(-200)"
     >
       L
     </button>
