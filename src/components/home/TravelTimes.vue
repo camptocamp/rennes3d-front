@@ -22,17 +22,19 @@ onMounted(async () => {
         Vos futurs temps de parcours
       </div>
       <UiOverflowContainer class="w-[402px]">
-        <UiTravelTime
-          class="w-72 flex-none"
-          v-for="travelTime in state.travelTimes"
-          :key="travelTime.line"
-          :newDuration="travelTime.new"
-          :oldDuration="travelTime.old"
-          :lineNumber="travelTime.line"
-          :startStation="travelTime.start"
-          :endStation="travelTime.end"
-        >
-        </UiTravelTime>
+        <div class="flex flex-row items-start gap-2">
+          <UiTravelTime
+            class="w-72 flex-none"
+            v-for="travelTime in state.travelTimes"
+            :key="travelTime.line"
+            :newDuration="travelTime.new"
+            :oldDuration="travelTime.old"
+            :lineNumber="travelTime.line"
+            :startStation="travelTime.start"
+            :endStation="travelTime.end"
+          >
+          </UiTravelTime>
+        </div>
       </UiOverflowContainer>
       <div class="flex items-center gap-1 pt-0 pb-1 pl-0 pr-0">
         <div class="font-dm-sans font-medium text-base">

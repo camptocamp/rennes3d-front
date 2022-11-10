@@ -36,19 +36,11 @@ function scroll(amount: number) {
     <button
       class="absolute inset-y-0 right-0 bg-blue-600 w-6 h-6"
       @click="scroll(200)"
-      :class="{
-        hidden:
-          currentScrollPosition ==
-          (scrollBar?.scrollWidth || 0) - (scrollBar?.clientWidth || 0),
-      }"
     >
       R
     </button>
     <button
       class="absolute inset-y-0 left-0 bg-blue-600 w-6 h-6"
-      :class="{
-        hidden: currentScrollPosition == 0,
-      }"
       @click="scroll(-200)"
     >
       L
