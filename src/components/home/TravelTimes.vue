@@ -21,7 +21,7 @@ onMounted(async () => {
       <div class="font-dm-sans font-bold text-lg leading-6">
         Vos futurs temps de parcours
       </div>
-      <UiOverflowContainer class="w-[402px] p-0 gap-3 flex items-start">
+      <UiOverflowContainer class="w-[402px]">
         <UiTravelTime
           class="w-72 flex-none"
           v-for="travelTime in state.travelTimes"
