@@ -15,10 +15,13 @@ import UiOverflowContainer from './UiOverflowContainer.vue'
       <template #default>
         <UiOverflowContainer>
           <div class="flex flex-row items-start w-96 gap-2">
-            <div class="h-[60px] w-72 border-2 flex-none">1</div>
-            <div class="h-[60px] w-72 border-2 flex-none">2</div>
-            <div class="h-[60px] w-72 border-2 flex-none">3</div>
-            <div class="h-[60px] w-72 border-2 flex-none">4</div>
+            <div
+              class="h-16 w-72 border-2 flex-none bg-green-400 flex justify-center items-center"
+              v-for="index in 5"
+              :key="index"
+            >
+              <div class="">{{ index }}</div>
+            </div>
           </div>
         </UiOverflowContainer>
       </template>

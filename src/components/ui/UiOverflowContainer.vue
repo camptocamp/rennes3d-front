@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+import leftArrow from '@/assets/icons/arrows-left.svg'
+import rightArrow from '@/assets/icons/arrows-right.svg'
 
 const scrollBar = ref<HTMLDivElement | null>(null)
 const currentScrollPosition = ref<Number>(0)
@@ -34,16 +36,16 @@ function scroll(amount: number) {
       <slot></slot>
     </div>
     <button
-      class="absolute inset-y-0 right-0 bg-blue-600 w-6 h-6"
-      @click="scroll(200)"
+      class="absolute z-10 bg-white w-9 h-9 shadow-lg top-1/2 left-2 transform -translate-y-1/2 rounded-lg flex items-start p-2.5"
+      @click="scroll(-250)"
     >
-      R
+      <img :src="leftArrow" />
     </button>
     <button
-      class="absolute inset-y-0 left-0 bg-blue-600 w-6 h-6"
-      @click="scroll(-200)"
+      class="absolute z-10 bg-white w-9 h-9 shadow-lg top-1/2 right-2 transform -translate-y-1/2 rounded-lg flex items-start p-2.5"
+      @click="scroll(250)"
     >
-      L
+      <img :src="rightArrow" />
     </button>
   </div>
 </template>
