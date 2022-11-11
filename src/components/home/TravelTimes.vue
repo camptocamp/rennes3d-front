@@ -5,6 +5,7 @@ import { apiClientService } from '@/services/api.client'
 import UiTravelTime from '../ui/UiTravelTime.vue'
 import type { TravelTimeModel } from '@/model/travel-time.model'
 import UiOverflowContainer from '../ui/UiOverflowContainer.vue'
+import UiLinkMetis from '../ui/UiLinkMetis.vue'
 
 const state = reactive({
   travelTimes: null as null | TravelTimeModel[],
@@ -36,12 +37,7 @@ onMounted(async () => {
           </UiTravelTime>
         </div>
       </UiOverflowContainer>
-      <div class="flex items-center gap-1 pt-0 pb-1 pl-0 pr-0">
-        <div class="font-dm-sans font-medium text-base">
-          <a href="">Voir plus</a>
-        </div>
-        <!-- TODO: create the link component with the button -->
-      </div>
+      <UiLinkMetis :arrowStrokeColor="'stroke-red-600'">Voir plus</UiLinkMetis>
     </div>
   </div>
 </template>
