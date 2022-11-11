@@ -1,5 +1,11 @@
 <script setup lang="ts">
 import IconArrow from './icons/IconArrow.vue'
+const props = defineProps({
+  arrowStrokeColor: {
+    type: String,
+    default: 'stroke-neutral-900',
+  },
+})
 </script>
 
 <template>
@@ -8,7 +14,7 @@ import IconArrow from './icons/IconArrow.vue'
       <slot></slot>
     </div>
     <div>
-      <IconArrow :strokeColor="'stroke-red-600'"></IconArrow>
+      <IconArrow :strokeColor="props.arrowStrokeColor"></IconArrow>
     </div>
   </div>
 </template>

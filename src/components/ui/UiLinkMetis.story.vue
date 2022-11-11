@@ -11,9 +11,16 @@ import UiLinkMetis from './UiLinkMetis.vue'
     }"
     group="ui-base"
   >
-    <Variant title="Test">
+    <Variant title="Default color">
       <template #default>
         <UiLinkMetis>Voir plus</UiLinkMetis>
+      </template>
+    </Variant>
+    <Variant title="Red 600">
+      <template #default>
+        <UiLinkMetis :arrowStrokeColor="'stroke-red-600'"
+          >Voir plus</UiLinkMetis
+        >
       </template>
     </Variant>
   </Story>
