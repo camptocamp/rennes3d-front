@@ -43,6 +43,5 @@ onMounted(async () => {
         <!-- TODO: create the link component with the button -->
       </div>
     </div>
-    <!-- TODO: Add button to scroll  -->
   </div>
 </template>
