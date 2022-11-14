@@ -26,6 +26,11 @@ module.exports = {
     'stroke-pink-50',
     'stroke-emerald-50',
     'stroke-purple-50',
+    // Link colors
+    'bg-neutral-900',
+    'stroke-neutral-900',
+    'bg-red-600',
+    'stroke-red-600',
   ],
   theme: {
     extend: {

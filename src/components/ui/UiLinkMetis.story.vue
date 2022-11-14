@@ -18,7 +18,9 @@ import UiLinkMetis from './UiLinkMetis.vue'
     </Variant>
     <Variant title="Red 600">
       <template #default>
-        <UiLinkMetis :arrowStrokeColor="'stroke-red-600'"
+        <UiLinkMetis
+          :arrowStrokeColor="'stroke-red-600'"
+          :underlineColor="'bg-red-600'"
           >Voir plus</UiLinkMetis
         >
       </template>
