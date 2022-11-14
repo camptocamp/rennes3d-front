@@ -37,7 +37,11 @@ onMounted(async () => {
           </UiTravelTime>
         </div>
       </UiOverflowContainer>
-      <UiLinkMetis :arrowStrokeColor="'stroke-red-600'">Voir plus</UiLinkMetis>
+      <UiLinkMetis
+        :arrowStrokeColor="'stroke-red-600'"
+        :underlineColor="'bg-red-600'"
+        >Voir plus</UiLinkMetis
+      >
     </div>
   </div>
 </template>
