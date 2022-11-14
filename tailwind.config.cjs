@@ -27,9 +27,9 @@ module.exports = {
     'stroke-emerald-50',
     'stroke-purple-50',
     // Link colors
-    'bg-neutral-900',
+    'before:bg-neutral-900',
     'stroke-neutral-900',
-    'bg-red-600',
+    'before:bg-red-600',
     'stroke-red-600',
   ],
   theme: {
