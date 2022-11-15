@@ -12,8 +12,8 @@ export const usePlanningStore = defineStore('planning', () => {
   }
 
   function setDate(date: Date) {
-    selectedYear.value = date.getFullYear()
-    selectedSemester.value = date.getMonth() < 7 ? 1 : 2
+    selectedYear.value = date.getUTCFullYear()
+    selectedSemester.value = date.getUTCMonth() < 7 ? 1 : 2
   }
 
   return {
