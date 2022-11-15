@@ -3,6 +3,7 @@ import PlanningMapComponent from '../components/map/PlanningMapComponent.vue'
 import UiButton from '../components/ui/UiButton.vue'
 import { ArrowLeftIcon } from '@heroicons/vue/20/solid'
 import { usePanelsStore } from '@/stores/panels'
+import TimelineController from '@/components/home/TimelineController.vue'
 
 const panelStore = usePanelsStore()
 </script>
@@ -19,9 +20,9 @@ const panelStore = usePanelsStore()
         </UiButton>
       </div>
       <div class="font-poppins font-semibold text-xl w-72">
-        Planning d’aménagement du réseau trambus
+        Planning d'aménagement du réseau trambus
       </div>
-      <div>Timeline</div>
+      <TimelineController> </TimelineController>
     </div>
     <div class="flex grow relative">
       <PlanningMapComponent></PlanningMapComponent>
