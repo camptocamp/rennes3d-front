@@ -1,36 +1,11 @@
 <script setup lang="ts">
 import PlanningMapComponent from '../components/map/PlanningMapComponent.vue'
 import UiButton from '../components/ui/UiButton.vue'
-import UiTimeline from '../components/ui/UiTimeline.vue'
 import { ArrowLeftIcon } from '@heroicons/vue/20/solid'
 import { usePanelsStore } from '@/stores/panels'
-import { timeLineFixtures } from '../model/timeLineItems.fixtures'
-import { usePlanningStore } from '@/stores/planning'
-import { computed } from 'vue'
+import TimelineController from '@/components/ui/TimelineController.vue'
 
 const panelStore = usePanelsStore()
-
-const planningStore = usePlanningStore()
-
-const timeLineItems = timeLineFixtures()
-const updateDate = (date: Date) => {
-  planningStore.setDate(date)
-}
-
-const selectedIndex = computed(() => {
-  const selectedDate = planningStore.getSelectedDate()
-  const year = selectedDate.getUTCFullYear()
-  // + 1 here because getUTCMonth is 0-based index (0 = January)
-  const semester = selectedDate.getUTCMonth() + 1 < 7 ? 1 : 2
-  for (let index = 0; index < timeLineItems.length; index++) {
-    if (
-      timeLineItems.at(index)?.semester == semester &&
-      timeLineItems.at(index)?.year == year
-    )
-      return index
-  }
-  return 0
-})
 </script>
 
 <template>
@@ -47,13 +22,7 @@ const selectedIndex = computed(() => {
       <div class="font-poppins font-semibold text-xl w-72">
         Planning d'aménagement du réseau trambus
       </div>
-      <div>
-        <UiTimeline
-          :items="timeLineItems"
-          @selected-date="updateDate"
-          :selected-index="selectedIndex"
-        />
-      </div>
+      <TimelineController> </TimelineController>
     </div>
     <div class="flex grow relative">
       <PlanningMapComponent></PlanningMapComponent>
