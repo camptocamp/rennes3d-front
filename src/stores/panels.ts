@@ -6,6 +6,8 @@ export const usePanelsStore = defineStore('panels', () => {
   const isGalleryShown: Ref<boolean> = ref(false)
   const isInformationPanelShown: Ref<boolean> = ref(true)
   const isPlanningViewShown: Ref<boolean> = ref(false)
+  // This is used to do lazy loading on the planning view
+  const isPlanningViewAlreadyShown: Ref<boolean> = ref(false)
 
   function toggleGallery() {
     isGalleryShown.value = !isGalleryShown.value
@@ -20,5 +22,6 @@ export const usePanelsStore = defineStore('panels', () => {
     isInformationPanelShown,
     toggleInformationPanel,
     isPlanningViewShown,
+    hasPlanningViewRendered: isPlanningViewAlreadyShown,
   }
 })

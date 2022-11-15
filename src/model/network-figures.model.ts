@@ -4,4 +4,6 @@ export interface NetworkFigureModel {
   figure: number
   unit?: string
   description: string
+  icon?: string
+  moreInformation?: string
 }
