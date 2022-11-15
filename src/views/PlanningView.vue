@@ -3,7 +3,7 @@ import PlanningMapComponent from '../components/map/PlanningMapComponent.vue'
 import UiButton from '../components/ui/UiButton.vue'
 import { ArrowLeftIcon } from '@heroicons/vue/20/solid'
 import { usePanelsStore } from '@/stores/panels'
-import TimelineController from '@/components/ui/TimelineController.vue'
+import TimelineController from '@/components/home/TimelineController.vue'
 
 const panelStore = usePanelsStore()
 </script>
