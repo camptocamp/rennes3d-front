@@ -22,7 +22,7 @@ const props = defineProps({
 
 const containerStyle = computed(() => {
   let bgColor = 'bg-slate-100'
-  let borderColor = 'bg-slate-50'
+  let borderColor = 'border-slate-50'
   if (props.colored) {
     bgColor = getColor('bg', props.lineNumber, 100)
     borderColor = getColor('border', props.lineNumber, 50)
@@ -33,7 +33,7 @@ const containerStyle = computed(() => {
 </script>
 <template>
   <div
-    class="flex items-center px-3 py-0 gap-2.5 rounded font-dm-sans"
+    class="flex items-center px-3 py-0 gap-2.5 rounded font-dm-sans hover:bg-white hover:border-slate-600 border"
     :class="containerStyle"
   >
     <div class="flex flex-col justify-center items-start pt-3 pl-3 pb-3 pr-0">
