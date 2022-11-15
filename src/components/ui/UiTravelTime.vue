@@ -4,6 +4,7 @@ import { type PropType, computed } from 'vue'
 import IconLine from '../ui/icons/IconLine.vue'
 import IconLineArrow from './icons/IconLineArrow.vue'
 import { getColor } from '@/services/color'
+import informationIcon from '@/assets/icons/informationIcon.svg'
 
 const props = defineProps({
   newDuration: Number,
@@ -41,7 +42,9 @@ const containerStyle = computed(() => {
         <div class="font-bold text-base leading-5">
           {{ props.newDuration }} min
         </div>
-        <!-- TODO: Information Icon here -->
+        <div>
+          <img :src="informationIcon" />
+        </div>
       </div>
       <div class="flex flex-col items-start p-0 gap-1">
         <div class="font-normal text-xs leading-4 text-neutral-500">
