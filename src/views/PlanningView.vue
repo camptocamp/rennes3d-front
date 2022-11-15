@@ -6,6 +6,7 @@ import { ArrowLeftIcon } from '@heroicons/vue/20/solid'
 import { usePanelsStore } from '@/stores/panels'
 import { timeLineFixtures } from '../model/timeLineItems.fixtures'
 import { usePlanningStore } from '@/stores/planning'
+import { computed } from 'vue'
 
 const panelStore = usePanelsStore()
 
@@ -15,6 +16,21 @@ const timeLineItems = timeLineFixtures()
 const updateDate = (date: Date) => {
   planningStore.setDate(date)
 }
+
+const selectedIndex = computed(() => {
+  const selectedDate = planningStore.getSelectedDate()
+  const year = selectedDate.getUTCFullYear()
+  // + 1 here because getUTCMonth is 0-based index (0 = January)
+  const semester = selectedDate.getUTCMonth() + 1 < 7 ? 1 : 2
+  for (let index = 0; index < timeLineItems.length; index++) {
+    if (
+      timeLineItems.at(index)?.semester == semester &&
+      timeLineItems.at(index)?.year == year
+    )
+      return index
+  }
+  return 0
+})
 </script>
 
 <template>
@@ -29,10 +45,14 @@ const updateDate = (date: Date) => {
         </UiButton>
       </div>
       <div class="font-poppins font-semibold text-xl w-72">
-        Planning d’aménagement du réseau trambus
+        Planning d'aménagement du réseau trambus
       </div>
       <div>
-        <UiTimeline :items="timeLineItems" @selected-date="updateDate" />
+        <UiTimeline
+          :items="timeLineItems"
+          @selected-date="updateDate"
+          :selected-index="selectedIndex"
+        />
       </div>
     </div>
     <div class="flex grow relative">
