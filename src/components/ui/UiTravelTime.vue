@@ -37,7 +37,7 @@ const containerStyle = computed(() => {
     class="flex items-center px-3 py-0 gap-2.5 rounded font-dm-sans hover:bg-white hover:border-slate-600 border"
     :class="containerStyle"
   >
-    <div class="flex flex-col justify-center items-start pt-3 pl-3 pb-3 pr-0">
+    <div class="flex flex-col justify-center items-start pt-3 pr-3 pb-3 pl-0">
       <div class="flex items-center px-0.5 py-0 gap-1 rounded">
         <div class="font-bold text-base leading-5">
           {{ props.newDuration }} min
