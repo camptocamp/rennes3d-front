@@ -22,16 +22,32 @@ function initState() {
     group="homepage"
     :init-state="initState"
   >
-    <template #default="{ state }">
-      <UiTravelTime
-        :newDuration="state.newDuration"
-        :oldDuration="state.oldDuration"
-        :lineNumber="state.lineNumber"
-        :startStation="state.startStation"
-        :endStation="state.endStation"
-        class="w-72 h-16"
-      >
-      </UiTravelTime>
-    </template>
+    <Variant title="Colored">
+      <template #default="{ state }">
+        <UiTravelTime
+          :newDuration="state.newDuration"
+          :oldDuration="state.oldDuration"
+          :lineNumber="state.lineNumber"
+          :startStation="state.startStation"
+          :endStation="state.endStation"
+          class="w-72 h-16"
+        >
+        </UiTravelTime>
+      </template>
+    </Variant>
+    <Variant title="Colored=False">
+      <template #default="{ state }">
+        <UiTravelTime
+          :newDuration="state.newDuration"
+          :oldDuration="state.oldDuration"
+          :lineNumber="state.lineNumber"
+          :startStation="state.startStation"
+          :endStation="state.endStation"
+          :colored="Boolean(false)"
+          class="w-72 h-16"
+        >
+        </UiTravelTime>
+      </template>
+    </Variant>
   </Story>
 </template>

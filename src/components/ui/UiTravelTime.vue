@@ -14,11 +14,20 @@ const props = defineProps({
   },
   startStation: String,
   endStation: String,
+  colored: {
+    type: Boolean,
+    default: true,
+  },
 })
 
 const containerStyle = computed(() => {
-  const bgColor = getColor('bg', props.lineNumber, 100)
-  const borderColor = getColor('border', props.lineNumber, 50)
+  let bgColor = 'bg-slate-100'
+  let borderColor = 'bg-slate-50'
+  if (props.colored) {
+    bgColor = getColor('bg', props.lineNumber, 100)
+    borderColor = getColor('border', props.lineNumber, 50)
+  }
+
   return [bgColor, borderColor]
 })
 </script>

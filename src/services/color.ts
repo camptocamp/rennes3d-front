@@ -11,6 +11,6 @@ export function getColor(
   colorType: String,
   lineNumber: LineNumber,
   variant: Number
-): String {
+): string {
   return `${colorType}-${lineColors[lineNumber]}-${variant}`
 }
