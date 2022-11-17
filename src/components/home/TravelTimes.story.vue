@@ -1,18 +1,18 @@
 <script lang="ts" setup>
-import NetworkFigures from './NetworkFigures.vue'
+import TravelTimes from './TravelTimes.vue'
 </script>
 
 <template>
   <Story
-    title="Network Figures"
+    title="TravelTime"
     :layout="{
       type: 'grid',
-      width: 450,
+      width: 500,
     }"
     group="sidepanel"
   >
     <template #default>
-      <NetworkFigures></NetworkFigures>
+      <TravelTimes></TravelTimes>
     </template>
   </Story>
 </template>
