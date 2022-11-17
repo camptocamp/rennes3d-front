@@ -48,7 +48,7 @@ const containerStyle = computed(() => {
       </div>
       <div class="flex flex-col items-start p-0 gap-1">
         <div class="font-normal text-xs leading-4 text-neutral-500">
-          au lie de {{ props.oldDuration }}
+          au lieu de {{ props.oldDuration }}
         </div>
       </div>
     </div>

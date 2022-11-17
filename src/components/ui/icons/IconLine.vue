@@ -16,10 +16,9 @@ const props = defineProps({
   },
 })
 
-const lineText = computed(() => {
-  if (props.size == 's') return props.line
-  else return `T${props.line}`
-})
+const lineText = computed(() =>
+  props.size === 's' ? props.line : `T${props.line}`
+)
 
 const circleStyle = computed(() => {
   const bgColor = getColor('bg', props.line, 600)

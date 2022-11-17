@@ -23,7 +23,6 @@ function scroll(amount: number) {
   } else if (currentScrollPosition.value > maxScroll) {
     currentScrollPosition.value = maxScroll
   }
-  console.log(currentScrollPosition.value)
 }
 </script>
 
