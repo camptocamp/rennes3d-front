@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import arrowForward from '@/assets/icons/arrow-forward.svg'
+import IconLine from '../ui/icons/IconLine.vue'
 const props = defineProps({
   id: Number,
   name: String,
@@ -9,14 +10,8 @@ const props = defineProps({
 })
 </script>
 <template>
-  <div
-    class="flex items-center px-3 py-0 gap-4 w-96 h-20 border-b border-solid border-b-neutral-300 font-dm-sans"
-  >
-    <div
-      class="flex items-center px-4 py-4 w-14 h-14 bg-neutral-300 rounded-2xl text-4xl"
-    >
-      {{ props.id }}
-    </div>
+  <div class="flex items-center px-0 py-3 gap-3 font-dm-sans">
+    <IconLine :line="id" :size="'xl'"></IconLine>
     <div>
       <div class="w-20 h-6 text-xl">
         {{ props.name }}
