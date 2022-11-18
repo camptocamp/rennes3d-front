@@ -29,7 +29,7 @@ function selectLine(line: String) {
     <UiLineDescription
       v-for="lineDescription in state.lineDescription"
       :key="lineDescription.id"
-      :id="lineDescription.id"
+      :line="lineDescription.id"
       :name="lineDescription.name"
       :start="lineDescription.start"
       :end="lineDescription.end"

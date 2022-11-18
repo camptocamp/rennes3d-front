@@ -24,7 +24,7 @@ function initState() {
   >
     <template #default="{ state }">
       <UiLineDescriptionVue
-        :id="state.id"
+        :line="state.id"
         :name="state.name"
         :start="state.start"
         :end="state.end"
