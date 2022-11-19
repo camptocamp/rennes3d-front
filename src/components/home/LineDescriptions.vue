@@ -22,7 +22,7 @@ function selectLine(line: String) {
 </script>
 
 <template>
-  <div class="font-dm-sans font-bold text-lg leading-6 text-neutral-400">
+  <div class="font-dm-sans font-bold text-lg leading-6">
     Les nouvelles lignes
   </div>
   <div class="flex flex-col items-start p-0 gap-3">
