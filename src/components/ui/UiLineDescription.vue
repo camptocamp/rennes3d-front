@@ -32,9 +32,13 @@ const props = defineProps({
         </div>
       </div>
     </div>
-    <div class="flex flex-col items-start p-0 w-14 h-10">
-      <div class="text-xs leading-4">Toutes les</div>
-      <div class="font-bold text-xl leading-7">{{ props.frequency }} min</div>
+    <div
+      class="flex flex-col items-start p-0 px-2 py-3 border border-slate-200 rounded"
+    >
+      <div class="text-xs text-neutral-700 font-normal">Toutes les</div>
+      <div class="font-bold text-sm text-neutral-800">
+        {{ props.frequency }} min
+      </div>
     </div>
   </div>
 </template>
