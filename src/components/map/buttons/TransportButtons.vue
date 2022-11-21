@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { useLayersStore } from '../../stores/layers'
-import type { TransportLayers } from '../../stores/layers'
+import { useLayersStore } from '../../../stores/layers'
+import type { TransportLayers } from '../../../stores/layers'
 import UiIconButton from '@/components/ui/UiIconButton.vue'
 
 const layerStore = useLayersStore()
