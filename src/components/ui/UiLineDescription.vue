@@ -18,7 +18,7 @@ const props = defineProps({
 <template>
   <div class="flex items-center px-0 py-3 gap-3 font-dm-sans">
     <IconLine :line="line" :size="'xl'"></IconLine>
-    <div class="flex flex-col items-start p-0">
+    <div class="flex flex-col items-start p-0 grow">
       <div class="text-base font-bold">
         {{ props.name }}
       </div>

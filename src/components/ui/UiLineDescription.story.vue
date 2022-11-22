@@ -17,7 +17,7 @@ function initState() {
     title="UiLineDescription"
     :layout="{
       type: 'grid',
-      width: 400,
+      width: 500,
     }"
     group="homepage"
     :init-state="initState"
