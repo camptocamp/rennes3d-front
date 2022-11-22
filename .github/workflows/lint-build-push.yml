@@ -1,0 +1,81 @@
+name: Build & Deploy
+on:
+  push:
+    tags:
+      - '*'
+    branches:
+      - main
+
+jobs:
+  install-lint-build-docker:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: camptocamp/initialise-gopass-summon-action@v2
+        with:
+          ci-gpg-private-key: ${{secrets.CI_GPG_PRIVATE_KEY}}
+          github-gopass-ci-token: ${{secrets.GOPASS_CI_GITHUB_TOKEN}}
+          patterns: docker
+
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Docker meta
+        id: meta
+        uses: docker/metadata-action@v3
+        with:
+          images: camptocamp/rennes3d-front
+          tags: |
+            # branch event
+            type=ref,enable=true,priority=600,prefix=,suffix=,event=branch
+            # tag event
+            type=ref,enable=true,priority=600,prefix=,suffix=,event=tag
+            # pull request event
+            type=ref,enable=true,priority=600,prefix=pr-,suffix=,event=pr
+            # set latest tag for default branch
+            type=raw,value=latest,enable={{is_default_branch}}
+
+      - name: init dockerhub credentials
+        run: |
+          echo "DOCKERHUB_USERNAME=$(summon --environment dockerhub bash -c 'echo $USERNAME')" >> $GITHUB_ENV
+          echo "DOCKERHUB_PASSWORD=$(summon --environment dockerhub bash -c 'echo $PASSWORD')" >> $GITHUB_ENV
+
+      - name: Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+
+      - name: Cache node modules
+        uses: actions/cache@v3
+        env:
+          cache-name: cache-node-modules
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+            ${{ runner.os }}-build-
+            ${{ runner.os }}-
+
+      - name: Install
+        run: npm ci
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Build
+        run: npm run build
+
+      - name: Unit tests
+        run: npm run test:unit:ci
+
+      - name: Build & publish docker image
+        uses: docker/build-push-action@v2
+        with:
+          username: ${{ env.DOCKERHUB_USERNAME }}
+          password: ${{ env.DOCKERHUB_PASSWORD }}
+          context: .
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          always_pull: true
