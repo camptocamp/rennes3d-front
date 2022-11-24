@@ -1,4 +1,39 @@
 @import './base.css';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .ui-btn-floating {
+    @apply flex flex-row rounded-lg stroke-black font-semibold drop-shadow-xl text-black bg-white
+        hover:bg-neutral-100 hover:drop-shadow
+        disabled:bg-neutral-100 disabled:text-neutral-500
+        focus:outline-none focus:ring-2 focus:ring-slate-400
+        transition;
+  }
+
+  .ui-btn-secondary {
+    @apply flex flex-row border border-black rounded-lg stroke-black font-semibold drop-shadow-xl text-black bg-white
+        hover:bg-neutral-100
+        disabled:bg-neutral-100 disabled:text-neutral-500 disabled:border-0
+        focus:outline-none focus:ring-2 focus:ring-slate-400
+        transition;
+  }
+
+  .ui-btn-primary {
+    @apply flex flex-row rounded-lg stroke-white font-semibold drop-shadow-xl text-white bg-black
+        hover:bg-slate-800
+        disabled:bg-neutral-300 disabled:text-neutral-500
+        focus:outline-none focus:bg-slate-800 focus:ring-2 focus:ring-slate-400
+        transition;
+  }
+
+  .ui-btn-regular-size {
+    @apply h-12 px-3 py-2;
+  }
+
+  .ui-btn-small-size {
+    @apply h-9 px-1.5 py-1;
+  }
+}

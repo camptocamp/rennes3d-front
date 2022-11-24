@@ -2,10 +2,10 @@
 import type { VcsApp } from '@vcmap/core'
 import { Viewpoint } from '@vcmap/core'
 import { inject, reactive } from 'vue'
-import IconHome from '../ui/icons/IconHome.vue'
-import UiButton from '../ui/UiButton.vue'
-import CompassComponent from './CompassComponent.vue'
-import NavigationHelp from './NavigationHelp.vue'
+import IconHome from '../../ui/icons/IconHome.vue'
+import UiIconButton from '../../ui/UiIconButton.vue'
+import CompassComponent from './../CompassComponent.vue'
+import NavigationHelp from './../NavigationHelp.vue'
 
 const vcsApp = inject('vcsApp') as VcsApp
 
@@ -57,16 +57,20 @@ const shouldDisplayNavHelp = () => {
     v-bind:class="{ 'h-[23rem]': state.is3D }"
     class="h-90 transition-[height] absolute right-2 bottom-10 flex flex-col [&>*]:m-2 text-gray-dark items-center overflow-hidden w-32 select-none"
   >
-    <UiButton @click="returnToHome"><IconHome /></UiButton>
-    <div
-      class="flex w-12 flex-col zoom-buttons text-2xl [&>*]:p-2 first:[&>*]:rounded-b-3xl last:[&>*]:rounded-t-3xl"
-    >
-      <UiButton @click="() => zoom(false)">{{ '+' }}</UiButton>
-      <UiButton @click="() => zoom(true)">{{ '-' }}</UiButton>
+    <UiIconButton class="rounded-lg px-3 py-3" @click="returnToHome"
+      ><IconHome
+    /></UiIconButton>
+    <div class="flex flex-col zoom-buttons text-2xl [&>*]:p-2" role="group">
+      <UiIconButton class="rounded-t-lg" @click="() => zoom(false)"
+        >+</UiIconButton
+      >
+      <UiIconButton class="rounded-b-lg" @click="() => zoom(true)"
+        >-</UiIconButton
+      >
     </div>
-    <UiButton class="font-semibold" @click="toggleMap">{{
+    <UiIconButton class="font-semibold rounded-lg" @click="toggleMap">{{
       state.is3D ? '2D' : '3D'
-    }}</UiButton>
+    }}</UiIconButton>
     <CompassComponent v-if="state.is3D" />
   </div>
   <NavigationHelp v-if="shouldDisplayNavHelp()" />
