@@ -28,7 +28,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v3
         with:
-          images: camptocamp/rennes3d-front
+          images: camptocamp/rennes3d-frontX
           tags: |
             # branch event
             type=ref,enable=true,priority=600,prefix=,suffix=,event=branch
