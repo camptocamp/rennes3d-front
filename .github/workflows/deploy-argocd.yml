@@ -1,10 +1,11 @@
 name: Trigger ArgoCD
 on:
   workflow_dispatch:
-    tag:
-      description: 'Tag of the image you want to deploy'
-      required: true
-      type: string
+    inputs:
+      tag:
+        description: 'Tag of the image you want to deploy'
+        required: true
+        default: 'latest'
 
 jobs:
   trigger-argocd:
