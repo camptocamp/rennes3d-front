@@ -1,12 +1,10 @@
+name: Trigger ArgoCD
 on:
-  push:
-    tags:
-      - '*'
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
+  workflow_dispatch:
+    tag:
+      description: 'Tag of the image you want to deploy'
+      required: true
+      type: string
 
 jobs:
   trigger-argocd:
@@ -24,7 +22,7 @@ jobs:
         with:
           cmd: yq -i '.image.tag = strenv(TAG)' ./argocd/apps/dev/vcmap-demo/values.yaml
         env:
-          TAG: 'my-tag'
+          TAG: ${{ inputs.tag }}
       - name: Push to ArgoCD repo
         run: |
           cd ./argocd

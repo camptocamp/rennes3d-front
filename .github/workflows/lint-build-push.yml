@@ -5,77 +5,42 @@ on:
       - '*'
     branches:
       - main
+  pull_request:
+    branches:
+      - main
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
 
 jobs:
-  install-lint-build-docker:
+  build-and-push-image:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
 
     steps:
-      - uses: camptocamp/initialise-gopass-summon-action@v2
-        with:
-          ci-gpg-private-key: ${{secrets.CI_GPG_PRIVATE_KEY}}
-          github-gopass-ci-token: ${{secrets.GOPASS_CI_GITHUB_TOKEN}}
-          patterns: docker
-
-      - name: Checkout
+      - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Docker meta
+      - name: Log in to the Container registry
+        uses: docker/login-action@f054a8b539a109f9f41c372932f1ae047eff08c9
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Extract metadata (tags, labels) for Docker
         id: meta
-        uses: docker/metadata-action@v3
+        uses: docker/metadata-action@v4
         with:
-          images: camptocamp/rennes3d-front
-          tags: |
-            # branch event
-            type=ref,enable=true,priority=600,prefix=,suffix=,event=branch
-            # tag event
-            type=ref,enable=true,priority=600,prefix=,suffix=,event=tag
-            # pull request event
-            type=ref,enable=true,priority=600,prefix=pr-,suffix=,event=pr
-            # set latest tag for default branch
-            type=raw,value=latest,enable={{is_default_branch}}
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
 
-      - name: init dockerhub credentials
-        run: |
-          echo "DOCKERHUB_USERNAME=$(summon --environment dockerhub bash -c 'echo $USERNAME')" >> $GITHUB_ENV
-          echo "DOCKERHUB_PASSWORD=$(summon --environment dockerhub bash -c 'echo $PASSWORD')" >> $GITHUB_ENV
-
-      - name: Setup node
-        uses: actions/setup-node@v3
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v3
         with:
-          node-version: 16
-
-      - name: Cache node modules
-        uses: actions/cache@v3
-        env:
-          cache-name: cache-node-modules
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-build-${{ env.cache-name }}-
-            ${{ runner.os }}-build-
-            ${{ runner.os }}-
-
-      - name: Install
-        run: npm ci
-
-      - name: Lint
-        run: npm run lint
-
-      - name: Build
-        run: npm run build
-
-      - name: Unit tests
-        run: npm run test:unit:ci
-
-      - name: Build & publish docker image
-        uses: docker/build-push-action@v2
-        with:
-          username: ${{ env.DOCKERHUB_USERNAME }}
-          password: ${{ env.DOCKERHUB_PASSWORD }}
           context: .
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-          always_pull: true
