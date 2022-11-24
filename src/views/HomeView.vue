@@ -7,6 +7,7 @@ import UiTrambusTitle from '../components/ui/UiTrambusTitle.vue'
 import UiRennesLogo from '../components/ui/UiRennesLogo.vue'
 import NetworkFigures from '../components/home/NetworkFigures.vue'
 import SidePanel from '@/components/home/SidePanel.vue'
+import UiDivider from '@/components/ui/UiDivider.vue'
 import PlanningView from './PlanningView.vue'
 import { usePanelsStore } from '@/stores/panels'
 
@@ -23,12 +24,12 @@ const panelStore = usePanelsStore()
         <article>
           <NetworkFigures></NetworkFigures>
         </article>
-        <article>
-          <TravelTimes></TravelTimes>
-        </article>
+        <TravelTimes></TravelTimes>
+        <UiDivider></UiDivider>
         <article>
           <LineDescriptions></LineDescriptions>
         </article>
+        <UiDivider></UiDivider>
         <article>
           <UiRennesLogo></UiRennesLogo>
         </article>
