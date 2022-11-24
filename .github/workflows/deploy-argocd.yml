@@ -1,0 +1,35 @@
+name: Trigger ArgoCD
+on:
+  workflow_dispatch:
+    tag:
+      description: 'Tag of the image you want to deploy'
+      required: true
+      type: string
+
+jobs:
+  trigger-argocd:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout ArgoCD repo
+        uses: actions/checkout@v3
+        with:
+          repository: MaYohann/argocd-gs-rennes3d-apps
+          ref: main
+          ssh-key: ${{ secrets.ARGOCD_PRIVATE_KEY }}
+          path: ./argocd
+      - name: Update key
+        uses: mikefarah/yq@master
+        with:
+          cmd: yq -i '.image.tag = strenv(TAG)' ./argocd/apps/dev/vcmap-demo/values.yaml
+        env:
+          TAG: ${{ inputs.tag }}
+      - name: Push to ArgoCD repo
+        run: |
+          cd ./argocd
+          git add .
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git commit -am "[Rennes3D] Deploy ${TAG}"
+          git push
+        env:
+          TAG: ${{ inputs.tag }}
