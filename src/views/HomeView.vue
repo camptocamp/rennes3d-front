@@ -4,11 +4,12 @@ import MapComponent from '../components/map/MapComponent.vue'
 import LineDescriptions from '../components/home/LineDescriptions.vue'
 import TravelTimes from '../components/home/TravelTimes.vue'
 import UiTrambusTitle from '../components/ui/UiTrambusTitle.vue'
-import UiRennesLogo from '../components/ui/UiRennesLogo.vue'
 import NetworkFigures from '../components/home/NetworkFigures.vue'
 import SidePanel from '@/components/home/SidePanel.vue'
 import UiDivider from '@/components/ui/UiDivider.vue'
 import PlanningView from './PlanningView.vue'
+import FooterArea from '@/components/home/FooterArea.vue'
+
 import { usePanelsStore } from '@/stores/panels'
 
 const panelStore = usePanelsStore()
@@ -31,7 +32,7 @@ const panelStore = usePanelsStore()
         </article>
         <UiDivider></UiDivider>
         <article>
-          <UiRennesLogo></UiRennesLogo>
+          <FooterArea></FooterArea>
         </article>
       </SidePanel>
     </aside>
