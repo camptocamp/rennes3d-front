@@ -1,7 +1,14 @@
 <script setup lang="ts">
-import arrowForward from '@/assets/icons/arrow-forward.svg'
+import IconLine from '../ui/icons/IconLine.vue'
+import type { PropType } from 'vue'
+import type { LineNumber } from '@/model/lines.model'
+import IconTwoDirectionArrow from './icons/IconTwoDirectionArrow.vue'
+
 const props = defineProps({
-  id: Number,
+  line: {
+    type: Number as PropType<LineNumber>,
+    required: true,
+  },
   name: String,
   start: String,
   end: String,
@@ -9,33 +16,29 @@ const props = defineProps({
 })
 </script>
 <template>
-  <div
-    class="flex items-center px-3 py-0 gap-4 w-96 h-20 border-b border-solid border-b-neutral-300 font-dm-sans"
-  >
-    <div
-      class="flex items-center px-4 py-4 w-14 h-14 bg-neutral-300 rounded-2xl text-4xl"
-    >
-      {{ props.id }}
-    </div>
-    <div>
-      <div class="w-20 h-6 text-xl">
+  <div class="flex items-center px-0 py-3 gap-3 font-dm-sans">
+    <IconLine :line="line" :size="'xl'"></IconLine>
+    <div class="flex flex-col items-start p-0 grow">
+      <div class="text-base font-bold">
         {{ props.name }}
       </div>
-      <div class="flex items-center p-0 gap-3 w-44 h-4">
-        <div class="w-24 h-4 text-sm leading-4">
+      <div class="flex items-center p-0 gap-2">
+        <div class="text-sm font-normal text-neutral-800">
           {{ props.start }}
         </div>
-        <div class="w-4 h-4">
-          <img :src="arrowForward" />
-        </div>
-        <div class="w-9 h-4 text-sm leading-4">
+        <IconTwoDirectionArrow></IconTwoDirectionArrow>
+        <div class="text-sm font-normal text-neutral-800">
           {{ props.end }}
         </div>
       </div>
     </div>
-    <div class="flex flex-col items-start p-0 w-14 h-10">
-      <div class="text-xs leading-4">Toutes les</div>
-      <div class="font-bold text-xl leading-7">{{ props.frequency }} min</div>
+    <div
+      class="flex flex-col items-start p-0 px-2 py-3 border border-slate-200 rounded"
+    >
+      <div class="text-xs text-neutral-700 font-normal">Toutes les</div>
+      <div class="font-bold text-sm text-neutral-800">
+        {{ props.frequency }} min
+      </div>
     </div>
   </div>
 </template>

@@ -22,20 +22,22 @@ function selectLine(line: String) {
 </script>
 
 <template>
-  <div class="font-dm-sans font-bold text-lg leading-6 text-neutral-400">
-    Les nouvelles lignes
-  </div>
-  <div class="flex flex-col items-start p-0 gap-3">
-    <UiLineDescription
-      v-for="lineDescription in state.lineDescription"
-      :key="lineDescription.id"
-      :id="lineDescription.id"
-      :name="lineDescription.name"
-      :start="lineDescription.start"
-      :end="lineDescription.end"
-      :frequency="lineDescription.frequency"
-      v-on:click="selectLine(lineDescription.name)"
-    >
-    </UiLineDescription>
+  <div class="flex flex-col p-0 gap-2">
+    <div class="font-dm-sans font-bold text-lg leading-6">
+      Les nouvelles lignes
+    </div>
+    <div class="flex flex-col p-0 gap-2 grow">
+      <UiLineDescription
+        v-for="lineDescription in state.lineDescription"
+        :key="lineDescription.id"
+        :line="lineDescription.id"
+        :name="lineDescription.name"
+        :start="lineDescription.start"
+        :end="lineDescription.end"
+        :frequency="lineDescription.frequency"
+        v-on:click="selectLine(lineDescription.name)"
+      >
+      </UiLineDescription>
+    </div>
   </div>
 </template>

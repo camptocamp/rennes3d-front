@@ -17,14 +17,14 @@ function initState() {
     title="UiLineDescription"
     :layout="{
       type: 'grid',
-      width: 400,
+      width: 500,
     }"
     group="homepage"
     :init-state="initState"
   >
     <template #default="{ state }">
       <UiLineDescriptionVue
-        :id="state.id"
+        :line="state.id"
         :name="state.name"
         :start="state.start"
         :end="state.end"
