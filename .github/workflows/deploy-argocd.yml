@@ -2,10 +2,20 @@ name: Trigger ArgoCD
 on:
   workflow_dispatch:
     inputs:
+      env:
+        type: choice
+        description: 'Env to deploy'
+        required: true
+        options:
+          - dev
+          - prod
       tag:
         description: 'Tag of the image you want to deploy'
         required: true
         default: 'latest'
+  push:
+    branches:
+      - main
 
 jobs:
   trigger-argocd:
@@ -18,19 +28,24 @@ jobs:
           ref: main
           ssh-key: ${{ secrets.ARGOCD_PRIVATE_KEY }}
           path: ./argocd
+      - name: Extract short sha
+        uses: benjlevesque/short-sha@v2.1
+        id: short-sha
       - name: Update key
         uses: mikefarah/yq@master
         with:
-          cmd: yq -i '.image.tag = strenv(TAG)' ./argocd/apps/dev/vcmap-demo/values.yaml
+          cmd: yq -i '.image.tag = strenv(TAG)' ./argocd/apps/${ENV}/vcmap-demo/values.yaml
         env:
-          TAG: ${{ inputs.tag }}
+          TAG: ${{ inputs.tag || steps.short-sha.outputs.sha }}
+          ENV: ${{ inputs.env || 'dev' }}
       - name: Push to ArgoCD repo
         run: |
           cd ./argocd
           git add .
           git config user.name github-actions
           git config user.email github-actions@github.com
-          git commit -am "[Rennes3D] Deploy ${TAG}"
+          git commit -am "[Rennes3D] Deploy ${TAG} on ${ENV}"
           git push
         env:
-          TAG: ${{ inputs.tag }}
+          TAG: ${{ inputs.tag || steps.short-sha.outputs.sha }}
+          ENV: ${{ inputs.env || 'dev' }}
