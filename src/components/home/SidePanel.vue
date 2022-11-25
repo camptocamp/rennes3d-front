@@ -1,8 +1,7 @@
 <script lang="ts" setup>
 import { usePanelsStore } from '@/stores/panels'
-
-import { ChevronRightIcon } from '@heroicons/vue/20/solid'
-import { ChevronLeftIcon } from '@heroicons/vue/20/solid'
+import arrowLeftLine from '@/assets/icons/arrow-left-line.svg'
+import arrowRightLine from '@/assets/icons/arrow-right-line.svg'
 
 const panelStore = usePanelsStore()
 function toggleInformationPanel() {
@@ -23,12 +22,14 @@ function toggleInformationPanel() {
         @click="toggleInformationPanel"
         class="w-7 h-11 gap-4 bg-white rounded-r-xl"
       >
-        <ChevronLeftIcon
+        <img
+          :src="arrowLeftLine"
           :class="{ hidden: !panelStore.isInformationPanelShown }"
-        ></ChevronLeftIcon>
-        <ChevronRightIcon
+        />
+        <img
+          :src="arrowRightLine"
           :class="{ hidden: panelStore.isInformationPanelShown }"
-        ></ChevronRightIcon>
+        />
       </button>
     </div>
   </div>
