@@ -4,7 +4,6 @@ import MapComponent from '../components/map/MapComponent.vue'
 import LineDescriptions from '../components/home/LineDescriptions.vue'
 import TravelTimes from '../components/home/TravelTimes.vue'
 import UiTrambusTitle from '../components/ui/UiTrambusTitle.vue'
-import NetworkFigures from '../components/home/NetworkFigures.vue'
 import SidePanel from '@/components/home/SidePanel.vue'
 import UiDivider from '@/components/ui/UiDivider.vue'
 import PlanningView from './PlanningView.vue'
@@ -23,9 +22,8 @@ const panelStore = usePanelsStore()
           <UiTrambusTitle></UiTrambusTitle>
         </article>
         <article>
-          <NetworkFigures></NetworkFigures>
+          <TravelTimes></TravelTimes>
         </article>
-        <TravelTimes></TravelTimes>
         <UiDivider></UiDivider>
         <article>
           <LineDescriptions></LineDescriptions>
