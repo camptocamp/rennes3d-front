@@ -5,7 +5,7 @@ import { apiClientService } from '@/services/api.client'
 import UiTravelTime from '../ui/UiTravelTime.vue'
 import type { TravelTimeModel } from '@/model/travel-time.model'
 import UiOverflowContainer from '../ui/UiOverflowContainer.vue'
-import UiLinkMetis from '../ui/UiLinkMetis.vue'
+import UiLinkPrimary from '../ui/UiLinkPrimary.vue'
 
 const state = reactive({
   travelTimes: null as null | TravelTimeModel[],
@@ -37,10 +37,11 @@ onMounted(async () => {
           </UiTravelTime>
         </div>
       </UiOverflowContainer>
-      <UiLinkMetis
+      <UiLinkPrimary
+        :url="'https://www.camptocamp.com/en'"
         :arrowStrokeColor="'stroke-red-600'"
         :underlineColor="'bg-red-600'"
-        >Voir plus</UiLinkMetis
+        >Voir plus</UiLinkPrimary
       >
     </div>
   </div>
