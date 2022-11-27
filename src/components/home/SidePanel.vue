@@ -1,7 +1,6 @@
 <script lang="ts" setup>
 import { usePanelsStore } from '@/stores/panels'
-import arrowLeftLine from '@/assets/icons/arrow-left-line.svg'
-import arrowRightLine from '@/assets/icons/arrow-right-line.svg'
+import UiPanelControlButton from '@/components/ui/UiPanelControlButton.vue'
 
 const panelStore = usePanelsStore()
 function toggleInformationPanel() {
@@ -18,19 +17,11 @@ function toggleInformationPanel() {
       <slot></slot>
     </div>
     <div class="relative max-h-0 top-28">
-      <button
+      <UiPanelControlButton
+        :anchor-position="'left'"
+        :is-open="panelStore.isInformationPanelShown"
         @click="toggleInformationPanel"
-        class="w-7 h-11 gap-4 bg-white rounded-r-xl"
-      >
-        <img
-          :src="arrowLeftLine"
-          :class="{ hidden: !panelStore.isInformationPanelShown }"
-        />
-        <img
-          :src="arrowRightLine"
-          :class="{ hidden: panelStore.isInformationPanelShown }"
-        />
-      </button>
+      ></UiPanelControlButton>
     </div>
   </div>
 </template>
