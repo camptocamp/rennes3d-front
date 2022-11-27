@@ -29,9 +29,9 @@ const panelStore = usePanelsStore()
           <LineDescriptions></LineDescriptions>
         </article>
         <UiDivider></UiDivider>
-        <article>
+        <footer>
           <FooterArea></FooterArea>
-        </article>
+        </footer>
       </SidePanel>
     </aside>
     <div class="grow">
