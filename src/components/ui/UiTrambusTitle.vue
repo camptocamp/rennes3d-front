@@ -6,7 +6,7 @@ import NetworkFigures from '@/components/home/NetworkFigures.vue'
 <template>
   <div class="flex flex-col p-0 gap-3 font-dm-sans">
     <div class="flex items-center p-0 gap-2.5">
-      <UiTrambusLogo></UiTrambusLogo>
+      <UiTrambusLogo class="h-14 w-14"></UiTrambusLogo>
       <div class="font-bold text-3xl text-center">Réseau Trambus</div>
     </div>
     <div class="font-medium text-sm text-neutral-800">

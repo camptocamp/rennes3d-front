@@ -16,7 +16,7 @@ const props = defineProps({
         <span class="ml-1">{{ props.unit }}</span>
       </div>
       <div v-if="props.icon" class="grow-0">
-        <img class="w-9 h-9" :src="props.icon" />
+        <img class="w-9 h-9" :src="props.icon" alt="" />
       </div>
     </div>
     <div class="flex items-center p-0">
