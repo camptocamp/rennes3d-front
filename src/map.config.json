@@ -164,7 +164,20 @@
           }
         }
       },
-      "activeOnStartup": false
+      "vectorProperties": {
+        "primitiveOptions": {
+          "type": "ellipsoid",
+          "geometryOptions": {
+            "radii": [5, 5, 5],
+            "innerRadii": [0.000001, 0.000001, 0.000001],
+            "minimumCone": 1.54,
+            "maximumCone": 1.58
+          },
+          "offset": [0, 0, 0.1]
+        },
+        "modelAutoScale": true
+      },
+      "activeOnStartup": true
     },
     {
       "name": "parking",
@@ -184,7 +197,7 @@
       "name": "poi",
       "url": "https://gist.githubusercontent.com/ismailsunni/561f39f97f8e1a36491207a61224270c/raw/bb7ddd1c233760fb3cf8ce562f8a3302846ade57/POI.geojson",
       "type": "GeoJSONLayer",
-      "activeOnStartup": true,
+      "activeOnStartup": false,
       "style": {
         "name": "poiStyle",
         "type": "DeclarativeStyleItem",
