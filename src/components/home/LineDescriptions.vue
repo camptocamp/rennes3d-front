@@ -23,9 +23,9 @@ function selectLine(line: String) {
 
 <template>
   <section class="flex flex-col p-0 gap-2">
-    <div class="font-dm-sans font-bold text-lg leading-6">
+    <h2 class="font-dm-sans font-bold text-lg leading-6">
       Les nouvelles lignes
-    </div>
+    </h2>
     <div class="flex flex-col p-0 gap-2 grow">
       <UiLineDescription
         v-for="lineDescription in state.lineDescription"
