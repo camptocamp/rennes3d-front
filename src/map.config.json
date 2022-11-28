@@ -90,7 +90,7 @@
     },
     {
       "name": "metro",
-      "url": "https://gist.githubusercontent.com/ismailsunni/561f39f97f8e1a36491207a61224270c/raw/35e03e2d718e56f1416069892844453a4fc27f9f/metro.geojson",
+      "url": "https://public.sig.rennesmetropole.fr/geoserver/wfs?&outputFormat=application/json&srsName=EPSG:4326&SERVICE=WFS&REQUEST=GetFeature&VERSION=2.0.0&TYPENAMES=trp_coll:metro_trace_axe&STARTINDEX=0&COUNT=1000000&SRSNAME=urn:ogc:def:crs:EPSG::4326&BBOX=48.00616775832305905,-1.76368099999999983,48.1778082416769422,-1.5842989999999999,urn:ogc:def:crs:EPSG::4326",
       "type": "GeoJSONLayer",
       "activeOnStartup": false,
       "style": {
