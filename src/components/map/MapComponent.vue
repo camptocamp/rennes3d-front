@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useLayersStore } from '@/stores/layers'
 import { CesiumMap, Context, VcsApp } from '@vcmap/core'
-import { onMounted, provide, ref } from 'vue'
+import { onMounted, onUnmounted, provide, ref } from 'vue'
 import mapConfig from '../../map.config.json'
 import UiMap from '../ui/UiMap.vue'
 import NavigationButtons from './buttons/NavigationButtons.vue'
@@ -22,6 +22,10 @@ onMounted(async () => {
     cesiumMap.getScene().globe.maximumScreenSpaceError = 1
   }
   appLoaded.value = true
+})
+
+onUnmounted(() => {
+  app.destroy()
 })
 
 function setLayerVisible(layerName: string, visible: boolean) {
