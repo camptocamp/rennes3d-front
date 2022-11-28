@@ -118,7 +118,7 @@
     },
     {
       "name": "bike",
-      "url": "https://gist.githubusercontent.com/ismailsunni/561f39f97f8e1a36491207a61224270c/raw/35e03e2d718e56f1416069892844453a4fc27f9f/bike.geojson",
+      "url": "https://public.sig.rennesmetropole.fr/geoserver/wfs?&outputFormat=application/json&srsName=EPSG:4326&SERVICE=WFS&REQUEST=GetFeature&VERSION=2.0.0&TYPENAMES=trp_org:sd_velo_iti_2018&STARTINDEX=0&COUNT=1000000&SRSNAME=urn:ogc:def:crs:EPSG::4326&FILTER=%3Cfes:Filter%20xmlns:fes%3D%22http://www.opengis.net/fes/2.0%22%20xmlns:gml%3D%22http://www.opengis.net/gml/3.2%22%3E%0A%20%3Cfes:And%3E%0A%20%20%3Cfes:BBOX%3E%0A%20%20%20%3Cfes:ValueReference%3Etrp_org:shape%3C/fes:ValueReference%3E%0A%20%20%20%3Cgml:Envelope%20srsName%3D%22urn:ogc:def:crs:EPSG::4326%22%3E%0A%20%20%20%20%3Cgml:lowerCorner%3E48.00619999999999976%20-1.76367999999999991%3C/gml:lowerCorner%3E%0A%20%20%20%20%3Cgml:upperCorner%3E48.17779999999999774%20-1.58430000000000004%3C/gml:upperCorner%3E%0A%20%20%20%3C/gml:Envelope%3E%0A%20%20%3C/fes:BBOX%3E%0A%20%20%3Cfes:PropertyIsEqualTo%20xmlns:fes%3D%22http://www.opengis.net/fes/2.0%22%3E%0A%20%20%20%3Cfes:ValueReference%3Etrp_org:type%3C/fes:ValueReference%3E%0A%20%20%20%3Cfes:Literal%20xmlns:fes%3D%22http://www.opengis.net/fes/2.0%22%3ELiaison%20principale%3C/fes:Literal%3E%0A%20%20%3C/fes:PropertyIsEqualTo%3E%0A%20%3C/fes:And%3E%0A%3C/fes:Filter%3E%0A",
       "type": "GeoJSONLayer",
       "activeOnStartup": false,
       "style": {
