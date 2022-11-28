@@ -5,7 +5,6 @@ import LineDescriptions from '../components/home/LineDescriptions.vue'
 import TravelTimes from '../components/home/TravelTimes.vue'
 import UiTrambusTitle from '../components/ui/UiTrambusTitle.vue'
 import SidePanel from '@/components/home/SidePanel.vue'
-import UiDivider from '@/components/ui/UiDivider.vue'
 import PlanningView from './PlanningView.vue'
 import FooterArea from '@/components/home/FooterArea.vue'
 
@@ -19,10 +18,10 @@ const panelStore = usePanelsStore()
     <aside class="z-10 absolute">
       <SidePanel>
         <UiTrambusTitle></UiTrambusTitle>
-        <TravelTimes></TravelTimes>
-        <UiDivider></UiDivider>
-        <LineDescriptions></LineDescriptions>
-        <UiDivider></UiDivider>
+        <TravelTimes class="border-b border-neutral-300"></TravelTimes>
+        <LineDescriptions
+          class="border-b border-neutral-300"
+        ></LineDescriptions>
         <FooterArea></FooterArea>
       </SidePanel>
     </aside>
