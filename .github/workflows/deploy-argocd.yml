@@ -8,7 +8,6 @@ on:
         required: true
         options:
           - dev
-          - prod
       tag:
         description: 'Tag of the image you want to deploy'
         required: true
@@ -24,7 +23,7 @@ jobs:
       - name: Checkout ArgoCD repo
         uses: actions/checkout@v3
         with:
-          repository: MaYohann/argocd-gs-rennes3d-apps
+          repository: camptocamp/argocd-gs-rennes3d-apps
           ref: main
           ssh-key: ${{ secrets.ARGOCD_PRIVATE_KEY }}
           path: ./argocd
