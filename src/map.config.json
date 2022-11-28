@@ -168,7 +168,7 @@
     },
     {
       "name": "parking",
-      "url": "https://gist.githubusercontent.com/ismailsunni/561f39f97f8e1a36491207a61224270c/raw/35e03e2d718e56f1416069892844453a4fc27f9f/parking.geojson",
+      "url": "https://gist.githubusercontent.com/ismailsunni/561f39f97f8e1a36491207a61224270c/raw/6f4f5abd51a097e186cb773d06bb4b2ccf9620d2/parking_relais_pt.geojson",
       "type": "GeoJSONLayer",
       "activeOnStartup": true,
       "style": {
