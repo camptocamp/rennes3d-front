@@ -132,7 +132,7 @@
     },
     {
       "name": "trambusLines",
-      "url": "https://public.sig.rennesmetropole.fr/geoserver/wfs?service=WFS&request=getFeature&typename=trp_coll:trambus_lignes&outputFormat=application/json&srsName=EPSG:4326",
+      "url": "https://public.sig.rennesmetropole.fr/geoserver/ows?service=WFS&request=getFeature&typename=trp_coll:trambus_lignes&outputFormat=application/json&srsName=EPSG:4326",
       "type": "GeoJSONLayer",
       "style": {
         "name": "trambusLineStyle",
@@ -148,7 +148,7 @@
     },
     {
       "name": "trambusStops",
-      "url": "https://public.sig.rennesmetropole.fr/geoserver/wfs?service=WFS&request=getFeature&typename=trp_coll:trambus_arrets&outputFormat=application/json&srsName=EPSG:4326",
+      "url": "https://public.sig.rennesmetropole.fr/geoserver/ows?service=WFS&request=getFeature&typename=trp_coll:trambus_arrets&outputFormat=application/json&srsName=EPSG:4326",
       "type": "GeoJSONLayer",
       "style": {
         "name": "trambusStopStyle",
@@ -168,7 +168,7 @@
     },
     {
       "name": "parking",
-      "url": "https://gist.githubusercontent.com/ismailsunni/561f39f97f8e1a36491207a61224270c/raw/6f4f5abd51a097e186cb773d06bb4b2ccf9620d2/parking_relais_pt.geojson",
+      "url": "https://public.sig.rennesmetropole.fr/geoserver/ows?service=WFS&request=getFeature&typename=trp_coll:trambus_parc_relais&outputFormat=application/json&srsName=EPSG:4326",
       "type": "GeoJSONLayer",
       "activeOnStartup": true,
       "style": {
