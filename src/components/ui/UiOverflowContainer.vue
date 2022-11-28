@@ -28,6 +28,10 @@ function scroll(amount: number) {
 const isMostRightPosition = computed(() => {
   const maxScroll =
     (scrollBar.value?.scrollWidth || 0) - (scrollBar.value?.clientWidth || 0)
+  // Make sure if the position is at the begining, it's not at the most right position
+  if (currentScrollPosition.value == 0) {
+    return false
+  }
   return currentScrollPosition.value == maxScroll
 })
 const isMostLeftPosition = computed(() => {
