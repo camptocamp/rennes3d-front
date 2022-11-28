@@ -22,7 +22,7 @@ function selectLine(line: String) {
 </script>
 
 <template>
-  <div class="flex flex-col p-0 gap-2">
+  <section class="flex flex-col p-0 gap-2">
     <div class="font-dm-sans font-bold text-lg leading-6">
       Les nouvelles lignes
     </div>
@@ -39,5 +39,5 @@ function selectLine(line: String) {
       >
       </UiLineDescription>
     </div>
-  </div>
+  </section>
 </template>

@@ -4,7 +4,7 @@ import UiDivider from '@/components/ui/UiDivider.vue'
 import UiLinkFooter from '@/components/ui/UiLinkFooter.vue'
 </script>
 <template>
-  <div class="flex flex-col p-0 gap-4 font-dm-sans">
+  <footer class="flex flex-col p-0 gap-4 font-dm-sans">
     <div class="flex p-0 gap-6">
       <UiRennesLogo class="w-36 h-7"></UiRennesLogo>
       <div class="font-normal text-xs">
@@ -21,5 +21,5 @@ import UiLinkFooter from '@/components/ui/UiLinkFooter.vue'
         >Politique de protection des données personnelles</UiLinkFooter
       >
     </div>
-  </div>
+  </footer>
 </template>

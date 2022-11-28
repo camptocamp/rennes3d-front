@@ -17,7 +17,7 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div class="flex items-center p-0 gap-2.5">
+  <section class="flex items-center p-0 gap-2.5">
     <div class="flex flex-col items-start gap-3 pt-0 pr-9 pb-0 pl-0">
       <h2 class="font-dm-sans font-bold text-lg leading-6">
         Vos futurs temps de parcours
@@ -45,5 +45,5 @@ onMounted(async () => {
         >Voir plus</UiLinkPrimary
       >
     </div>
-  </div>
+  </section>
 </template>

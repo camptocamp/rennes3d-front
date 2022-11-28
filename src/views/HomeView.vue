@@ -18,20 +18,12 @@ const panelStore = usePanelsStore()
   <main class="h-screen flex">
     <aside class="z-10 absolute">
       <SidePanel>
-        <article>
-          <UiTrambusTitle></UiTrambusTitle>
-        </article>
-        <article>
-          <TravelTimes></TravelTimes>
-        </article>
+        <UiTrambusTitle></UiTrambusTitle>
+        <TravelTimes></TravelTimes>
         <UiDivider></UiDivider>
-        <article>
-          <LineDescriptions></LineDescriptions>
-        </article>
+        <LineDescriptions></LineDescriptions>
         <UiDivider></UiDivider>
-        <footer>
-          <FooterArea></FooterArea>
-        </footer>
+        <FooterArea></FooterArea>
       </SidePanel>
     </aside>
     <div class="grow">

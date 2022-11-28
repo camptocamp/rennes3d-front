@@ -4,7 +4,7 @@ import NetworkFigures from '@/components/home/NetworkFigures.vue'
 </script>
 
 <template>
-  <div class="flex flex-col p-0 gap-3 font-dm-sans">
+  <section class="flex flex-col p-0 gap-3 font-dm-sans">
     <div class="flex items-center p-0 gap-2.5">
       <UiTrambusLogo class="h-14 w-14"></UiTrambusLogo>
       <div class="font-bold text-3xl text-center">Réseau Trambus</div>
@@ -13,5 +13,5 @@ import NetworkFigures from '@/components/home/NetworkFigures.vue'
       Découvrez et contribuez au futur réseau de transport de Rennes Métropole
     </div>
     <NetworkFigures></NetworkFigures>
-  </div>
+  </section>
 </template>
