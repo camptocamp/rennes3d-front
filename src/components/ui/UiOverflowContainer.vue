@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import leftArrow from '@/assets/icons/arrows-left.svg'
 import rightArrow from '@/assets/icons/arrows-right.svg'
 
@@ -24,6 +24,15 @@ function scroll(amount: number) {
     currentScrollPosition.value = maxScroll
   }
 }
+
+const isMostRightPosition = computed(() => {
+  const maxScroll =
+    (scrollBar.value?.scrollWidth || 0) - (scrollBar.value?.clientWidth || 0)
+  return currentScrollPosition.value == maxScroll
+})
+const isMostLeftPosition = computed(() => {
+  return currentScrollPosition.value == 0
+})
 </script>
 
 <template>
@@ -37,12 +46,14 @@ function scroll(amount: number) {
     <button
       class="absolute z-10 bg-white w-9 h-9 shadow-lg top-1/2 left-2 transform -translate-y-1/2 rounded-lg flex items-start p-2.5"
       @click="scroll(-250)"
+      :class="{ hidden: isMostLeftPosition }"
     >
       <img :src="leftArrow" />
     </button>
     <button
       class="absolute z-10 bg-white w-9 h-9 shadow-lg top-1/2 right-2 transform -translate-y-1/2 rounded-lg flex items-start p-2.5"
       @click="scroll(250)"
+      :class="{ hidden: isMostRightPosition }"
     >
       <img :src="rightArrow" />
     </button>
