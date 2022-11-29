@@ -29,7 +29,7 @@
   "dependencies": {
     "@heroicons/vue": "^2.0.11",
     "@pinia/testing": "^0.0.14",
-    "@vcmap/core": "^5.0.0-rc.24",
+    "@vcmap/core": "git://git@github.com/virtualcitySYSTEMS/map-core.git",
     "ol": "^7.1.0",
     "pinia": "^2.0.21",
     "rollup-plugin-strip-pragma": "^1.0.0",

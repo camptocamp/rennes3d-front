@@ -2,7 +2,7 @@ import { ref } from 'vue'
 import type { Ref } from 'vue'
 import { defineStore } from 'pinia'
 import type { Feature } from 'ol'
-import type { Geometry } from 'ol/geom'
+import type { Point } from 'ol/geom'
 import {
   type StationsModel,
   getStationModelFromFeature,
@@ -11,7 +11,7 @@ import {
 export const useStationsStore = defineStore('stores', () => {
   const selectedStation: Ref<StationsModel | null> = ref(null)
 
-  function selectStation(stationFeature?: Feature<Geometry>) {
+  function selectStation(stationFeature?: Feature<Point>) {
     selectedStation.value = stationFeature
       ? getStationModelFromFeature(stationFeature)
       : null
