@@ -184,7 +184,7 @@
       "name": "poi",
       "url": "https://gist.githubusercontent.com/ismailsunni/561f39f97f8e1a36491207a61224270c/raw/bb7ddd1c233760fb3cf8ce562f8a3302846ade57/POI.geojson",
       "type": "GeoJSONLayer",
-      "activeOnStartup": true,
+      "activeOnStartup": false,
       "style": {
         "name": "poiStyle",
         "type": "DeclarativeStyleItem",
