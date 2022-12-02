@@ -33,7 +33,7 @@ const props = defineProps({
       </div>
     </div>
     <div
-      class="flex flex-col items-start p-0 px-2 py-3 border border-slate-200 rounded"
+      class="flex flex-col items-start p-0 px-3 py-2 border border-slate-200 rounded"
     >
       <div class="text-xs text-neutral-700 font-normal">Toutes les</div>
       <div class="font-bold text-sm text-neutral-800">

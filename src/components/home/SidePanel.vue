@@ -1,8 +1,6 @@
 <script lang="ts" setup>
 import { usePanelsStore } from '@/stores/panels'
-
-import { ChevronRightIcon } from '@heroicons/vue/20/solid'
-import { ChevronLeftIcon } from '@heroicons/vue/20/solid'
+import UiPanelControlButton from '@/components/ui/UiPanelControlButton.vue'
 
 const panelStore = usePanelsStore()
 function toggleInformationPanel() {
@@ -19,17 +17,11 @@ function toggleInformationPanel() {
       <slot></slot>
     </div>
     <div class="relative max-h-0 top-28">
-      <button
+      <UiPanelControlButton
+        :anchor-position="'left'"
+        :is-open="panelStore.isInformationPanelShown"
         @click="toggleInformationPanel"
-        class="w-7 h-11 gap-4 bg-white rounded-r-xl"
-      >
-        <ChevronLeftIcon
-          :class="{ hidden: !panelStore.isInformationPanelShown }"
-        ></ChevronLeftIcon>
-        <ChevronRightIcon
-          :class="{ hidden: panelStore.isInformationPanelShown }"
-        ></ChevronRightIcon>
-      </button>
+      ></UiPanelControlButton>
     </div>
   </div>
 </template>

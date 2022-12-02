@@ -1,10 +1,10 @@
 <script lang="ts" setup>
-import UiLinkMetis from './UiLinkMetis.vue'
+import UiLinkPrimary from './UiLinkPrimary.vue'
 </script>
 
 <template>
   <Story
-    title="Link Metis"
+    title="Link Primary"
     :layout="{
       type: 'grid',
       width: 500,
@@ -13,16 +13,19 @@ import UiLinkMetis from './UiLinkMetis.vue'
   >
     <Variant title="Default color">
       <template #default>
-        <UiLinkMetis class="w-fit">Voir plus</UiLinkMetis>
+        <UiLinkPrimary :url="'https://www.camptocamp.com/en'" class="w-fit"
+          >Voir plus</UiLinkPrimary
+        >
       </template>
     </Variant>
     <Variant title="Red 600">
       <template #default>
-        <UiLinkMetis
+        <UiLinkPrimary
+          :url="'https://www.camptocamp.com/en'"
           class="w-fit"
           :arrowStrokeColor="'stroke-red-600'"
           :underlineColor="'bg-red-600'"
-          >Voir plus</UiLinkMetis
+          >Voir plus</UiLinkPrimary
         >
       </template>
     </Variant>

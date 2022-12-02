@@ -4,10 +4,10 @@ import MapComponent from '../components/map/MapComponent.vue'
 import LineDescriptions from '../components/home/LineDescriptions.vue'
 import TravelTimes from '../components/home/TravelTimes.vue'
 import UiTrambusTitle from '../components/ui/UiTrambusTitle.vue'
-import UiRennesLogo from '../components/ui/UiRennesLogo.vue'
-import NetworkFigures from '../components/home/NetworkFigures.vue'
 import SidePanel from '@/components/home/SidePanel.vue'
 import PlanningView from './PlanningView.vue'
+import FooterArea from '@/components/home/FooterArea.vue'
+
 import { usePanelsStore } from '@/stores/panels'
 
 const panelStore = usePanelsStore()
@@ -17,21 +17,12 @@ const panelStore = usePanelsStore()
   <main class="h-screen flex">
     <aside class="z-10 absolute">
       <SidePanel>
-        <article>
-          <UiTrambusTitle></UiTrambusTitle>
-        </article>
-        <article>
-          <NetworkFigures></NetworkFigures>
-        </article>
-        <article>
-          <TravelTimes></TravelTimes>
-        </article>
-        <article>
-          <LineDescriptions></LineDescriptions>
-        </article>
-        <article>
-          <UiRennesLogo></UiRennesLogo>
-        </article>
+        <UiTrambusTitle></UiTrambusTitle>
+        <TravelTimes class="border-b border-neutral-300"></TravelTimes>
+        <LineDescriptions
+          class="border-b border-neutral-300"
+        ></LineDescriptions>
+        <FooterArea></FooterArea>
       </SidePanel>
     </aside>
     <div class="grow">
