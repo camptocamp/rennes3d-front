@@ -1,17 +1,22 @@
 <script setup lang="ts">
 import { useLayersStore } from '@/stores/layers'
-import { CesiumMap, Context, VcsApp } from '@vcmap/core'
-import { onMounted, provide, ref } from 'vue'
+import { useStationsStore } from '@/stores/stations'
+import { CesiumMap, Context, VcsApp, EventType } from '@vcmap/core'
+import { onMounted, onUnmounted, provide, ref } from 'vue'
 import mapConfig from '../../map.config.json'
 import UiMap from '../ui/UiMap.vue'
 import NavigationButtons from './buttons/NavigationButtons.vue'
 import HeadToolbarTrambus from '@/components/map/HeadToolbarTrambus.vue'
+import SelectStationInteraction, {
+  explodeStationPOIs,
+} from '@/interactions/selectStation'
 
 const app = new VcsApp()
 provide('vcsApp', app)
 
 const appLoaded = ref(false)
 const layerStore = useLayersStore()
+const staionStore = useStationsStore()
 
 onMounted(async () => {
   const context = new Context(mapConfig)
@@ -21,7 +26,15 @@ onMounted(async () => {
   if (cesiumMap && cesiumMap instanceof CesiumMap) {
     cesiumMap.getScene().globe.maximumScreenSpaceError = 1
   }
+  app.maps.eventHandler.featureInteraction.setActive(EventType.CLICKMOVE)
+  app.maps.eventHandler.addPersistentInteraction(
+    new SelectStationInteraction('trambusStops')
+  )
   appLoaded.value = true
+})
+
+onUnmounted(() => {
+  app.destroy()
 })
 
 function setLayerVisible(layerName: string, visible: boolean) {
@@ -37,6 +50,10 @@ layerStore.$subscribe(() => {
   setLayerVisible('metro', layerStore.visibilities.metro)
   setLayerVisible('bus', layerStore.visibilities.bus)
   setLayerVisible('bike', layerStore.visibilities.bike)
+})
+
+staionStore.$subscribe(() => {
+  explodeStationPOIs(app, 'poi', staionStore.selectedStation)
 })
 </script>
 
