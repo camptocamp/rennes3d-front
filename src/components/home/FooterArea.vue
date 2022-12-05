@@ -4,7 +4,7 @@ import UiLinkFooter from '@/components/ui/UiLinkFooter.vue'
 </script>
 <template>
   <footer
-    class="flex flex-col p-0 gap-4 font-dm-sans divide-y divide-neutral-200"
+    class="flex flex-col p-2 gap-4 font-dm-sans divide-y divide-neutral-200"
   >
     <div class="flex p-0 gap-6">
       <UiRennesLogo class="w-36 h-7"></UiRennesLogo>

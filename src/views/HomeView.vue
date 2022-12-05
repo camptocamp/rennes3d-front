@@ -18,9 +18,9 @@ const panelStore = usePanelsStore()
     <aside class="z-10 absolute">
       <SidePanel>
         <UiTrambusTitle></UiTrambusTitle>
-        <TravelTimes class="border-b border-neutral-300"></TravelTimes>
+        <TravelTimes class="border-b border-neutral-300 pb-2"></TravelTimes>
         <LineDescriptions
-          class="border-b border-neutral-300"
+          class="grow border-b border-neutral-300"
         ></LineDescriptions>
         <FooterArea></FooterArea>
       </SidePanel>
