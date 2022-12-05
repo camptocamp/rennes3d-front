@@ -24,6 +24,9 @@ onMounted(async () => {
   appLoaded.value = true
 })
 
+// The following code is needed to cleanup resources we created
+// (in this case, the vcsApp) once a component gets destroyed (unmounted).
+// Otherwise, we will keep on rendering the vcsApp in its container after a hot reload.
 onUnmounted(() => {
   app.destroy()
 })
