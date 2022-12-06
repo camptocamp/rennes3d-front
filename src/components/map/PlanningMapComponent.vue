@@ -70,7 +70,7 @@ const styles: Record<LineStatus, Style> = {
   underConstruction: new Style({
     stroke: new Stroke({
       color: '#F43F5E',
-      width: 3,
+      width: 4,
     }),
     zIndex: 2,
   }),
@@ -78,14 +78,14 @@ const styles: Record<LineStatus, Style> = {
   constructionFinished: new Style({
     stroke: new Stroke({
       color: '#FACC15',
-      width: 3,
+      width: 4,
     }),
     zIndex: 2,
   }),
   commisioning: new Style({
     stroke: new Stroke({
       color: '#65A30D',
-      width: 3,
+      width: 4,
     }),
     zIndex: 2,
   }),
@@ -125,14 +125,14 @@ const styleFunction: StyleFunction = function (feature: FeatureLike): Style[] {
     new Style({
       stroke: new Stroke({
         color: '#FFFFFF',
-        width: 6,
+        width: 7,
       }),
       zIndex: 1,
     }),
     new Style({
       stroke: new Stroke({
-        color: '#000000',
-        width: 8,
+        color: '#1E293B',
+        width: 9,
       }),
       zIndex: 0,
     }),
