@@ -15,11 +15,12 @@ import { Style, Stroke } from 'ol/style'
 import type { StyleFunction } from 'ol/style/Style'
 import type { FeatureLike } from 'ol/Feature'
 import { usePlanningStore } from '@/stores/planning'
+import OlNavigationButtons from './buttons/OlNavigationButtons.vue'
 
 const planningStore = usePlanningStore()
 
 // Create map and provide it to the descendant to avoid reactivity on map object
-let map = new Map()
+let map = new Map({ controls: [] })
 provide('map', map)
 
 const mapLoaded = ref(false)
@@ -171,4 +172,5 @@ planningStore.$subscribe(() => {
 </script>
 <template>
   <UiOLMap v-if="mapLoaded"></UiOLMap>
+  <OlNavigationButtons></OlNavigationButtons>
 </template>
