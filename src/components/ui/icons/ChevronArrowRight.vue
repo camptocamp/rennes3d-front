@@ -4,7 +4,7 @@ import { computed } from 'vue'
 const props = defineProps({
   strokeColor: {
     type: String,
-    default: 'stroke-white',
+    default: 'stroke-black',
   },
 })
 

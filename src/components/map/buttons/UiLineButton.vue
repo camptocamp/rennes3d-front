@@ -33,6 +33,13 @@ const textStyle = computed(() => {
   const textColor = getColor('text', props.line, 600)
   return [textColor]
 })
+const arrowStrokeColor = computed(() => {
+  if (props.active) {
+    return 'stroke-white'
+  }
+  const strokeColor = getColor('stroke', props.line, 600)
+  return strokeColor
+})
 </script>
 
 <template>
@@ -46,6 +53,9 @@ const textStyle = computed(() => {
     >
       {{ 'T' + props.line }}
     </div>
-    <ChevronArrowRight :class="{ hidden: !props.chevron }"></ChevronArrowRight>
+    <ChevronArrowRight
+      :class="{ hidden: !props.chevron }"
+      :strokeColor="arrowStrokeColor"
+    ></ChevronArrowRight>
   </button>
 </template>
