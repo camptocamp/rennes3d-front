@@ -62,15 +62,15 @@ type LineStatus =
 
 const styles: Record<LineStatus, Style> = {
   unStarted: new Style({
-    // stroke: new Stroke({
-    //   color: '#000000',
-    //   width: 3,
-    //   // lineDash: [5],
-    // }),
+    stroke: new Stroke({
+      color: '#94A3B8', // gray-300
+      width: 4,
+    }),
+    zIndex: 2,
   }),
   underConstruction: new Style({
     stroke: new Stroke({
-      color: '#F43F5E',
+      color: '#F43F5E', // rose-500
       width: 4,
     }),
     zIndex: 2,
@@ -78,14 +78,14 @@ const styles: Record<LineStatus, Style> = {
 
   constructionFinished: new Style({
     stroke: new Stroke({
-      color: '#FACC15',
+      color: '#FACC15', // amber-400
       width: 4,
     }),
     zIndex: 2,
   }),
   commisioning: new Style({
     stroke: new Stroke({
-      color: '#65A30D',
+      color: '#65A30D', // lime-600
       width: 4,
     }),
     zIndex: 2,
