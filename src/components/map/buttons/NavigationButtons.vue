@@ -15,6 +15,15 @@ const state = reactive({
 
 async function toggleMap() {
   await vcsApp.maps.setActiveMap(state.is3D ? 'ol' : 'cesium')
+  if (state.is3D) {
+    vcsApp.layers.getByKey('rennesOrtho')?.deactivate()
+    await vcsApp.layers.getByKey('rennesBase')?.activate()
+  } else {
+    await vcsApp.layers.getByKey('rennesOrtho')?.activate()
+    vcsApp.layers.getByKey('rennesBase')?.deactivate()
+  }
+
+  // Change base layer here 3D vs 2D
   state.is3D = vcsApp.maps.activeMap.name === 'cesium'
 }
 
