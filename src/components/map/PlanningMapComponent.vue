@@ -72,6 +72,7 @@ const styles: Record<LineStatus, Style> = {
       color: '#F43F5E',
       width: 3,
     }),
+    zIndex: 2,
   }),
 
   constructionFinished: new Style({
@@ -79,12 +80,14 @@ const styles: Record<LineStatus, Style> = {
       color: '#FACC15',
       width: 3,
     }),
+    zIndex: 2,
   }),
   commisioning: new Style({
     stroke: new Stroke({
       color: '#65A30D',
       width: 3,
     }),
+    zIndex: 2,
   }),
 }
 
@@ -116,24 +119,9 @@ function getStyleName(feature: FeatureLike): LineStatus {
   }
 }
 
-const styleFunction: StyleFunction = function (feature: FeatureLike): Style {
-  return styles[getStyleName(feature)]
-}
-
-const planningLayer = new VectorLayer({
-  source: new VectorSource({
-    url: 'https://gist.githubusercontent.com/ismailsunni/561f39f97f8e1a36491207a61224270c/raw/b477374024d797785eea7e9cc23d01766e3812f5/planning_rm.geojson',
-    format: new GeoJSON(),
-  }),
-  style: styleFunction,
-})
-
-const baseLayer = new VectorLayer({
-  source: new VectorSource({
-    url: 'https://gist.githubusercontent.com/ismailsunni/561f39f97f8e1a36491207a61224270c/raw/b477374024d797785eea7e9cc23d01766e3812f5/planning_rm.geojson',
-    format: new GeoJSON(),
-  }),
-  style: [
+const styleFunction: StyleFunction = function (feature: FeatureLike): Style[] {
+  return [
+    styles[getStyleName(feature)],
     new Style({
       stroke: new Stroke({
         color: '#FFFFFF',
@@ -148,7 +136,15 @@ const baseLayer = new VectorLayer({
       }),
       zIndex: 0,
     }),
-  ],
+  ]
+}
+
+const planningLayer = new VectorLayer({
+  source: new VectorSource({
+    url: 'https://gist.githubusercontent.com/ismailsunni/561f39f97f8e1a36491207a61224270c/raw/b477374024d797785eea7e9cc23d01766e3812f5/planning_rm.geojson',
+    format: new GeoJSON(),
+  }),
+  style: styleFunction,
 })
 
 function setupMap() {
@@ -161,7 +157,7 @@ function setupMap() {
       minZoom: 12.5,
     })
   )
-  map.setLayers([rennesBaseMap, baseLayer, planningLayer])
+  map.setLayers([rennesBaseMap, planningLayer])
   mapLoaded.value = true
 }
 
