@@ -2,7 +2,7 @@
 import type { LineNumber } from '@/model/lines.model'
 import { computed, type PropType } from 'vue'
 import { getColor } from '@/services/color'
-import ChevronArrow from '@/components/ui/icons/ChevronArrow.vue'
+import ChevronArrowRight from '@/components/ui/icons/ChevronArrowRight.vue'
 
 const props = defineProps({
   line: {
@@ -46,7 +46,6 @@ const textStyle = computed(() => {
     >
       {{ 'T' + props.line }}
     </div>
-    <!-- TODO: handle different direction (currently only to the right) -->
-    <ChevronArrow :class="{ hidden: !props.chevron }"></ChevronArrow>
+    <ChevronArrowRight :class="{ hidden: !props.chevron }"></ChevronArrowRight>
   </button>
 </template>
