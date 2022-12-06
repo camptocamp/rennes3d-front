@@ -11,25 +11,25 @@ import UiLineButton from './UiLineButton.vue'
     }"
     group="ui-base"
   >
-    <Variant title="Small">
+    <Variant title="T1 - Active - no chevron">
       <template #default>
-        <UiLineButton :line="1"></UiLineButton>
+        <UiLineButton :line="1" :chevron="false"></UiLineButton>
       </template>
     </Variant>
-    <!-- <Variant title="Medium">
+    <Variant title="T2 - Active - chevron">
       <template #default>
-        <IconLine :line="2" :size="'m'"> </IconLine>
+        <UiLineButton :line="2" :chevron="true"></UiLineButton>
       </template>
     </Variant>
-    <Variant title="Large">
+    <Variant title="T3 - inactive - no chevron">
       <template #default>
-        <IconLine :line="3" :size="'l'"> </IconLine>
+        <UiLineButton :line="3" :chevron="false"></UiLineButton>
       </template>
     </Variant>
-    <Variant title="Extra Large">
+    <Variant title="T4 - inactive - chevron">
       <template #default>
-        <IconLine :line="4" :size="'xl'"> </IconLine>
+        <UiLineButton :line="4" :chevron="true"></UiLineButton>
       </template>
-    </Variant> -->
+    </Variant>
   </Story>
 </template>
