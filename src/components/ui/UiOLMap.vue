@@ -29,12 +29,12 @@ onMounted(async () => {
 }
 
 :deep(.ol-zoom-in) {
-  border-top-left-radius: 1.5rem /* 24px */;
-  border-top-right-radius: 1.5rem /* 24px */;
+  width: 48px;
+  height: 48px;
 }
 
 :deep(.ol-zoom-out) {
-  border-bottom-right-radius: 1.5rem /* 24px */;
-  border-bottom-left-radius: 1.5rem /* 24px */;
+  width: 48px;
+  height: 48px;
 }
 </style>
