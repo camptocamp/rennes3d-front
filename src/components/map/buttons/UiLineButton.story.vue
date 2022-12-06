@@ -13,22 +13,22 @@ import UiLineButton from './UiLineButton.vue'
   >
     <Variant title="T1 - Active - no chevron">
       <template #default>
-        <UiLineButton :line="1" :chevron="false"></UiLineButton>
+        <UiLineButton :line="1" :chevron="false" :active="true"></UiLineButton>
       </template>
     </Variant>
     <Variant title="T2 - Active - chevron">
       <template #default>
-        <UiLineButton :line="2" :chevron="true"></UiLineButton>
+        <UiLineButton :line="2" :chevron="true" :active="true"></UiLineButton>
       </template>
     </Variant>
-    <Variant title="T3 - inactive - no chevron">
+    <Variant title="T3 - Inactive - no chevron">
       <template #default>
-        <UiLineButton :line="3" :chevron="false"></UiLineButton>
+        <UiLineButton :line="3" :chevron="false" :active="false"></UiLineButton>
       </template>
     </Variant>
-    <Variant title="T4 - inactive - chevron">
+    <Variant title="T4 - Inactive - chevron">
       <template #default>
-        <UiLineButton :line="4" :chevron="true"></UiLineButton>
+        <UiLineButton :line="4" :chevron="true" :active="false"></UiLineButton>
       </template>
     </Variant>
   </Story>

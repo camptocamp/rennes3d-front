@@ -26,6 +26,10 @@ module.exports = {
     'stroke-pink-50',
     'stroke-emerald-50',
     'stroke-purple-50',
+    'text-indigo-600',
+    'text-pink-600',
+    'text-emerald-600',
+    'text-purple-600',
     // Link colors
     'before:bg-neutral-900',
     'stroke-neutral-900',

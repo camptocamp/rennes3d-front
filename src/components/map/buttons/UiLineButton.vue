@@ -20,8 +20,18 @@ const props = defineProps({
 })
 
 const buttonStyle = computed(() => {
+  if (!props.active) {
+    return 'bg-white'
+  }
   const bgColor = getColor('bg', props.line, 600)
   return [bgColor]
+})
+const textStyle = computed(() => {
+  if (props.active) {
+    return 'text-white'
+  }
+  const textColor = getColor('text', props.line, 600)
+  return [textColor]
 })
 </script>
 
@@ -30,7 +40,7 @@ const buttonStyle = computed(() => {
     :class="buttonStyle"
     class="flex items-center py-0.5 px-2 gap-1 shadow-lg rounded-tr-xl rounded-tl-xl rounded-br-none rounded-bl-xl h-6 min-w-fit"
   >
-    <div class="font-bold font-dm-sans text-sm text-center text-white">
+    <div class="font-bold font-dm-sans text-sm text-center" :class="textStyle">
       {{ 'T' + props.line }}
     </div>
     <!-- TODO: handle different direction (currently only to the right) -->
