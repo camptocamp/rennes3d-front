@@ -14,6 +14,7 @@ const styleClass = computed(() => {
 </script>
 <template>
   <svg
+    class="stroke-2"
     :class="styleClass"
     width="12"
     height="12"

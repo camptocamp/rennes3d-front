@@ -38,9 +38,12 @@ const textStyle = computed(() => {
 <template>
   <button
     :class="buttonStyle"
-    class="flex items-center py-0.5 px-2 gap-1 shadow-lg rounded-tr-xl rounded-tl-xl rounded-br-none rounded-bl-xl h-6 min-w-fit"
+    class="flex items-center py-0.5 px-2 gap-1 shadow-lg rounded-tr-xl rounded-tl-xl rounded-br-none rounded-bl-xl min-w-fit"
   >
-    <div class="font-bold font-dm-sans text-sm text-center" :class="textStyle">
+    <div
+      class="font-bold font-dm-sans text-sm text-center items-center"
+      :class="textStyle"
+    >
       {{ 'T' + props.line }}
     </div>
     <!-- TODO: handle different direction (currently only to the right) -->
