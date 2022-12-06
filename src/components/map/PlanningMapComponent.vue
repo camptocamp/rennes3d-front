@@ -61,27 +61,28 @@ type LineStatus =
 
 const styles: Record<LineStatus, Style> = {
   unStarted: new Style({
-    stroke: new Stroke({
-      color: '#000000',
-      width: 3,
-      lineDash: [5],
-    }),
+    // stroke: new Stroke({
+    //   color: '#000000',
+    //   width: 3,
+    //   // lineDash: [5],
+    // }),
   }),
   underConstruction: new Style({
     stroke: new Stroke({
-      color: '#D7191C',
+      color: '#F43F5E',
       width: 3,
     }),
   }),
+
   constructionFinished: new Style({
     stroke: new Stroke({
-      color: '#FDBF6F',
+      color: '#FACC15',
       width: 3,
     }),
   }),
   commisioning: new Style({
     stroke: new Stroke({
-      color: '#04B200',
+      color: '#65A30D',
       width: 3,
     }),
   }),
@@ -127,6 +128,29 @@ const planningLayer = new VectorLayer({
   style: styleFunction,
 })
 
+const baseLayer = new VectorLayer({
+  source: new VectorSource({
+    url: 'https://gist.githubusercontent.com/ismailsunni/561f39f97f8e1a36491207a61224270c/raw/b477374024d797785eea7e9cc23d01766e3812f5/planning_rm.geojson',
+    format: new GeoJSON(),
+  }),
+  style: [
+    new Style({
+      stroke: new Stroke({
+        color: '#FFFFFF',
+        width: 6,
+      }),
+      zIndex: 1,
+    }),
+    new Style({
+      stroke: new Stroke({
+        color: '#000000',
+        width: 8,
+      }),
+      zIndex: 0,
+    }),
+  ],
+})
+
 function setupMap() {
   map.setTarget('mapContainer')
   map.setView(
@@ -137,7 +161,7 @@ function setupMap() {
       minZoom: 12.5,
     })
   )
-  map.setLayers([rennesBaseMap, planningLayer])
+  map.setLayers([rennesBaseMap, baseLayer, planningLayer])
   mapLoaded.value = true
 }
 
