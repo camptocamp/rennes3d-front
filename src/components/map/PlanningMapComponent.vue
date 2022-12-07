@@ -132,9 +132,9 @@ function setupMap() {
   map.setView(
     new View({
       center: fromLonLat([-1.67, 48.101]),
-      zoom: 12.5,
+      zoom: 12,
       maxZoom: 15,
-      minZoom: 12.5,
+      minZoom: 12,
     })
   )
   map.setLayers([rennesBaseMap, planningLayer])
