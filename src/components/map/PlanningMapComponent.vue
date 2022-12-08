@@ -15,6 +15,9 @@ import { Style, Stroke } from 'ol/style'
 import type { StyleFunction } from 'ol/style/Style'
 import type { FeatureLike } from 'ol/Feature'
 import { usePlanningStore } from '@/stores/planning'
+import { Overlay } from 'ol'
+// import UiLineButton from './buttons/UiLineButton.vue'
+// import { createApp } from 'vue'
 
 const planningStore = usePlanningStore()
 
@@ -127,6 +130,20 @@ const planningLayer = new VectorLayer({
   style: styleFunction,
 })
 
+// var ComponentApp = createApp(UiLineButton)
+// const wrapper = document.createElement('div')
+// ComponentApp.mount(wrapper)
+
+function addOverlay(olMap: Map, lng: number, lat: number, content: string) {
+  const element = document.createElement('div')
+  element.innerHTML = content
+  const overlay = new Overlay({
+    element: element,
+    position: fromLonLat([lng, lat]),
+  })
+  olMap.addOverlay(overlay)
+}
+
 function setupMap() {
   map.setTarget('mapContainer')
   map.setView(
@@ -138,6 +155,7 @@ function setupMap() {
     })
   )
   map.setLayers([rennesBaseMap, planningLayer])
+  addOverlay(map, -1.67, 48.101, '<div>HTML content.</div>')
   mapLoaded.value = true
 }
 
