@@ -57,8 +57,10 @@ It is accessible through https://argocd.apps.green.gs-fr-prod.camptocamp.com/ wi
 
 #### Set up repo
 
-This project must have the right to push on the [argocd](https://github.com/camptocamp/argocd-gs-rennes3d-apps) one.
-So you need to set up key, private key must be store in the secret ARGOCD_PRIVATE_KEY and public key must be set as deployment key on the argocd side.
+The argocd [argocd](https://github.com/camptocamp/argocd-gs-rennes3d-apps) and this project must be set up, a private/public key must be generated (ie with openssl).
+
+- This project must have the right to push on the [argocd](https://github.com/camptocamp/argocd-gs-rennes3d-apps) one. The private key must be store in the secret ARGOCD_PRIVATE_KEY for the pipeline to work.
+- [argocd](https://github.com/camptocamp/argocd-gs-rennes3d-apps) Must register the public key as "deployment key" in the github configuration.
 
 #### Change the conf
 
