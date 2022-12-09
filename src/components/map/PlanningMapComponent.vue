@@ -18,11 +18,12 @@ import { usePlanningStore } from '@/stores/planning'
 import { Overlay } from 'ol'
 // import UiLineButton from './buttons/UiLineButton.vue'
 // import { createApp } from 'vue'
+import OlNavigationButtons from './buttons/OlNavigationButtons.vue'
 
 const planningStore = usePlanningStore()
 
 // Create map and provide it to the descendant to avoid reactivity on map object
-let map = new Map()
+let map = new Map({ controls: [] })
 provide('map', map)
 
 const mapLoaded = ref(false)
@@ -65,28 +66,32 @@ type LineStatus =
 const styles: Record<LineStatus, Style> = {
   unStarted: new Style({
     stroke: new Stroke({
-      color: '#000000',
-      width: 3,
-      lineDash: [5],
+      color: '#94A3B8', // gray-300
+      width: 4,
     }),
+    zIndex: 2,
   }),
   underConstruction: new Style({
     stroke: new Stroke({
-      color: '#D7191C',
-      width: 3,
+      color: '#F43F5E', // rose-500
+      width: 4,
     }),
+    zIndex: 2,
   }),
+
   constructionFinished: new Style({
     stroke: new Stroke({
-      color: '#FDBF6F',
-      width: 3,
+      color: '#FACC15', // amber-400
+      width: 4,
     }),
+    zIndex: 2,
   }),
   commisioning: new Style({
     stroke: new Stroke({
-      color: '#04B200',
-      width: 3,
+      color: '#65A30D', // lime-600
+      width: 4,
     }),
+    zIndex: 2,
   }),
 }
 
@@ -99,10 +104,14 @@ function convertAttributeToDate(attribute: string): Date {
 
 function getStyleName(feature: FeatureLike): LineStatus {
   const inProgressDate = convertAttributeToDate(
-    String(feature.get('en_cours_t'))
+    String(feature.get('phase_travaux'))
   )
-  const finishedDate = convertAttributeToDate(String(feature.get('amenage_t')))
-  const commisionedDate = convertAttributeToDate(String(feature.get('livre_t')))
+  const finishedDate = convertAttributeToDate(
+    String(feature.get('phase_amenage'))
+  )
+  const commisionedDate = convertAttributeToDate(
+    String(feature.get('phase_livre'))
+  )
   const selectedDate = planningStore.getSelectedDate()
 
   if (selectedDate >= commisionedDate) {
@@ -118,13 +127,29 @@ function getStyleName(feature: FeatureLike): LineStatus {
   }
 }
 
-const styleFunction: StyleFunction = function (feature: FeatureLike): Style {
-  return styles[getStyleName(feature)]
+const styleFunction: StyleFunction = function (feature: FeatureLike): Style[] {
+  return [
+    styles[getStyleName(feature)],
+    new Style({
+      stroke: new Stroke({
+        color: '#FFFFFF',
+        width: 7,
+      }),
+      zIndex: 1,
+    }),
+    new Style({
+      stroke: new Stroke({
+        color: '#1E293B',
+        width: 9,
+      }),
+      zIndex: 0,
+    }),
+  ]
 }
 
 const planningLayer = new VectorLayer({
   source: new VectorSource({
-    url: 'https://gist.githubusercontent.com/ismailsunni/561f39f97f8e1a36491207a61224270c/raw/b477374024d797785eea7e9cc23d01766e3812f5/planning_rm.geojson',
+    url: 'https://public.sig.rennesmetropole.fr/geoserver/ows?service=WFS&request=getFeature&typename=trp_coll:trambus_lignes_planification&outputFormat=application/json&srsName=EPSG:4326',
     format: new GeoJSON(),
   }),
   style: styleFunction,
@@ -149,9 +174,9 @@ function setupMap() {
   map.setView(
     new View({
       center: fromLonLat([-1.67, 48.101]),
-      zoom: 12.5,
+      zoom: 12,
       maxZoom: 15,
-      minZoom: 12.5,
+      minZoom: 12,
     })
   )
   map.setLayers([rennesBaseMap, planningLayer])
@@ -169,4 +194,5 @@ planningStore.$subscribe(() => {
 </script>
 <template>
   <UiOLMap v-if="mapLoaded"></UiOLMap>
+  <OlNavigationButtons></OlNavigationButtons>
 </template>
