@@ -15,11 +15,12 @@ import { Style, Stroke } from 'ol/style'
 import type { StyleFunction } from 'ol/style/Style'
 import type { FeatureLike } from 'ol/Feature'
 import { usePlanningStore } from '@/stores/planning'
+import OlNavigationButtons from './buttons/OlNavigationButtons.vue'
 
 const planningStore = usePlanningStore()
 
 // Create map and provide it to the descendant to avoid reactivity on map object
-let map = new Map()
+let map = new Map({ controls: [] })
 provide('map', map)
 
 const mapLoaded = ref(false)
@@ -62,28 +63,32 @@ type LineStatus =
 const styles: Record<LineStatus, Style> = {
   unStarted: new Style({
     stroke: new Stroke({
-      color: '#000000',
-      width: 3,
-      lineDash: [5],
+      color: '#94A3B8', // gray-300
+      width: 4,
     }),
+    zIndex: 2,
   }),
   underConstruction: new Style({
     stroke: new Stroke({
-      color: '#D7191C',
-      width: 3,
+      color: '#F43F5E', // rose-500
+      width: 4,
     }),
+    zIndex: 2,
   }),
+
   constructionFinished: new Style({
     stroke: new Stroke({
-      color: '#FDBF6F',
-      width: 3,
+      color: '#FACC15', // amber-400
+      width: 4,
     }),
+    zIndex: 2,
   }),
   commisioning: new Style({
     stroke: new Stroke({
-      color: '#04B200',
-      width: 3,
+      color: '#65A30D', // lime-600
+      width: 4,
     }),
+    zIndex: 2,
   }),
 }
 
@@ -119,8 +124,24 @@ function getStyleName(feature: FeatureLike): LineStatus {
   }
 }
 
-const styleFunction: StyleFunction = function (feature: FeatureLike): Style {
-  return styles[getStyleName(feature)]
+const styleFunction: StyleFunction = function (feature: FeatureLike): Style[] {
+  return [
+    styles[getStyleName(feature)],
+    new Style({
+      stroke: new Stroke({
+        color: '#FFFFFF',
+        width: 7,
+      }),
+      zIndex: 1,
+    }),
+    new Style({
+      stroke: new Stroke({
+        color: '#1E293B',
+        width: 9,
+      }),
+      zIndex: 0,
+    }),
+  ]
 }
 
 const planningLayer = new VectorLayer({
@@ -155,4 +176,5 @@ planningStore.$subscribe(() => {
 </script>
 <template>
   <UiOLMap v-if="mapLoaded"></UiOLMap>
+  <OlNavigationButtons></OlNavigationButtons>
 </template>
