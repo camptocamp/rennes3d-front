@@ -96,10 +96,14 @@ function convertAttributeToDate(attribute: string): Date {
 
 function getStyleName(feature: FeatureLike): LineStatus {
   const inProgressDate = convertAttributeToDate(
-    String(feature.get('en_cours_t'))
+    String(feature.get('phase_travaux'))
   )
-  const finishedDate = convertAttributeToDate(String(feature.get('amenage_t')))
-  const commisionedDate = convertAttributeToDate(String(feature.get('livre_t')))
+  const finishedDate = convertAttributeToDate(
+    String(feature.get('phase_amenage'))
+  )
+  const commisionedDate = convertAttributeToDate(
+    String(feature.get('phase_livre'))
+  )
   const selectedDate = planningStore.getSelectedDate()
 
   if (selectedDate >= commisionedDate) {
@@ -121,7 +125,7 @@ const styleFunction: StyleFunction = function (feature: FeatureLike): Style {
 
 const planningLayer = new VectorLayer({
   source: new VectorSource({
-    url: 'https://gist.githubusercontent.com/ismailsunni/561f39f97f8e1a36491207a61224270c/raw/b477374024d797785eea7e9cc23d01766e3812f5/planning_rm.geojson',
+    url: 'https://public.sig.rennesmetropole.fr/geoserver/ows?service=WFS&request=getFeature&typename=trp_coll:trambus_lignes_planification&outputFormat=application/json&srsName=EPSG:4326',
     format: new GeoJSON(),
   }),
   style: styleFunction,
