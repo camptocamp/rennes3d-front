@@ -63,7 +63,7 @@ type LineStatus =
   | 'constructionFinished'
   | 'commisioning'
 
-const styles: Record<LineStatus, Style> = {
+const lineStyles: Record<LineStatus, Style> = {
   unStarted: new Style({
     stroke: new Stroke({
       color: '#94A3B8', // gray-300
@@ -127,24 +127,79 @@ function getStyleName(feature: FeatureLike): LineStatus {
   }
 }
 
+function getLineNumber(feature: FeatureLike): number {
+  let lineNumberString = feature.get('li_code') // e.g. T1
+  return Number(lineNumberString.substr(lineNumberString.length - 1))
+}
+
+function isLineSelected(feature: FeatureLike): boolean {
+  return planningStore.selectedLine == getLineNumber(feature)
+}
+
 const styleFunction: StyleFunction = function (feature: FeatureLike): Style[] {
-  return [
-    styles[getStyleName(feature)],
-    new Style({
-      stroke: new Stroke({
-        color: '#FFFFFF',
-        width: 7,
+  // No active/selected line
+  if ([1, 2, 3, 4].indexOf(planningStore.selectedLine) == -1)
+    return [
+      lineStyles[getStyleName(feature)],
+      // Border
+      new Style({
+        stroke: new Stroke({
+          color: '#FFFFFF',
+          width: 7,
+        }),
+        zIndex: 1,
       }),
-      zIndex: 1,
-    }),
-    new Style({
-      stroke: new Stroke({
-        color: '#1E293B',
-        width: 9,
+      new Style({
+        stroke: new Stroke({
+          color: '#0F172A', // slate-800
+          width: 9,
+        }),
+        zIndex: 0,
       }),
-      zIndex: 0,
-    }),
-  ]
+    ]
+
+  // Neutral line style
+  if (isLineSelected(feature)) {
+    // Active line style
+    return [
+      lineStyles[getStyleName(feature)],
+      // Border
+      new Style({
+        stroke: new Stroke({
+          color: '#FFFFFF',
+          width: 7,
+        }),
+        zIndex: 1,
+      }),
+      new Style({
+        stroke: new Stroke({
+          color: '#1E293B',
+          width: 9,
+        }),
+        zIndex: 0,
+      }),
+    ]
+  } else {
+    // Inactive line style
+    return [
+      // lineStyles[getStyleName(feature)],
+      // Border
+      new Style({
+        stroke: new Stroke({
+          color: '#FFFFFF',
+          width: 2,
+        }),
+        zIndex: 1,
+      }),
+      new Style({
+        stroke: new Stroke({
+          color: '#525252', // neutral-600
+          width: 4,
+        }),
+        zIndex: 0,
+      }),
+    ]
+  }
 }
 
 const planningLayer = new VectorLayer({
