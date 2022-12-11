@@ -16,8 +16,7 @@ import type { StyleFunction } from 'ol/style/Style'
 import type { FeatureLike } from 'ol/Feature'
 import { usePlanningStore } from '@/stores/planning'
 import { Overlay } from 'ol'
-// import UiLineButton from './buttons/UiLineButton.vue'
-// import { createApp } from 'vue'
+import UiLineButton from './buttons/UiLineButton.vue'
 import OlNavigationButtons from './buttons/OlNavigationButtons.vue'
 
 const planningStore = usePlanningStore()
@@ -27,6 +26,7 @@ let map = new Map({ controls: [] })
 provide('map', map)
 
 const mapLoaded = ref(false)
+const line1 = ref(null)
 
 const resolutions = []
 const matrixIds = []
@@ -161,7 +161,7 @@ const planningLayer = new VectorLayer({
 
 function addOverlay(olMap: Map, lng: number, lat: number, content: string) {
   const element = document.createElement('div')
-  element.innerHTML = content
+  element.innerHTML = content // line1.value?.innerHTML
   const overlay = new Overlay({
     element: element,
     position: fromLonLat([lng, lat]),
@@ -180,12 +180,13 @@ function setupMap() {
     })
   )
   map.setLayers([rennesBaseMap, planningLayer])
-  addOverlay(map, -1.67, 48.101, '<div>HTML content.</div>')
+  addOverlay(map, -1.67, 48.101, '<div>Overlay</div>')
   mapLoaded.value = true
 }
 
 onMounted(async () => {
   setupMap()
+  console.log(`line1 ${line1.value}`)
 })
 
 planningStore.$subscribe(() => {
@@ -195,4 +196,38 @@ planningStore.$subscribe(() => {
 <template>
   <UiOLMap v-if="mapLoaded"></UiOLMap>
   <OlNavigationButtons></OlNavigationButtons>
+  <div class="absolute left-10 top-10 flex flex-row gap-1">
+    <UiLineButton
+      ref="line1"
+      :line="1"
+      :chevron="false"
+      :active="true"
+      :corner="'bl'"
+    >
+    </UiLineButton>
+    <UiLineButton
+      ref="line2"
+      :line="2"
+      :chevron="false"
+      :active="true"
+      :corner="'bl'"
+    >
+    </UiLineButton>
+    <UiLineButton
+      ref="line3"
+      :line="3"
+      :chevron="false"
+      :active="true"
+      :corner="'bl'"
+    >
+    </UiLineButton>
+    <UiLineButton
+      ref="line4"
+      :line="4"
+      :chevron="false"
+      :active="true"
+      :corner="'bl'"
+    >
+    </UiLineButton>
+  </div>
 </template>
