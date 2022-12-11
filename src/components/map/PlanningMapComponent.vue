@@ -272,7 +272,13 @@ planningStore.$subscribe(() => {
 })
 
 function setSelectedLine(line: number) {
-  planningStore.selectedLine = line
+  // If the line is currently active, set the selected line to 0  to make
+  // neutral state
+  if (planningStore.selectedLine == line) {
+    planningStore.selectedLine = 0
+  } else {
+    planningStore.selectedLine = line
+  }
 }
 </script>
 <template>
