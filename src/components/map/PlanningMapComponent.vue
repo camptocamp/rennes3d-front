@@ -19,6 +19,7 @@ import { Overlay } from 'ol'
 import UiLineButton from './buttons/UiLineButton.vue'
 import OlNavigationButtons from './buttons/OlNavigationButtons.vue'
 import type { LineNumber } from '@/model/lines.model'
+import * as ol_color from 'ol/color'
 
 const planningStore = usePlanningStore()
 
@@ -67,35 +68,21 @@ type LineStatus =
   | 'constructionFinished'
   | 'commisioning'
 
-const activeLineBorderStyles: Record<LineNumber, Style> = {
-  1: new Style({
+const lineColors: Record<LineNumber, ol_color.Color> = {
+  1: ol_color.fromString('#4338CA'), // indigo-600
+  2: ol_color.fromString('#DB2777'), // pink-600
+  3: ol_color.fromString('#057857'), // emerald-600
+  4: ol_color.fromString('#9333EA'), // purple-600
+}
+
+function activeLineBorderStyle(line: LineNumber) {
+  return new Style({
     stroke: new Stroke({
-      color: '#4338CA', // indigo-600
+      color: lineColors[line],
       width: 9,
     }),
     zIndex: 0,
-  }),
-  2: new Style({
-    stroke: new Stroke({
-      color: '#DB2777', // pink-600
-      width: 9,
-    }),
-    zIndex: 0,
-  }),
-  3: new Style({
-    stroke: new Stroke({
-      color: '#057857', // emerald-600
-      width: 9,
-    }),
-    zIndex: 0,
-  }),
-  4: new Style({
-    stroke: new Stroke({
-      color: '#9333EA', // purple-600
-      width: 9,
-    }),
-    zIndex: 0,
-  }),
+  })
 }
 
 const lineStyles: Record<LineStatus, Style> = {
@@ -197,7 +184,7 @@ const styleFunction: StyleFunction = function (feature: FeatureLike): Style[] {
     return [
       lineStyles[getStyleName(feature)],
       // Border
-      activeLineBorderStyles[getLineNumber(feature) as LineNumber],
+      activeLineBorderStyle(getLineNumber(feature) as LineNumber),
       new Style({
         stroke: new Stroke({
           color: '#FFFFFF',
