@@ -201,7 +201,7 @@ planningStore.$subscribe(() => {
       ref="line1"
       :line="1"
       :chevron="false"
-      :active="true"
+      :active="[2, 3, 4].indexOf(planningStore.selectedLine) == -1"
       :corner="'bl'"
     >
     </UiLineButton>
@@ -209,7 +209,7 @@ planningStore.$subscribe(() => {
       ref="line2"
       :line="2"
       :chevron="false"
-      :active="true"
+      :active="[1, 3, 4].indexOf(planningStore.selectedLine) == -1"
       :corner="'bl'"
     >
     </UiLineButton>
@@ -217,7 +217,7 @@ planningStore.$subscribe(() => {
       ref="line3"
       :line="3"
       :chevron="false"
-      :active="true"
+      :active="[1, 2, 4].indexOf(planningStore.selectedLine) == -1"
       :corner="'bl'"
     >
     </UiLineButton>
@@ -225,7 +225,7 @@ planningStore.$subscribe(() => {
       ref="line4"
       :line="4"
       :chevron="false"
-      :active="true"
+      :active="[1, 2, 3].indexOf(planningStore.selectedLine) == -1"
       :corner="'bl'"
     >
     </UiLineButton>
