@@ -18,6 +18,7 @@ import { usePlanningStore } from '@/stores/planning'
 import { Overlay } from 'ol'
 import UiLineButton from './buttons/UiLineButton.vue'
 import OlNavigationButtons from './buttons/OlNavigationButtons.vue'
+import type { LineNumber } from '@/model/lines.model'
 
 const planningStore = usePlanningStore()
 
@@ -62,6 +63,37 @@ type LineStatus =
   | 'underConstruction'
   | 'constructionFinished'
   | 'commisioning'
+
+const activeLineBorderStyles: Record<LineNumber, Style> = {
+  1: new Style({
+    stroke: new Stroke({
+      color: '#4338CA', // indigo-600
+      width: 9,
+    }),
+    zIndex: 0,
+  }),
+  2: new Style({
+    stroke: new Stroke({
+      color: '#DB2777', // pink-600
+      width: 9,
+    }),
+    zIndex: 0,
+  }),
+  3: new Style({
+    stroke: new Stroke({
+      color: '#057857', // emerald-600
+      width: 9,
+    }),
+    zIndex: 0,
+  }),
+  4: new Style({
+    stroke: new Stroke({
+      color: '#9333EA', // purple-600
+      width: 9,
+    }),
+    zIndex: 0,
+  }),
+}
 
 const lineStyles: Record<LineStatus, Style> = {
   unStarted: new Style({
@@ -157,13 +189,12 @@ const styleFunction: StyleFunction = function (feature: FeatureLike): Style[] {
         zIndex: 0,
       }),
     ]
-
-  // Neutral line style
   if (isLineSelected(feature)) {
     // Active line style
     return [
       lineStyles[getStyleName(feature)],
       // Border
+      activeLineBorderStyles[getLineNumber(feature) as LineNumber],
       new Style({
         stroke: new Stroke({
           color: '#FFFFFF',
@@ -171,18 +202,10 @@ const styleFunction: StyleFunction = function (feature: FeatureLike): Style[] {
         }),
         zIndex: 1,
       }),
-      new Style({
-        stroke: new Stroke({
-          color: '#1E293B',
-          width: 9,
-        }),
-        zIndex: 0,
-      }),
     ]
   } else {
     // Inactive line style
     return [
-      // lineStyles[getStyleName(feature)],
       // Border
       new Style({
         stroke: new Stroke({
