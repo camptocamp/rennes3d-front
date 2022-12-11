@@ -76,7 +76,7 @@ const lineColors: Record<LineNumber, ol_color.Color> = {
 }
 
 const lineStatusColors: Record<LineStatus, ol_color.Color> = {
-  unStarted: ol_color.fromString('#94A3B8'), // gray-300
+  unStarted: ol_color.fromString('#D1D5DB'), // gray-200
   underConstruction: ol_color.fromString('#F43F5E'), // rose-500
   constructionFinished: ol_color.fromString('#FACC15'), // amber-400
   commisioning: ol_color.fromString('#65A30D'), // lime-600
