@@ -192,6 +192,10 @@ onMounted(async () => {
 planningStore.$subscribe(() => {
   planningLayer.setStyle(styleFunction)
 })
+
+function setSelectedLine(line: number) {
+  planningStore.selectedLine = line
+}
 </script>
 <template>
   <UiOLMap v-if="mapLoaded"></UiOLMap>
@@ -203,6 +207,7 @@ planningStore.$subscribe(() => {
       :chevron="false"
       :active="[2, 3, 4].indexOf(planningStore.selectedLine) == -1"
       :corner="'bl'"
+      @click="setSelectedLine(1)"
     >
     </UiLineButton>
     <UiLineButton
@@ -211,6 +216,7 @@ planningStore.$subscribe(() => {
       :chevron="false"
       :active="[1, 3, 4].indexOf(planningStore.selectedLine) == -1"
       :corner="'bl'"
+      @click="setSelectedLine(2)"
     >
     </UiLineButton>
     <UiLineButton
@@ -219,6 +225,7 @@ planningStore.$subscribe(() => {
       :chevron="false"
       :active="[1, 2, 4].indexOf(planningStore.selectedLine) == -1"
       :corner="'bl'"
+      @click="setSelectedLine(3)"
     >
     </UiLineButton>
     <UiLineButton
@@ -227,6 +234,7 @@ planningStore.$subscribe(() => {
       :chevron="false"
       :active="[1, 2, 3].indexOf(planningStore.selectedLine) == -1"
       :corner="'bl'"
+      @click="setSelectedLine(4)"
     >
     </UiLineButton>
   </div>
