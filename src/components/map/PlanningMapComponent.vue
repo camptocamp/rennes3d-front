@@ -75,7 +75,14 @@ const lineColors: Record<LineNumber, ol_color.Color> = {
   4: ol_color.fromString('#9333EA'), // purple-600
 }
 
-function activeLineBorderStyle(line: LineNumber) {
+const lineStatusColors: Record<LineStatus, ol_color.Color> = {
+  unStarted: ol_color.fromString('#94A3B8'), // gray-300
+  underConstruction: ol_color.fromString('#F43F5E'), // rose-500
+  constructionFinished: ol_color.fromString('#FACC15'), // amber-400
+  commisioning: ol_color.fromString('#65A30D'), // lime-600
+}
+
+function activeLineBorderStyle(line: LineNumber): Style {
   return new Style({
     stroke: new Stroke({
       color: lineColors[line],
@@ -85,36 +92,14 @@ function activeLineBorderStyle(line: LineNumber) {
   })
 }
 
-const lineStyles: Record<LineStatus, Style> = {
-  unStarted: new Style({
+function lineStatusStyle(lineStatus: LineStatus): Style {
+  return new Style({
     stroke: new Stroke({
-      color: '#94A3B8', // gray-300
+      color: lineStatusColors[lineStatus],
       width: 4,
     }),
     zIndex: 2,
-  }),
-  underConstruction: new Style({
-    stroke: new Stroke({
-      color: '#F43F5E', // rose-500
-      width: 4,
-    }),
-    zIndex: 2,
-  }),
-
-  constructionFinished: new Style({
-    stroke: new Stroke({
-      color: '#FACC15', // amber-400
-      width: 4,
-    }),
-    zIndex: 2,
-  }),
-  commisioning: new Style({
-    stroke: new Stroke({
-      color: '#65A30D', // lime-600
-      width: 4,
-    }),
-    zIndex: 2,
-  }),
+  })
 }
 
 function convertAttributeToDate(attribute: string): Date {
@@ -162,7 +147,7 @@ const styleFunction: StyleFunction = function (feature: FeatureLike): Style[] {
   // No active/selected line
   if ([1, 2, 3, 4].indexOf(planningStore.selectedLine) == -1)
     return [
-      lineStyles[getStyleName(feature)],
+      lineStatusStyle(getStyleName(feature)),
       // Border
       new Style({
         stroke: new Stroke({
@@ -179,10 +164,11 @@ const styleFunction: StyleFunction = function (feature: FeatureLike): Style[] {
         zIndex: 0,
       }),
     ]
+
+  // Active line style
   if (isLineSelected(feature)) {
-    // Active line style
     return [
-      lineStyles[getStyleName(feature)],
+      lineStatusStyle(getStyleName(feature)),
       // Border
       activeLineBorderStyle(getLineNumber(feature) as LineNumber),
       new Style({
@@ -193,8 +179,10 @@ const styleFunction: StyleFunction = function (feature: FeatureLike): Style[] {
         zIndex: 1,
       }),
     ]
-  } else {
-    // Inactive line style
+  }
+
+  // Inactive line style
+  else {
     return [
       // Border
       new Style({
