@@ -28,6 +28,9 @@ provide('map', map)
 
 const mapLoaded = ref(false)
 const line1 = ref(null)
+const line2 = ref(null)
+const line3 = ref(null)
+const line4 = ref(null)
 
 const resolutions = []
 const matrixIds = []
@@ -233,14 +236,11 @@ const planningLayer = new VectorLayer({
   style: styleFunction,
 })
 
-// var ComponentApp = createApp(UiLineButton)
-// const wrapper = document.createElement('div')
-// ComponentApp.mount(wrapper)
-
 function addOverlay(olMap: Map, lng: number, lat: number, content: string) {
   const element = document.createElement('div')
-  element.innerHTML = content // line1.value?.innerHTML
+  element.innerHTML = content
   const overlay = new Overlay({
+    // TODO: Need to set the element from UiLineButton component using ref
     element: element,
     position: fromLonLat([lng, lat]),
   })
