@@ -10,7 +10,7 @@ const panelStore = usePanelsStore()
 
 <template>
   <main class="h-screen flex flex-col">
-    <div class="h-1/6 p-4 bg-white flex flex-row gap-2 items-center">
+    <div class="p-4 bg-white flex flex-row gap-2 items-center">
       <div>
         <UiButton
           class="shadow-sm"

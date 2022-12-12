@@ -15,6 +15,7 @@ import { Style, Stroke } from 'ol/style'
 import type { StyleFunction } from 'ol/style/Style'
 import type { FeatureLike } from 'ol/Feature'
 import { usePlanningStore } from '@/stores/planning'
+import UiPlanningLegend from '@/components/ui/UiPlanningLegend.vue'
 import { Overlay } from 'ol'
 import UiLineButton from './buttons/UiLineButton.vue'
 import OlNavigationButtons from './buttons/OlNavigationButtons.vue'
@@ -67,6 +68,66 @@ type LineStatus =
   | 'underConstruction'
   | 'constructionFinished'
   | 'commisioning'
+
+
+const innerWhiteStyle = new Style({
+  stroke: new Stroke({
+    color: '#FFFFFF',
+    width: 5,
+    lineCap: 'butt',
+  }),
+})
+
+const blackBorderStyle = new Style({
+  stroke: new Stroke({
+    color: '#000000',
+    width: 6,
+    lineCap: 'butt',
+  }),
+})
+
+const styles: Record<LineStatus, Style[]> = {
+  unStarted: [
+    blackBorderStyle,
+    innerWhiteStyle,
+    new Style({
+      stroke: new Stroke({
+        color: '#FFFFFF',
+        width: 4,
+      }),
+    }),
+  ],
+  underConstruction: [
+    blackBorderStyle,
+    innerWhiteStyle,
+    new Style({
+      stroke: new Stroke({
+        color: '#D7191C',
+        width: 4,
+      }),
+    }),
+  ],
+  constructionFinished: [
+    blackBorderStyle,
+    innerWhiteStyle,
+    new Style({
+      stroke: new Stroke({
+        color: '#FDBF6F',
+        width: 4,
+      }),
+    }),
+  ],
+  commisioning: [
+    blackBorderStyle,
+    innerWhiteStyle,
+    new Style({
+      stroke: new Stroke({
+        color: '#04B200',
+        width: 4,
+      }),
+    }),
+  ],
+}
 
 const lineColors: Record<LineNumber, ol_color.Color> = {
   1: ol_color.fromString('#4338CA'), // indigo-600
@@ -297,4 +358,5 @@ function setSelectedLine(line: number) {
     >
     </UiLineButton>
   </div>
+  <UiPlanningLegend></UiPlanningLegend>
 </template>

@@ -62,7 +62,10 @@ const setselectedIndex = (index: number) => {
 </script>
 
 <template>
-  <div class="w-[78rem] h-32 bg-white relative flex text-black" ref="container">
+  <div
+    class="max-w-[90rem] h-32 bg-white relative flex text-black"
+    ref="container"
+  >
     <div
       v-bind:key="index"
       v-for="(item, index) of items"
