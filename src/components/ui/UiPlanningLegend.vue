@@ -1,5 +1,7 @@
 <script lang="ts" setup>
 import { LinePlanningStateTypes } from '@/model/line-planning-state.model'
+import { usePlanningStore } from '@/stores/planning'
+const planningStore = usePlanningStore()
 
 let items = [
   LinePlanningStateTypes.UNSTARTED,
@@ -7,6 +9,14 @@ let items = [
   LinePlanningStateTypes.CONSTRUCTION_FINISHED,
   LinePlanningStateTypes.COMMISIONING,
 ]
+
+const updateLineState = (lineState: LinePlanningStateTypes) => {
+  planningStore.setLinePlanningState(lineState)
+}
+
+const isHighlighted = (lineState: LinePlanningStateTypes) => {
+  return planningStore.isLinePlanningStateHighlighted(lineState)
+}
 </script>
 
 <template>
@@ -15,14 +25,18 @@ let items = [
   >
     <div
       v-for="item of items"
-      :key="item"
-      class="flex-1 flex items-center relative hover:font-medium mx-4"
+      :key="item.owsValue"
+      @click="updateLineState(item)"
+      class="flex-1 flex items-center relative hover:font-medium mx-4 cursor-pointer"
+      :class="{ 'text-neutral-500': !isHighlighted(item) }"
     >
       <div
         :style="{
           borderLeft: '5px',
           borderLeftStyle: 'solid',
-          borderLeftColor: item.color,
+          borderLeftColor: isHighlighted(item)
+            ? item.color
+            : item.deemphasizedColor,
         }"
         class="flex shadow-lg"
       >

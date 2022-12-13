@@ -6,7 +6,7 @@ import type { LinePlanningStateTypes } from '@/model/line-planning-state.model'
 export const usePlanningStore = defineStore('planning', () => {
   const selectedYear: Ref<number> = ref(2029)
   const selectedSemester: Ref<number> = ref(1)
-  let selectedLineState: Ref<LinePlanningStateTypes>
+  const selectedLineState: Ref<LinePlanningStateTypes | null> = ref(null)
   const selectedLine: Ref<number> = ref(0)
 
   function getSelectedDate() {
@@ -19,8 +19,24 @@ export const usePlanningStore = defineStore('planning', () => {
     selectedSemester.value = date.getUTCMonth() < 7 ? 1 : 2
   }
 
-  function setLineState(line: LinePlanningStateTypes) {
-    selectedLineState.value = line
+  function setLinePlanningState(lineState: LinePlanningStateTypes) {
+    if (
+      selectedLineState.value &&
+      selectedLineState.value.owsValue === lineState.owsValue
+    ) {
+      selectedLineState.value = null
+    } else {
+      selectedLineState.value = lineState
+    }
+  }
+
+  function isLinePlanningStateHighlighted(
+    linePlanningState: LinePlanningStateTypes
+  ): boolean {
+    if (selectedLineState.value == null) {
+      return true
+    }
+    return selectedLineState.value?.owsValue == linePlanningState.owsValue
   }
 
   return {
@@ -29,5 +45,8 @@ export const usePlanningStore = defineStore('planning', () => {
     selectedYear,
     setDate,
     selectedLine,
+    selectedLineState,
+    setLinePlanningState,
+    isLinePlanningStateHighlighted,
   }
 })
