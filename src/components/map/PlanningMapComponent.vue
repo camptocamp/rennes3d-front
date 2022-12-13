@@ -15,7 +15,11 @@ import { Style, Stroke } from 'ol/style'
 import type { StyleFunction } from 'ol/style/Style'
 import type { FeatureLike } from 'ol/Feature'
 import { usePlanningStore } from '@/stores/planning'
+import { Overlay } from 'ol'
+import UiLineButton from './buttons/UiLineButton.vue'
 import OlNavigationButtons from './buttons/OlNavigationButtons.vue'
+import type { LineNumber } from '@/model/lines.model'
+import * as ol_color from 'ol/color'
 
 const planningStore = usePlanningStore()
 
@@ -24,6 +28,10 @@ let map = new Map({ controls: [] })
 provide('map', map)
 
 const mapLoaded = ref(false)
+const line1 = ref(null)
+const line2 = ref(null)
+const line3 = ref(null)
+const line4 = ref(null)
 
 const resolutions = []
 const matrixIds = []
@@ -60,36 +68,38 @@ type LineStatus =
   | 'constructionFinished'
   | 'commisioning'
 
-const styles: Record<LineStatus, Style> = {
-  unStarted: new Style({
-    stroke: new Stroke({
-      color: '#94A3B8', // gray-300
-      width: 4,
-    }),
-    zIndex: 2,
-  }),
-  underConstruction: new Style({
-    stroke: new Stroke({
-      color: '#F43F5E', // rose-500
-      width: 4,
-    }),
-    zIndex: 2,
-  }),
+const lineColors: Record<LineNumber, ol_color.Color> = {
+  1: ol_color.fromString('#4338CA'), // indigo-600
+  2: ol_color.fromString('#DB2777'), // pink-600
+  3: ol_color.fromString('#057857'), // emerald-600
+  4: ol_color.fromString('#9333EA'), // purple-600
+}
 
-  constructionFinished: new Style({
+const lineStatusColors: Record<LineStatus, ol_color.Color> = {
+  unStarted: ol_color.fromString('#D1D5DB'), // gray-200
+  underConstruction: ol_color.fromString('#F43F5E'), // rose-500
+  constructionFinished: ol_color.fromString('#FACC15'), // amber-400
+  commisioning: ol_color.fromString('#65A30D'), // lime-600
+}
+
+function activeLineBorderStyle(line: LineNumber): Style {
+  return new Style({
     stroke: new Stroke({
-      color: '#FACC15', // amber-400
+      color: lineColors[line],
+      width: 9,
+    }),
+    zIndex: 0,
+  })
+}
+
+function lineStatusStyle(lineStatus: LineStatus): Style {
+  return new Style({
+    stroke: new Stroke({
+      color: lineStatusColors[lineStatus],
       width: 4,
     }),
     zIndex: 2,
-  }),
-  commisioning: new Style({
-    stroke: new Stroke({
-      color: '#65A30D', // lime-600
-      width: 4,
-    }),
-    zIndex: 2,
-  }),
+  })
 }
 
 function convertAttributeToDate(attribute: string): Date {
@@ -124,24 +134,73 @@ function getStyleName(feature: FeatureLike): LineStatus {
   }
 }
 
+function getLineNumber(feature: FeatureLike): number {
+  let lineNumberString = feature.get('li_code') // e.g. T1
+  return Number(lineNumberString.substr(lineNumberString.length - 1))
+}
+
+function isLineSelected(feature: FeatureLike): boolean {
+  return planningStore.selectedLine == getLineNumber(feature)
+}
+
 const styleFunction: StyleFunction = function (feature: FeatureLike): Style[] {
-  return [
-    styles[getStyleName(feature)],
-    new Style({
-      stroke: new Stroke({
-        color: '#FFFFFF',
-        width: 7,
+  // No active/selected line
+  if ([1, 2, 3, 4].indexOf(planningStore.selectedLine) == -1)
+    return [
+      lineStatusStyle(getStyleName(feature)),
+      // Border
+      new Style({
+        stroke: new Stroke({
+          color: '#FFFFFF',
+          width: 7,
+        }),
+        zIndex: 1,
       }),
-      zIndex: 1,
-    }),
-    new Style({
-      stroke: new Stroke({
-        color: '#1E293B',
-        width: 9,
+      new Style({
+        stroke: new Stroke({
+          color: '#0F172A', // slate-800
+          width: 9,
+        }),
+        zIndex: 0,
       }),
-      zIndex: 0,
-    }),
-  ]
+    ]
+
+  // Active line style
+  if (isLineSelected(feature)) {
+    return [
+      lineStatusStyle(getStyleName(feature)),
+      // Border
+      activeLineBorderStyle(getLineNumber(feature) as LineNumber),
+      new Style({
+        stroke: new Stroke({
+          color: '#FFFFFF',
+          width: 7,
+        }),
+        zIndex: 1,
+      }),
+    ]
+  }
+
+  // Inactive line style
+  else {
+    return [
+      // Border
+      new Style({
+        stroke: new Stroke({
+          color: '#FFFFFF',
+          width: 2,
+        }),
+        zIndex: 1,
+      }),
+      new Style({
+        stroke: new Stroke({
+          color: '#525252', // neutral-600
+          width: 4,
+        }),
+        zIndex: 0,
+      }),
+    ]
+  }
 }
 
 const planningLayer = new VectorLayer({
@@ -151,6 +210,17 @@ const planningLayer = new VectorLayer({
   }),
   style: styleFunction,
 })
+
+function addOverlay(olMap: Map, lng: number, lat: number, content: string) {
+  const element = document.createElement('div')
+  element.innerHTML = content
+  const overlay = new Overlay({
+    // TODO: Need to set the element from UiLineButton component using ref
+    element: element,
+    position: fromLonLat([lng, lat]),
+  })
+  olMap.addOverlay(overlay)
+}
 
 function setupMap() {
   map.setTarget('mapContainer')
@@ -163,18 +233,68 @@ function setupMap() {
     })
   )
   map.setLayers([rennesBaseMap, planningLayer])
+  addOverlay(map, -1.67, 48.101, '<div>Overlay</div>')
   mapLoaded.value = true
 }
 
 onMounted(async () => {
   setupMap()
+  console.log(`line1 ${line1.value}`)
 })
 
 planningStore.$subscribe(() => {
   planningLayer.setStyle(styleFunction)
 })
+
+function setSelectedLine(line: number) {
+  // If the line is currently active, set the selected line to 0  to make
+  // neutral state
+  if (planningStore.selectedLine == line) {
+    planningStore.selectedLine = 0
+  } else {
+    planningStore.selectedLine = line
+  }
+}
 </script>
 <template>
   <UiOLMap v-if="mapLoaded"></UiOLMap>
   <OlNavigationButtons></OlNavigationButtons>
+  <div class="absolute left-10 top-10 flex flex-row gap-1">
+    <UiLineButton
+      ref="line1"
+      :line="1"
+      :chevron="false"
+      :active="[2, 3, 4].indexOf(planningStore.selectedLine) == -1"
+      :corner="'bl'"
+      @click="setSelectedLine(1)"
+    >
+    </UiLineButton>
+    <UiLineButton
+      ref="line2"
+      :line="2"
+      :chevron="false"
+      :active="[1, 3, 4].indexOf(planningStore.selectedLine) == -1"
+      :corner="'bl'"
+      @click="setSelectedLine(2)"
+    >
+    </UiLineButton>
+    <UiLineButton
+      ref="line3"
+      :line="3"
+      :chevron="false"
+      :active="[1, 2, 4].indexOf(planningStore.selectedLine) == -1"
+      :corner="'bl'"
+      @click="setSelectedLine(3)"
+    >
+    </UiLineButton>
+    <UiLineButton
+      ref="line4"
+      :line="4"
+      :chevron="false"
+      :active="[1, 2, 3].indexOf(planningStore.selectedLine) == -1"
+      :corner="'bl'"
+      @click="setSelectedLine(4)"
+    >
+    </UiLineButton>
+  </div>
 </template>

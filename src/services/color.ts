@@ -1,6 +1,6 @@
 import type { LineNumber } from '@/model/lines.model'
 
-export const lineColors = {
+export const lineColors: Record<LineNumber, String> = {
   1: 'indigo',
   2: 'pink',
   3: 'emerald',

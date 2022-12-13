@@ -5,6 +5,7 @@ import { defineStore } from 'pinia'
 export const usePlanningStore = defineStore('planning', () => {
   const selectedYear: Ref<number> = ref(2029)
   const selectedSemester: Ref<number> = ref(1)
+  const selectedLine: Ref<number> = ref(0)
 
   function getSelectedDate() {
     const selectedMonth = selectedSemester.value % 2 == 1 ? 1 : 7
@@ -21,5 +22,6 @@ export const usePlanningStore = defineStore('planning', () => {
     selectedSemester,
     selectedYear,
     setDate,
+    selectedLine,
   }
 })
