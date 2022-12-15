@@ -15,7 +15,7 @@ import { Style, Stroke } from 'ol/style'
 import type { StyleFunction } from 'ol/style/Style'
 import type { FeatureLike } from 'ol/Feature'
 import { usePlanningStore } from '@/stores/planning'
-import UiPlanningLegend from '@/components/ui/UiPlanningLegend.vue'
+import UiPlanningLegend from '@/components/map/planning/PlanningLegend.vue'
 import { Overlay } from 'ol'
 import UiLineButton from './buttons/UiLineButton.vue'
 import OlNavigationButtons from './buttons/OlNavigationButtons.vue'
@@ -172,8 +172,14 @@ function isLinePlanningStateSelected(feature: FeatureLike): boolean {
 }
 
 const styleFunction: StyleFunction = function (feature: FeatureLike): Style[] {
-  // Not on active state
+  // Inactive state
   if (isLinePlanningStateActivated() && !isLinePlanningStateSelected(feature)) {
+    if (isLineSelected(feature)) {
+      return [
+        activeLineBorderStyle(getLineNumber(feature) as LineNumber),
+        innerWhiteStyle,
+      ]
+    }
     return inactiveLineStyle
   }
 
@@ -195,10 +201,7 @@ const styleFunction: StyleFunction = function (feature: FeatureLike): Style[] {
       innerWhiteStyle,
     ]
   }
-  // Inactive line style
-  else {
-    return inactiveLineStyle
-  }
+  return inactiveLineStyle
 }
 
 const planningLayer = new VectorLayer({
@@ -241,7 +244,6 @@ onMounted(async () => {
 })
 
 planningStore.$subscribe(() => {
-  console.log(planningStore.selectedLineState)
   planningLayer.setStyle(styleFunction)
 })
 

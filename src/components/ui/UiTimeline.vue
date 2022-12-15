@@ -63,7 +63,7 @@ const setselectedIndex = (index: number) => {
 
 <template>
   <div
-    class="max-w-[90rem] h-32 bg-white relative flex text-black"
+    class="max-w-[86rem] h-32 bg-white relative flex text-black"
     ref="container"
   >
     <div

@@ -16,7 +16,7 @@ const panelStore = usePanelsStore()
           class="shadow-sm"
           @click="panelStore.isPlanningViewShown = false"
         >
-          <ArrowLeftIcon class="w-6 h-6"></ArrowLeftIcon>
+          <ArrowLeftIcon class="w-16 h-6"></ArrowLeftIcon>
         </UiButton>
       </div>
       <div class="font-poppins font-semibold text-xl w-72">
