@@ -5,7 +5,6 @@ import { onMounted, onUnmounted, provide, ref } from 'vue'
 import mapConfig from '../../map.config.json'
 import UiMap from '../ui/UiMap.vue'
 import NavigationButtons from './buttons/NavigationButtons.vue'
-import HeadToolbarTrambus from '@/components/map/HeadToolbarTrambus.vue'
 
 const app = new VcsApp()
 provide('vcsApp', app)
@@ -49,6 +48,5 @@ layerStore.$subscribe(() => {
 
 <template>
   <UiMap v-if="appLoaded"></UiMap>
-  <HeadToolbarTrambus></HeadToolbarTrambus>
   <NavigationButtons />
 </template>

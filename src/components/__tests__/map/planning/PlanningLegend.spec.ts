@@ -4,7 +4,6 @@ import { mount } from '@vue/test-utils'
 import { createTestingPinia } from '@pinia/testing'
 import PlanningLegend from '../../../map/planning/PlanningLegend.vue'
 
-import { useLayersStore } from '@/stores/layers'
 import { usePlanningStore } from '@/stores/planning'
 import { LinePlanningStateTypes } from '@/model/line-planning-state.model'
 

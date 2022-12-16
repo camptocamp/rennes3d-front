@@ -69,7 +69,7 @@ const setselectedIndex = (index: number) => {
     <div
       v-bind:key="index"
       v-for="(item, index) of items"
-      class="flex-1 flex justify-center items-center relative pb-4 hover:font-medium"
+      class="flex-1 flex justify-center items-center relative pb-4 hover:font-medium w-28"
     >
       <div>
         <div

@@ -9,6 +9,7 @@ import PlanningView from './PlanningView.vue'
 import FooterArea from '@/components/home/FooterArea.vue'
 
 import { usePanelsStore } from '@/stores/panels'
+import HeadToolbarTrambus from '@/components/map/HeadToolbarTrambus.vue'
 
 const panelStore = usePanelsStore()
 </script>
@@ -16,7 +17,7 @@ const panelStore = usePanelsStore()
 <template>
   <main class="h-screen flex">
     <aside class="z-10 absolute">
-      <SidePanel>
+      <SidePanel v-show="panelStore.isPlanningViewShown === false">
         <UiTrambusTitle></UiTrambusTitle>
         <TravelTimes class="border-b border-neutral-300 pb-2"></TravelTimes>
         <LineDescriptions
@@ -25,6 +26,9 @@ const panelStore = usePanelsStore()
         <FooterArea></FooterArea>
       </SidePanel>
     </aside>
+    <HeadToolbarTrambus
+      v-show="panelStore.isPlanningViewShown === false"
+    ></HeadToolbarTrambus>
     <div class="grow">
       <MapComponent></MapComponent>
     </div>
@@ -36,7 +40,7 @@ const panelStore = usePanelsStore()
     <div
       class="absolute h-screen w-screen"
       v-if="panelStore.hasPlanningViewRendered"
-      :class="panelStore.isPlanningViewShown ? 'z-20' : '-z-10'"
+      v-show="panelStore.isPlanningViewShown"
     >
       <PlanningView></PlanningView>
     </div>
