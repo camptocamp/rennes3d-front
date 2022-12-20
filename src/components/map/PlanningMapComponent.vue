@@ -212,12 +212,14 @@ const planningLayer = new VectorLayer({
   style: styleFunction,
 })
 
-function addOverlay(olMap: Map, lng: number, lat: number, content: string) {
-  const element = document.createElement('div')
-  element.innerHTML = content
+function addOverlay(
+  olMap: Map,
+  lng: number,
+  lat: number,
+  lineButtonComponent: typeof UiLineButton | null
+) {
   const overlay = new Overlay({
-    // TODO: Need to set the element from UiLineButton component using ref
-    element: element,
+    element: lineButtonComponent?.$el,
     position: fromLonLat([lng, lat]),
   })
   olMap.addOverlay(overlay)
@@ -234,13 +236,16 @@ function setupMap() {
     })
   )
   map.setLayers([rennesBaseMap, planningLayer])
-  addOverlay(map, -1.67, 48.101, '<div>Overlay</div>')
+  addOverlay(map, -1.71743759, 48.12378729, line1.value)
+  addOverlay(map, -1.58409953, 48.11926538, line2.value)
+  addOverlay(map, -1.59973872, 48.08178725, line3.value)
+  addOverlay(map, -1.72991575, 48.08664826, line4.value)
+
   mapLoaded.value = true
 }
 
 onMounted(async () => {
   setupMap()
-  console.log(`line1 ${line1.value}`)
 })
 
 planningStore.$subscribe(() => {
@@ -266,7 +271,7 @@ function setSelectedLine(line: number) {
       :line="1"
       :chevron="false"
       :active="[2, 3, 4].indexOf(planningStore.selectedLine) == -1"
-      :corner="'bl'"
+      :corner="'br'"
       @click="setSelectedLine(1)"
     >
     </UiLineButton>
@@ -284,7 +289,7 @@ function setSelectedLine(line: number) {
       :line="3"
       :chevron="false"
       :active="[1, 2, 4].indexOf(planningStore.selectedLine) == -1"
-      :corner="'bl'"
+      :corner="'tl'"
       @click="setSelectedLine(3)"
     >
     </UiLineButton>
@@ -293,7 +298,7 @@ function setSelectedLine(line: number) {
       :line="4"
       :chevron="false"
       :active="[1, 2, 3].indexOf(planningStore.selectedLine) == -1"
-      :corner="'bl'"
+      :corner="'br'"
       @click="setSelectedLine(4)"
     >
     </UiLineButton>
