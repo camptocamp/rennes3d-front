@@ -27,7 +27,6 @@
     "story:preview": "histoire preview"
   },
   "dependencies": {
-    "@heroicons/vue": "^2.0.11",
     "@pinia/testing": "^0.0.14",
     "@vcmap/core": "^5.0.0-rc.23",
     "ol": "^7.1.0",
