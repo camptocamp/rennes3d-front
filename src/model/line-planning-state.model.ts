@@ -24,15 +24,14 @@ export class LinePlanningStateTypes {
     '#BEF264'
   )
 
-  // private to disallow creating other instances of this type
   private constructor(
-    public readonly owsValue: string,
-    public readonly prettyPrintValue: string,
+    public readonly id: string,
+    public readonly printValue: string,
     public readonly color: string,
     public readonly deemphasizedColor: string
   ) {}
 
   toString() {
-    return this.prettyPrintValue
+    return this.printValue
   }
 }

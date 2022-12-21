@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import PlanningMapComponent from '../components/map/PlanningMapComponent.vue'
+import PlanningMapComponent from '../components/map/planning/PlanningMapComponent.vue'
 import UiButton from '../components/ui/UiButton.vue'
 import { ArrowLeftIcon } from '@heroicons/vue/20/solid'
 import { usePanelsStore } from '@/stores/panels'

@@ -22,7 +22,7 @@ export const usePlanningStore = defineStore('planning', () => {
   function setLinePlanningState(lineState: LinePlanningStateTypes) {
     if (
       selectedLineState.value &&
-      selectedLineState.value.owsValue === lineState.owsValue
+      selectedLineState.value.id === lineState.id
     ) {
       selectedLineState.value = null
     } else {
@@ -36,7 +36,11 @@ export const usePlanningStore = defineStore('planning', () => {
     if (selectedLineState.value == null) {
       return true
     }
-    return selectedLineState.value?.owsValue == linePlanningState.owsValue
+    return selectedLineState.value?.id == linePlanningState.id
+  }
+
+  function getHighlightedId() {
+    return selectedLineState.value?.id
   }
 
   return {
@@ -48,5 +52,6 @@ export const usePlanningStore = defineStore('planning', () => {
     selectedLineState,
     setLinePlanningState,
     isLinePlanningStateHighlighted,
+    getHighlightedId,
   }
 })
