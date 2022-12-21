@@ -10,15 +10,15 @@ const panelStore = usePanelsStore()
 
 <template>
   <main class="h-screen flex flex-col">
-    <div class="h-1/6 p-4 bg-white flex flex-row gap-2 items-center">
+    <div class="h-32 p-4 bg-white flex flex-row gap-2 items-center">
       <UiButton
         class="shadow-md rounded-lg p-2 flex gap-2.5"
         @click="panelStore.isPlanningViewShown = false"
       >
         <img :src="ChevronArrowRight" />
       </UiButton>
-      <div class="font-poppins font-semibold text-xl w-72">
-        Planning d'aménagement du réseau trambus
+      <div class="font-poppins font-bold text-2xl w-80">
+        Planning d’aménagement du réseau trambus
       </div>
       <TimelineController> </TimelineController>
     </div>
